@@ -1,0 +1,294 @@
+	id	question	sql	answer	category	difficulty	LLM_answer_sql	LLM_answer_summary	model	llm_type	chatbgc_version	benchmark_version
+Q_00__openai_chat__gpt-4o__RAG_benchmark__iteration_1	0	What are the different domain profiles available in the antiSMASH database?	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	General Information	Easy	SELECT * FROM antismash.as_domain_profiles;	The antiSMASH database contains the following domain profiles: Beta_elim_lyase, Condensation, Condensation_DCL, Condensation_LCL, Condensation_Dual, Condensation_Starter, X, Cglyc, Heterocyclization, Epimerization, ACPS, MT, cMT, oMT, nMT, AMP-binding, A-OX, TauD, cAT, Thioesterase, TD, Aminotran_1_2, Aminotran_3, Aminotran_4, Aminotran_5, PKS_KS, PKS_KR, PKS_ER, PKS_DH, PKS_DH2, PKS_DHt, PKS_AT, NRPS-COM_Nterm, NRPS-COM_Cterm, Polyketide_cyc, Polyketide_cyc2, PKS_Docking_Nterm, PKS_Docking_Cterm, CAL_domain, SAT, Trans-AT_docking, ACP, PCP, PP-binding, PKS_PP, NAD_binding_4, ACP_beta, B, F, FkbH, GNAT, Hal, PS, PT, TIGR01720, ECH, LPG_synthase_C, TIGR02353.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_01__openai_chat__gpt-4o__RAG_benchmark__iteration_1	1	List all antiSMASH BGC categories and their descriptions.	SELECT * FROM antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	General Information	Easy	SELECT category, description FROM antismash.bgc_categories;	"The antiSMASH BGC categories and their descriptions are:
+- pks: Polyketide
+- nrps: Nonribosomal peptide
+- ripp: Ribosomally synthesized and post-translationally modified peptide
+- terpene: Terpene
+- saccharide: Saccharide
+- alkaloid: Alkaloid
+- other: Other"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_02__openai_chat__gpt-4o__RAG_benchmark__iteration_1	2	What are antiSMASH candidate types and their descriptions?	SELECT candidate_type_id, description FROM antismash.candidate_types;	AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.	General Information	Easy	SELECT candidate_type_id, description FROM antismash.candidate_types;	"The antiSMASH candidate types and their descriptions are:
+
+1. Chemical hybrid
+2. Interleaved
+3. Neighbouring
+4. Single"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_03__openai_chat__gpt-4o__RAG_benchmark__iteration_1	3	What kind of functional classes are in the antiSMASH database?	SELECT * FROM antismash.functional_classes;	There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.	General Information	Easy	SELECT * FROM antismash.functional_classes;	There are four main functional classes in the antiSMASH database: biosynthetic, regulator, transporter, and other. Additionally, there are subclasses under biosynthetic: biosynthetic_smcog and bgc_seed.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_04__openai_chat__gpt-4o__RAG_benchmark__iteration_1	4	What is the GC content distribution of the DNA in the dataset?	SELECT accession, gc_content FROM antismash.sequence_gc_content WHERE accession = 'SEQ1234';	The GC content of the sequence with accession SEQ1234 is 45.67%.	Sequences and Regions	Hard	SELECT gc_content, COUNT(*) AS count FROM antismash.sequence_gc_content GROUP BY gc_content ORDER BY gc_content;	The GC content distribution in the dataset ranges from 64.14% to 68.56%, with counts varying from 1 to 3 for each GC content value.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_05__openai_chat__gpt-4o__RAG_benchmark__iteration_1	5	Which genome has the longest DNA sequence?	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.	Sequences and Regions	Medium	"SELECT genome_id, LENGTH(dna) AS dna_length
+FROM antismash.dna_sequences
+ORDER BY dna_length DESC
+LIMIT 1;"	The genome with the longest DNA sequence is genome_id 892, with a DNA length of 13,942,900 bases.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_06__openai_chat__gpt-4o__RAG_benchmark__iteration_1	6	List all PKS regions in genome NBC_01737.	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	Sequences and Regions	Hard	"SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r 
+JOIN antismash.dna_sequences d ON r.accession = d.accession 
+JOIN antismash.genomes g ON d.genome_id = g.genome_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';"	"The genome NBC_01737 contains the following PKS regions:
+
+1. Region 1: Type III polyketide (t3pks) from 1505416 to 1546433
+2. Region 5: Type I polyketide (t1pks) from 5772447 to 5884359
+3. Region 11: Type III polyketide (t3pks) from 8202310 to 8321183
+4. Region 20: Type I polyketide (t1pks) from 11551477 to 11627322
+5. Region 21: Type I polyketide (t1pks) from 12318862 to 12465542"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_07__openai_chat__gpt-4o__RAG_benchmark__iteration_1	7	What are the available antiSMASH domain subtypes and their descriptions?	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, and beta-OH/eDB. Descriptions are not provided for these subtypes.	Relationships and References	Easy	SELECT subtype, description FROM antismash.as_domain_subtypes;	"The available antiSMASH domain subtypes are:
+
+1. Condensation_LCL
+2. Trans-AT-KS
+3. Iterative-KS
+4. Condensation_Starter
+5. Condensation_Dual
+6. Hybrid-KS
+7. cMT
+8. Modular-KS
+9. oMT
+10. Polyketide_cyc2
+11. Polyketide_cyc
+12. nMT
+13. Condensation_DCL
+14. Cglyc
+15. AA
+16. Enediyne-KS
+17. lacST
+18. beta-OH
+19. non-elongating-DB
+20. ST
+21. br
+22. alphaMe
+23. alphaMe-eDB
+24. Miscellaneous
+25. beta-D-OMe
+26. non-elongating-beta-OH
+27. DB
+28. alphaMe-DB
+29. beta-Me
+30. beta-D-OH
+31. exomethylene
+32. eDB
+33. keto
+34. beta-OH/keto
+35. red/shDB
+36. beta-L-OH
+37. beta-OH/eDB"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_08__openai_chat__gpt-4o__RAG_benchmark__iteration_1	8	Which candidates are associated with a specific module?	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	Relationships and References	Medium	SELECT candidate_id FROM antismash.rel_candidates_modules WHERE module_id = 1;	The candidate associated with the specific module has the candidate ID 1.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_09__openai_chat__gpt-4o__RAG_benchmark__iteration_1	9	What are the details of the protoclusters associated with a specific candidate?	SELECT * FROM antismash.rel_candidates_protoclusters WHERE candidate_id = 1;	Candidate 1 is associated with protoclusters such as Protocluster 1 and Protocluster 2.	Relationships and References	Medium	"SELECT p.* 
+FROM antismash.protoclusters p
+JOIN antismash.rel_candidates_protoclusters rcp ON p.protocluster_id = rcp.protocluster_id
+WHERE rcp.candidate_id = 1;"	The protocluster associated with the specific candidate has the following details: protocluster_id 1, region_id 1, location [71679:125274], and bgc_type_id 13.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_10__openai_chat__gpt-4o__RAG_benchmark__iteration_1	10	Which domains are linked to a particular substrate?	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	Substrate 1 is linked to multiple domains, including Domain A and Domain B.	Relationships and References	Medium	"SELECT as_domain_id 
+FROM antismash.rel_as_domains_substrates 
+WHERE substrate_id = 1;"	There are no domains linked to the particular substrate based on the provided data.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_00__openai_chat__gpt-4o__RAG_benchmark__iteration_2	0	What are the different domain profiles available in the antiSMASH database?	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	General Information	Easy	SELECT * FROM antismash.as_domain_profiles;	The antiSMASH database contains 58 different domain profiles. These include various types of domains such as condensation domains, methyl transferase domains, adenylation domains, aminotransferase domains, transporter domains, and several other specialized domains like Beta_elim_lyase, Heterocyclization, Thioesterase, and Halogenase.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_01__openai_chat__gpt-4o__RAG_benchmark__iteration_2	1	List all antiSMASH BGC categories and their descriptions.	SELECT * FROM antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	General Information	Easy	SELECT category, description FROM antismash.bgc_categories;	"The antiSMASH BGC categories and their descriptions are:
+- pks: Polyketide
+- nrps: Nonribosomal peptide
+- ripp: Ribosomally synthesized and post-translationally modified peptide
+- terpene: Terpene
+- saccharide: Saccharide
+- alkaloid: Alkaloid
+- other: Other"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_02__openai_chat__gpt-4o__RAG_benchmark__iteration_2	2	What are antiSMASH candidate types and their descriptions?	SELECT candidate_type_id, description FROM antismash.candidate_types;	AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.	General Information	Easy	SELECT candidate_type_id, description FROM antismash.candidate_types;	"The antiSMASH candidate types and their descriptions are as follows:
+1. Chemical hybrid
+2. Interleaved
+3. Neighbouring
+4. Single"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_03__openai_chat__gpt-4o__RAG_benchmark__iteration_2	3	What kind of functional classes are in the antiSMASH database?	SELECT * FROM antismash.functional_classes;	There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.	General Information	Easy	SELECT * FROM antismash.functional_classes;	The antiSMASH database contains the following functional classes: biosynthetic, regulator, transporter, and other. Additionally, there are sub-classes under biosynthetic: biosynthetic_smcog and bgc_seed.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_05__openai_chat__gpt-4o__RAG_benchmark__iteration_2	5	Which genome has the longest DNA sequence?	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.	Sequences and Regions	Medium	SELECT genome_id, MAX(LENGTH(dna)) as max_dna_length FROM antismash.dna_sequences GROUP BY genome_id ORDER BY max_dna_length DESC LIMIT 1;	The genome with the longest DNA sequence has a length of 13,942,900 base pairs and is identified by genome_id 892.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_06__openai_chat__gpt-4o__RAG_benchmark__iteration_2	6	List all PKS regions in genome NBC_01737.	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	Sequences and Regions	Hard	"SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r 
+JOIN antismash.dna_sequences d ON r.accession = d.accession 
+JOIN antismash.genomes g ON d.genome_id = g.genome_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';"	"Genome NBC_01737 contains the following PKS regions:
+1. Region 1: Type III polyketide (t3pks) from 1505416 to 1546433.
+2. Region 5: Type I polyketide (t1pks) from 5772447 to 5884359.
+3. Region 11: Type III polyketide (t3pks) from 8202310 to 8321183.
+4. Region 20: Type I polyketide (t1pks) from 11551477 to 11627322.
+5. Region 21: Type I polyketide (t1pks) from 12318862 to 12465542."	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_07__openai_chat__gpt-4o__RAG_benchmark__iteration_2	7	What are the available antiSMASH domain subtypes and their descriptions?	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, and beta-OH/eDB. Descriptions are not provided for these subtypes.	Relationships and References	Easy	SELECT subtype, description FROM antismash.as_domain_subtypes;	"The available antiSMASH domain subtypes and their descriptions are:
+
+- Condensation_LCL
+- Trans-AT-KS
+- Iterative-KS
+- Condensation_Starter
+- Condensation_Dual
+- Hybrid-KS
+- cMT
+- Modular-KS
+- oMT
+- Polyketide_cyc2
+- Polyketide_cyc
+- nMT
+- Condensation_DCL
+- Cglyc
+- AA
+- Enediyne-KS
+- lacST
+- beta-OH
+- non-elongating-DB
+- ST
+- br
+- alphaMe
+- alphaMe-eDB
+- Miscellaneous
+- beta-D-OMe
+- non-elongating-beta-OH
+- DB
+- alphaMe-DB
+- beta-Me
+- beta-D-OH
+- exomethylene
+- eDB
+- keto
+- beta-OH/keto
+- red/shDB
+- beta-L-OH
+- beta-OH/eDB"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_08__openai_chat__gpt-4o__RAG_benchmark__iteration_2	8	Which candidates are associated with a specific module?	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	Relationships and References	Medium	SELECT candidate_id FROM antismash.rel_candidates_modules WHERE module_id = 1;	The candidate associated with the specific module has the candidate_id of 1.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_09__openai_chat__gpt-4o__RAG_benchmark__iteration_2	9	What are the details of the protoclusters associated with a specific candidate?	SELECT * FROM antismash.rel_candidates_protoclusters WHERE candidate_id = 1;	Candidate 1 is associated with protoclusters such as Protocluster 1 and Protocluster 2.	Relationships and References	Medium	"SELECT p.*
+FROM antismash.protoclusters p
+JOIN antismash.rel_candidates_protoclusters rcp ON p.protocluster_id = rcp.protocluster_id
+WHERE rcp.candidate_id = 1;"	The candidate is associated with one protocluster (ID: 1) located in region 1, with a location range of [71679:125274] and a BGC type ID of 13.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_10__openai_chat__gpt-4o__RAG_benchmark__iteration_2	10	Which domains are linked to a particular substrate?	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	Substrate 1 is linked to multiple domains, including Domain A and Domain B.	Relationships and References	Medium	SELECT as_domain_id FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	The query returned no linked domains for the particular substrate.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_00__openai_chat__gpt-4o__RAG_benchmark__iteration_3	0	What are the different domain profiles available in the antiSMASH database?	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	General Information	Easy	SELECT DISTINCT pfam_id FROM antismash.pfam_domains;	The antiSMASH database contains 101 different domain profiles, each identified by a unique pfam_id.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_01__openai_chat__gpt-4o__RAG_benchmark__iteration_3	1	List all antiSMASH BGC categories and their descriptions.	SELECT * FROM antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	General Information	Easy	SELECT category, description FROM antismash.bgc_categories;	"The antiSMASH BGC categories and their descriptions are:
+
+1. pks - Polyketide
+2. nrps - Nonribosomal peptide
+3. ripp - Ribosomally synthesized and post-translationally modified peptide
+4. terpene - Terpene
+5. saccharide - Saccharide
+6. alkaloid - Alkaloid
+7. other - Other"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_02__openai_chat__gpt-4o__RAG_benchmark__iteration_3	2	What are antiSMASH candidate types and their descriptions?	SELECT candidate_type_id, description FROM antismash.candidate_types;	AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.	General Information	Easy	SELECT candidate_type_id, description FROM antismash.candidate_types;	"The antiSMASH candidate types and their descriptions are as follows:
+1. Chemical hybrid
+2. Interleaved
+3. Neighbouring
+4. Single"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_03__openai_chat__gpt-4o__RAG_benchmark__iteration_3	3	What kind of functional classes are in the antiSMASH database?	SELECT * FROM antismash.functional_classes;	There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.	General Information	Easy	SELECT * FROM antismash.functional_classes;	"The antiSMASH database contains the following functional classes:
+- biosynthetic
+- regulator
+- transporter
+- other
+
+Additionally, the ""biosynthetic"" class includes sub-classes:
+- biosynthetic_smcog
+- bgc_seed"	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_04__openai_chat__gpt-4o__RAG_benchmark__iteration_3	4	What is the GC content distribution of the DNA in the dataset?	SELECT accession, gc_content FROM antismash.sequence_gc_content WHERE accession = 'SEQ1234';	The GC content of the sequence with accession SEQ1234 is 45.67%.	Sequences and Regions	Hard	SELECT gc_content FROM antismash.sequence_gc_content;	The GC content distribution of the DNA in the dataset ranges from 65.27% to 74.01%, with most values clustering around the low 70s.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_05__openai_chat__gpt-4o__RAG_benchmark__iteration_3	5	Which genome has the longest DNA sequence?	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.	Sequences and Regions	Medium	"SELECT genome_id, LENGTH(dna) as dna_length 
+FROM antismash.dna_sequences 
+ORDER BY LENGTH(dna) DESC 
+LIMIT 1;"	The genome with the longest DNA sequence has a genome ID of 892 and a DNA length of 13,942,900 base pairs.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_06__openai_chat__gpt-4o__RAG_benchmark__iteration_3	6	List all PKS regions in genome NBC_01737.	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	Sequences and Regions	Hard	"SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r 
+JOIN antismash.dna_sequences d ON r.accession = d.accession 
+JOIN antismash.genomes g ON d.genome_id = g.genome_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';"	"The genome NBC_01737 contains five PKS regions:
+1. Region 1: Type III polyketide (t3pks) from position 1505416 to 1546433.
+2. Region 5: Type I polyketide (t1pks) from position 5772447 to 5884359.
+3. Region 11: Type III polyketide (t3pks) from position 8202310 to 8321183.
+4. Region 20: Type I polyketide (t1pks) from position 11551477 to 11627322.
+5. Region 21: Type I polyketide (t1pks) from position 12318862 to 12465542."	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_07__openai_chat__gpt-4o__RAG_benchmark__iteration_3	7	What are the available antiSMASH domain subtypes and their descriptions?	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, and beta-OH/eDB. Descriptions are not provided for these subtypes.	Relationships and References	Easy	SELECT subtype, description FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, beta-OH/eDB.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_08__openai_chat__gpt-4o__RAG_benchmark__iteration_3	8	Which candidates are associated with a specific module?	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	Relationships and References	Medium	SELECT candidate_id FROM antismash.rel_candidates_modules WHERE module_id = 1;	The candidate associated with the specific module is candidate_id 1.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_09__openai_chat__gpt-4o__RAG_benchmark__iteration_3	9	What are the details of the protoclusters associated with a specific candidate?	SELECT * FROM antismash.rel_candidates_protoclusters WHERE candidate_id = 1;	Candidate 1 is associated with protoclusters such as Protocluster 1 and Protocluster 2.	Relationships and References	Medium	"SELECT p.* 
+FROM antismash.protoclusters p
+JOIN antismash.rel_candidates_protoclusters rcp ON p.protocluster_id = rcp.protocluster_id
+WHERE rcp.candidate_id = 1;"	The protocluster associated with the specific candidate has the following details: protocluster_id is 1, region_id is 1, LOCATION is [71679:125274], and bgc_type_id is 13.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_10__openai_chat__gpt-4o__RAG_benchmark__iteration_3	10	Which domains are linked to a particular substrate?	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	Substrate 1 is linked to multiple domains, including Domain A and Domain B.	Relationships and References	Medium	SELECT as_domain_id FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	There are no domains linked to the particular substrate in the provided data.	gpt-4o	openai_chat	0.2.0	bde51dc
+Q_00__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	0	What are the different domain profiles available in the antiSMASH database?	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	General Information	Easy	SELECT DISTINCT pfam_domain_id FROM antismash.pfam_domains;	The antiSMASH database contains a variety of domain profiles identified by unique pfam_domain_ids, with a total of 101 distinct entries ranging from 491530 to 492281.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_01__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	1	List all antiSMASH BGC categories and their descriptions.	SELECT * FROM antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	General Information	Easy	SELECT category, description FROM antismash.bgc_categories;	The data lists the categories of biosynthetic gene clusters (BGCs) identified by antiSMASH along with their descriptions. The categories include Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid), and Other (other).	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_02__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	2	What are antiSMASH candidate types and their descriptions?	SELECT candidate_type_id, description FROM antismash.candidate_types;	AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.	General Information	Easy	SELECT candidate_type_id, description FROM antismash.candidate_types;	"The antiSMASH candidate types and their descriptions are as follows:
+
+1. **Chemical hybrid** (candidate_type_id: 1)
+2. **Interleaved** (candidate_type_id: 2)
+3. **Neighbouring** (candidate_type_id: 3)
+4. **Single** (candidate_type_id: 4)"	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_03__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	3	What kind of functional classes are in the antiSMASH database?	SELECT * FROM antismash.functional_classes;	There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.	General Information	Easy	SELECT * FROM antismash.functional_classes;	The antiSMASH database includes the following functional classes: biosynthetic, regulator, transporter, other, biosynthetic_smcog (subclass of biosynthetic), and bgc_seed (subclass of biosynthetic).	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_05__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	5	Which genome has the longest DNA sequence?	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.	Sequences and Regions	Medium	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	The genome with the longest DNA sequence has an ID of 892, a tax ID of 38836, and an assembly ID of NBC_01737, with a DNA length of 13,942,900 base pairs.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_07__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	7	What are the available antiSMASH domain subtypes and their descriptions?	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, and beta-OH/eDB. Descriptions are not provided for these subtypes.	Relationships and References	Easy	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes include a variety of categories such as condensation types (e.g., Condensation_LCL, Condensation_Starter), modular and iterative types (e.g., Modular-KS, Iterative-KS), and various other specific modifications (e.g., beta-OH, alphaMe). Many subtypes currently do not have descriptions provided.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_08__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	8	Which candidates are associated with a specific module?	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	Relationships and References	Medium	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	The data indicates that candidate with ID 1 is associated with module ID 1.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_09__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	9	What are the details of the protoclusters associated with a specific candidate?	SELECT * FROM antismash.rel_candidates_protoclusters WHERE candidate_id = 1;	Candidate 1 is associated with protoclusters such as Protocluster 1 and Protocluster 2.	Relationships and References	Medium	SELECT pc.* FROM antismash.protoclusters pc JOIN antismash.rel_candidates_protoclusters rcp ON pc.protocluster_id = rcp.protocluster_id WHERE rcp.candidate_id = 1;	"The data contains details of a protocluster associated with a specific candidate, including the following information: 
+- Protocluster ID: 1
+- Region ID: 1
+- Location: [71679:125274]
+- BGC Type ID: 13"	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_10__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	10	Which domains are linked to a particular substrate?	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	Substrate 1 is linked to multiple domains, including Domain A and Domain B.	Relationships and References	Medium	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	The data lists the domains linked to a specific substrate, showing the unique identifiers for each domain (`as_domain_id`), the associated substrate (`substrate_id`), and their respective positions within the domain (`position_in_domain`).	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_01__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	1	List all antiSMASH BGC categories and their descriptions.	SELECT * FROM antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	General Information	Easy	SELECT category, description FROM antismash.bgc_categories;	The data lists the various antiSMASH BGC (biosynthetic gene cluster) categories along with their descriptions. The categories include Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid), and Other (other).	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_02__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	2	What are antiSMASH candidate types and their descriptions?	SELECT candidate_type_id, description FROM antismash.candidate_types;	AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.	General Information	Easy	SELECT candidate_type_id, description FROM antismash.candidate_types;	"The antiSMASH candidate types and their descriptions are as follows:
+
+1. **Chemical hybrid** - ID: 1
+2. **Interleaved** - ID: 2
+3. **Neighbouring** - ID: 3
+4. **Single** - ID: 4"	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_03__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	3	What kind of functional classes are in the antiSMASH database?	SELECT * FROM antismash.functional_classes;	There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.	General Information	Easy	SELECT * FROM antismash.functional_classes;	The antiSMASH database includes the following functional classes: biosynthetic, regulator, transporter, other, biosynthetic_smcog (a subtype of biosynthetic), and bgc_seed (also a subtype of biosynthetic).	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_05__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	5	Which genome has the longest DNA sequence?	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.	Sequences and Regions	Medium	SELECT genome_id, LENGTH(dna) AS dna_length FROM antismash.dna_sequences ORDER BY LENGTH(dna) DESC LIMIT 1;	The genome with the longest DNA sequence has a genome ID of 892 and a DNA length of approximately 13.94 million base pairs.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_06__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	6	List all PKS regions in genome NBC_01737.	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	Sequences and Regions	Hard	SELECT r.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains five PKS regions with the following details:
+
+1. Region ID 25721: Accession CP109153, Region Number 1, Location [1505416:1546433], Best MIBIG Hit: loseolamycin A1/loseolamycin A2, Similarity: 68%.
+2. Region ID 25725: Accession CP109153, Region Number 5, Location [5772447:5884359], Best MIBIG Hit: neoabyssomicin/abyssomicin, Similarity: 28%.
+3. Region ID 25731: Accession CP109153, Region Number 11, Location [8202310:8321183], Best MIBIG Hit: diazepinomicin, Similarity: 75%.
+4. Region ID 25740: Accession CP109153, Region Number 20, Location [11551477:11627322], Best MIBIG Hit: azinomycin B, Similarity: 68%.
+5. Region ID 25741: Accession CP109153, Region Number 21, Location [12318862:12465542], Best MIBIG Hit: BE-43547 series, Similarity: 30%."	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_07__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	7	What are the available antiSMASH domain subtypes and their descriptions?	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, and beta-OH/eDB. Descriptions are not provided for these subtypes.	Relationships and References	Easy	SELECT * FROM antismash.as_domain_subtypes;	The data presents a list of available antiSMASH domain subtypes along with their descriptions. There are 37 subtypes listed, but many descriptions are currently empty. The subtypes include various types of condensation, modular, and hybrid domains, as well as specific chemical modifications like beta-OH and alphaMe.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_08__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	8	Which candidates are associated with a specific module?	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	Relationships and References	Medium	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	The data shows that candidate with ID 1 is associated with module ID 1.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_09__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	9	What are the details of the protoclusters associated with a specific candidate?	SELECT * FROM antismash.rel_candidates_protoclusters WHERE candidate_id = 1;	Candidate 1 is associated with protoclusters such as Protocluster 1 and Protocluster 2.	Relationships and References	Medium	"SELECT p.* 
+FROM antismash.protoclusters p 
+JOIN antismash.rel_candidates_protoclusters r ON p.protocluster_id = r.protocluster_id 
+WHERE r.candidate_id = 1;"	"The data indicates that there is one protocluster associated with the specified candidate. The details are as follows: 
+
+- Protocluster ID: 1
+- Region ID: 1
+- Location: [71679:125274]
+- BGC Type ID: 13"	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_10__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	10	Which domains are linked to a particular substrate?	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	Substrate 1 is linked to multiple domains, including Domain A and Domain B.	Relationships and References	Medium	SELECT ad.* FROM antismash.rel_as_domains_substrates as rads JOIN antismash.as_domains ad ON rads.as_domain_id = ad.as_domain_id WHERE rads.substrate_id = 1;	The DataFrame lists various domains linked to a particular substrate, including attributes such as detection, score, evalue, and specific domain identifiers. Each row represents a unique domain with associated properties such as translation, PKS signature, NRPS predictor, and other functional annotations.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_01__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	1	List all antiSMASH BGC categories and their descriptions.	SELECT * FROM antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	General Information	Easy	SELECT category, description FROM antismash.bgc_categories;	"The data lists the categories of biosynthetic gene clusters (BGCs) identified by antiSMASH, along with their descriptions. The categories include:
+
+1. **pks**: Polyketide
+2. **nrps**: Nonribosomal peptide
+3. **ripp**: Ribosomally synthesized and post-translationally modified peptide
+4. **terpene**: Terpene
+5. **saccharide**: Saccharide
+6. **alkaloid**: Alkaloid
+7. **other**: Other"	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_02__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	2	What are antiSMASH candidate types and their descriptions?	SELECT candidate_type_id, description FROM antismash.candidate_types;	AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.	General Information	Easy	SELECT candidate_type_id, description FROM antismash.candidate_types;	"The antiSMASH candidate types and their descriptions are as follows:
+1. Candidate Type ID 1: chemical hybrid
+2. Candidate Type ID 2: interleaved
+3. Candidate Type ID 3: neighbouring
+4. Candidate Type ID 4: single"	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_03__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	3	What kind of functional classes are in the antiSMASH database?	SELECT * FROM antismash.functional_classes;	There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.	General Information	Easy	SELECT * FROM antismash.functional_classes;	The antiSMASH database contains the following functional classes: biosynthetic, regulator, transporter, other, biosynthetic_smcog (a subclass of biosynthetic), and bgc_seed (also a subclass of biosynthetic).	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_06__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	6	List all PKS regions in genome NBC_01737.	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	Sequences and Regions	Hard	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	The data presents five PKS regions identified in the genome NBC_01737. Each region includes details such as region ID, accession number, location, start and end positions, best MIBIG hit accession and description, similarity, BGC type, and category. The regions include both Type I and Type III polyketides, with associated descriptions and a specific genome ID.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_07__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	7	What are the available antiSMASH domain subtypes and their descriptions?	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH/keto, red/shDB, beta-L-OH, and beta-OH/eDB. Descriptions are not provided for these subtypes.	Relationships and References	Easy	SELECT * FROM antismash.as_domain_subtypes;	The available antiSMASH domain subtypes include a variety of categories such as condensation types (e.g., Condensation_LCL, Condensation_Starter), various forms of ketosynthase (e.g., Trans-AT-KS, Hybrid-KS), and other specialized domains (e.g., Enediyne-KS, Miscellaneous). Many subtypes have no provided descriptions.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_08__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	8	Which candidates are associated with a specific module?	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	Relationships and References	Medium	SELECT * FROM antismash.rel_candidates_modules WHERE module_id = 1;	The data shows that candidate with ID 1 is associated with module ID 1.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_09__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	9	What are the details of the protoclusters associated with a specific candidate?	SELECT * FROM antismash.rel_candidates_protoclusters WHERE candidate_id = 1;	Candidate 1 is associated with protoclusters such as Protocluster 1 and Protocluster 2.	Relationships and References	Medium	SELECT pc.* FROM antismash.protoclusters pc JOIN antismash.rel_candidates_protoclusters rc ON pc.protocluster_id = rc.protocluster_id WHERE rc.candidate_id = 1;	The data indicates that there is one protocluster associated with the candidate, identified by protocluster_id 1, located in region_id 1 at coordinates [71679:125274], and categorized under bgc_type_id 13.	gpt-4o-mini	openai_chat	0.2.0	bde51dc
+Q_10__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	10	Which domains are linked to a particular substrate?	SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;	Substrate 1 is linked to multiple domains, including Domain A and Domain B.	Relationships and References	Medium	SELECT ad.* FROM antismash.rel_as_domains_substrates rads JOIN antismash.as_domains ad ON rads.as_domain_id = ad.as_domain_id WHERE rads.substrate_id = 1;	The data provides information on various domains linked to a specific substrate, including their IDs, detection methods, scores, e-values, translation details, and various predictive features related to PKS (polyketide synthases) and NRPS (non-ribosomal peptide synthetases). It also includes identifiers for genes and modules associated with these domains.	gpt-4o-mini	openai_chat	0.2.0	bde51dc

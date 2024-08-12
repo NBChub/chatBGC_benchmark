@@ -29,8 +29,8 @@ def main(models, llm_type, chatbgc_version, benchmark_version):
             results[response_id] = result
 
     df = pd.DataFrame.from_dict(results).T
-    output_file = f"result/benchmark_result_{chatbgc_version}_{benchmark_version}.csv"
-    df.to_csv(output_file)
+    output_file = f"result/benchmark_result_{chatbgc_version}_{benchmark_version}.tsv"
+    df.to_csv(output_file, sep="\t")
     logger.info(f"Results saved to {output_file}")
 
 
