@@ -7,10 +7,15 @@ QUESTION="test/question_sql_pair.json"
 LLM_TYPE="openai_chat"
 MODEL="gpt-4o"
 
+# get chatbgc version
+CHATBGC_VERSION=$(chatbgc version)
+echo "ChatBGC version: $CHATBGC_VERSION"
+
 # Get the current branch name
 current_branch=$(git rev-parse --abbrev-ref HEAD)
-
-# Print the current branch name
+if [ "$current_branch" == "HEAD" ]; then
+    current_branch=$(git describe --tags)
+fi
 echo "Current branch: $current_branch"
 
 # Get the latest commit hash
@@ -24,7 +29,7 @@ if [ "$current_branch" == "main" ]; then
 fi
 
 # Check if the directory exists
-DIR="$DIR/$current_branch"
+DIR="$DIR/chatbgc_$CHATBGC_VERSION-benchmark_$current_branch"
 if [ -d "$DIR" ]; then
     echo "Directory $DIR already exists. Skipping creation and training."
 else

@@ -3,6 +3,7 @@ import json
 import logging
 import os
 from pathlib import Path
+from chatbgc import __version__
 
 import requests
 from vanna.chromadb import ChromaDB_VectorStore
@@ -14,7 +15,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-
+logging.info(f"Using ChatBGC version: {__version__}")
 class MyVannaOllama(ChromaDB_VectorStore, Ollama):
     def __init__(self, config=None):
         ChromaDB_VectorStore.__init__(self, config=config)
