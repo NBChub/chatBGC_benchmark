@@ -51,6 +51,11 @@ bash gpt-4o-mini.sh
 bash llama3_70b.sh
 ```
 
+## Summarizing Benchmark results
+```bash
+python scripts/summarize.py --models gpt-4o gpt-4o-mini --llm_type openai_chat --chatbgc_version 0.2.0 --benchmark_version bde51dc
+```
+
 # [IMPORTANT UPDATE] - New Database Structure
 We have finished the BGCFlow run for the G1034 dataset. Unfortunately, two genomes were dropped because of an issue with the annotation (inconsistent exon ordering for features):
 - NBC_01310 (`NBC_0131000000000_213589.current.gb`)
