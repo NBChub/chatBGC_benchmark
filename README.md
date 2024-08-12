@@ -41,7 +41,12 @@ source .env
 bash gpt-4o.sh
 ```
 
-2. `llama3:70b`
+2. `GPT-4o-mini`
+```bash
+bash gpt-4o-mini.sh
+```
+
+3. `llama3:70b`
 ```bash
 bash llama3_70b.sh
 ```
