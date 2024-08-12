@@ -52,9 +52,12 @@ bash llama3_70b.sh
 ```
 
 ## Summarizing Benchmark results
+To summarize the result into a single table:
 ```bash
 python scripts/summarize.py --models gpt-4o gpt-4o-mini --llm_type openai_chat --chatbgc_version 0.2.0 --benchmark_version bde51dc
 ```
+
+The result will be saved in the `results` folder.
 
 # [IMPORTANT UPDATE] - New Database Structure
 We have finished the BGCFlow run for the G1034 dataset. Unfortunately, two genomes were dropped because of an issue with the annotation (inconsistent exon ordering for features):
