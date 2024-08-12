@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Define variables
-DIR="result/openai_chat__gpt-4o"
+DIR="result/openai_chat__gpt-4o-mini"
 DATABASE="data/G1032_20240208__dbt_bgcflow.duckdb"
 QUESTION="test/question_sql_pair.json"
 LLM_TYPE="openai_chat"
-MODEL="gpt-4o"
+MODEL="gpt-4o-mini"
 
 # Get the current branch name
 current_branch=$(git rev-parse --abbrev-ref HEAD)
