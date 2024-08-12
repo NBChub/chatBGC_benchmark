@@ -2,15 +2,6 @@
 
 This is the repository for Benchmarking ChatBGC with different foundational models using th G1034 dataset from DTU Biosustain.
 
-# [UPDATE] - New Database Structure
-We have finished the BGCFlow run for the G1034 dataset. Unfortunately, two genomes were dropped because of an issue with the annotation (inconsistent exon ordering for features):
-- NBC_01310 (`NBC_0131000000000_213589.current.gb`)
-- NBC_01080 (`NBC_0108000000000_76298.current.gb`).
-
-Therefore, currently we only have result ready for the 1032 genomes (`~/net/o-drive/CFB-S-NewBioactiveCompounds/11_G1000/bgcflow/G1034_20240208/data/processed/G1032_20240208`).
-
-The new database structure now host two data schema, one for BGCFlow and another for antiSMASH. In the SQL query, this ca be fetched by explicitly mentioning the schema, for example `bgcflow.cdss` and `antismash.cdss` are two different tables. See at the bottom on how it looks like in DBeaver.
-
 # Running the Benchmark
 ## Get access to OpenAI API
 To get the OpenAI API key, you can ask @matinnuhamunada for a key or use your own [API](https://platform.openai.com/api-keys).
@@ -27,7 +18,7 @@ Assuming you are using one of our shared machines and have python installed, fol
 git clone git@github.com:NBChub/chatBGC_benchmark.git
 cd chatBGC_benchmark
 
-# Copy BGCFlow run result for G1032 dataset (using of our shared machine)
+# Copy BGCFlow run result for G1032 dataset (using one the shared machine at the NPGM DTU Biosustain)
 mkdir data
 cp ~/net/o-drive/CFB-S-NewBioactiveCompounds/11_G1000/bgcflow/G1034_20240208/data/processed/G1032_20240208/dbt/antiSMASH_7.1.0/dbt_bgcflow.duckdb data/G1032_20240208__dbt_bgcflow.duckdb -n
 
@@ -45,15 +36,24 @@ source .env
 
 ## Running ChatBGC Benchmark
 
-1. GPT-4o
+1. `GPT-4o`
 ```bash
 bash gpt-4o.sh
 ```
 
-2. llama3:70b
+2. `llama3:70b`
 ```bash
 bash llama3_70b.sh
 ```
+
+# [IMPORTANT UPDATE] - New Database Structure
+We have finished the BGCFlow run for the G1034 dataset. Unfortunately, two genomes were dropped because of an issue with the annotation (inconsistent exon ordering for features):
+- NBC_01310 (`NBC_0131000000000_213589.current.gb`)
+- NBC_01080 (`NBC_0108000000000_76298.current.gb`).
+
+Therefore, currently we only have result ready for the 1032 genomes (`~/net/o-drive/CFB-S-NewBioactiveCompounds/11_G1000/bgcflow/G1034_20240208/data/processed/G1032_20240208`).
+
+The new database structure now host two data schema, one for BGCFlow and another for antiSMASH. In the SQL query, this ca be fetched by explicitly mentioning the schema, for example `bgcflow.cdss` and `antismash.cdss` are two different tables. See at the bottom on how it looks like in DBeaver.
 
 # Manually exploring the database
 If you want to explore the database generated manually, the easiest way is to install [DBeaver](https://dbeaver.io/download/)
