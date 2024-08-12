@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Define variables
 DIR="result/llama3.1_70b"
@@ -30,7 +29,7 @@ if [ "$current_branch" == "main" ]; then
 fi
 
 # Check if the directory exists
-DIR="$DIR/chatbgc_$CHATBGC_VERSION-benchmark_$current_branch"
+DIR="$DIR/chatbgc_$CHATBGC_VERSION"
 if [ -d "$DIR" ]; then
     echo "Directory $DIR already exists. Skipping creation and training."
 else
@@ -41,10 +40,12 @@ else
 fi
 
 # Run the benchmark command three times
+BENCHMARK_DIR="$DIR/benchmark_$current_branch"
+mkdir -p "$BENCHMARK_DIR"
 for i in {1..3}; do
 # Overwrite the benchmark log file
-    mkdir -p "$DIR/iteration_$i"
-    FILE="$DIR/iteration_$i/benchmark.log"
+    mkdir -p "$BENCHMARK_DIR/iteration_$i"
+    FILE="$BENCHMARK_DIR/iteration_$i/benchmark.log"
     if [ -f "$FILE" ]; then
         echo "File $FILE exists. Removing it."
         rm "$FILE"
@@ -55,7 +56,7 @@ for i in {1..3}; do
     (cd $DIR && python ../../../scripts/test.py ../../../$DATABASE ../../../$QUESTION \
         --llm_type $LLM_TYPE \
         --model $MODEL \
-        --output_dir "iteration_$i" &>> "iteration_$i/benchmark.log")
+        --output_dir "benchmark_$current_branch/iteration_$i" &>> "benchmark_$current_branch/iteration_$i/benchmark.log")
 done
 
 echo "Benchmark completed."
