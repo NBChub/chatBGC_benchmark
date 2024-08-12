@@ -16,7 +16,7 @@ echo "Current branch: $current_branch"
 
 # Get the latest commit hash
 commit_hash=$(git rev-parse HEAD)
-short_commit_hash=$(echo $commit_hash | cut -c 1-6)
+short_commit_hash=$(echo $commit_hash | cut -c 1-7)
 
 # Check if the current branch is main
 if [ "$current_branch" == "main" ]; then
