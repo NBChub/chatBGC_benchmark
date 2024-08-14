@@ -3,9 +3,9 @@ import json
 import logging
 import os
 from pathlib import Path
-from chatbgc import __version__
 
 import requests
+from chatbgc import __version__
 from vanna.chromadb import ChromaDB_VectorStore
 from vanna.ollama import Ollama
 from vanna.openai import OpenAI_Chat
@@ -16,6 +16,8 @@ logging.basicConfig(
 )
 
 logging.info(f"Using ChatBGC version: {__version__}")
+
+
 class MyVannaOllama(ChromaDB_VectorStore, Ollama):
     def __init__(self, config=None):
         ChromaDB_VectorStore.__init__(self, config=config)
@@ -134,14 +136,19 @@ def main():
             try:
                 logging.info(f"Processing question {q['id']}: {q['question']}")
                 answer_sql, answer_df, answer_figure = vn.ask(
-                    q["question"], auto_train=False, visualize=False
+                    q["question"],
+                    auto_train=False,
+                    visualize=False,
+                    allow_llm_to_see_data=True,
                 )
                 if len(answer_df) > 100:
                     answer_df = answer_df.loc[:100, :]
                 answer_summary = vn.generate_summary(q["question"], answer_df)
+                q["answer_sql_expected"] = q.pop("sql")
+                q["answer_summary_expected"] = q.pop("answer")
+                q["answer_sql_LLM"] = answer_sql
+                q["answer_summary_LLM"] = answer_summary
 
-                q["LLM_answer_sql"] = answer_sql
-                q["LLM_answer_summary"] = answer_summary
                 logging.info(
                     f"Question {q['id']} processed successfully with {len(answer_df)} rows in the answer dataframe"
                 )
