@@ -1,0 +1,11 @@
+{
+  "id": 26,
+  "question": "Describe all the CDS located in region 8 of the genome NBC_01571.",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT \n    cds.* \nFROM \n    antismash.regions r \n    JOIN antismash.cdss cds ON r.region_id = cds.region_id \n    JOIN antismash.dna_sequences d ON r.accession = d.accession \n    JOIN antismash.genomes g ON d.genome_id = g.genome_id \nWHERE \n    g.assembly_id = 'NBC_01571' \n    AND r.region_number = 8;",
+  "answer_summary_LLM": "Region 8 of the genome NBC_01571 contains 48 CDSs with various functional classes, products, and protein IDs. Notable products include elongation factor Tu, VTT domain-containing protein, thiolase family protein, helix-turn-helix transcriptional regulator, cupin, PmoA family protein, Gfo/Idh/MocA family oxidoreductase, undecaprenyl-diphosphate phosphatase, hypothetical proteins, MazG-like family protein, transposase family proteins, ISAzo13 family transposase, phytanoyl-CoA dioxygenase family protein, methionine adenosyltransferase, crotonyl-CoA carboxylase/reductase, DUF3037 domain-containing protein, cytochrome P450, TetR/AcrR family transcriptional regulator, MFS transporter, DUF6204 family protein, DUF2087 domain-containing protein, acyltransferase domain-containing protein, methyltransferase domain-containing protein, aspartate 1-decarboxylase, ACP S-malonyltransferase, amino acid adenylation domain-containing proteins, SDR family NAD(P)-dependent oxidoreductases, L-histidine N(alpha)-methyltransferase, KR domain-containing protein, 4'-phosphopantetheinyl transferase superfamily protein, group II intron reverse transcriptase/maturase, and several other hypothetical proteins."
+}

@@ -1,0 +1,308 @@
+[
+  {
+    "id":1,
+    "question":"List all antiSMASH BGC categories and their descriptions.",
+    "sql":"SELECT   * FROM   antismash.bgc_categories;",
+    "answer":"There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":2,
+    "question":"List all pfam domains located in region 8 of the genome NBC_01571.",
+    "sql":"SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;",
+    "answer":"CDS 1 is associated with pfam domains such as Pfam Domain A and Pfam Domain B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":3,
+    "question":"List all regions with a best MIBiG hit description containing 'neoabyssomicin'.",
+    "sql":"SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';",
+    "answer":"There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":4,
+    "question":"List all TTA codons and their locations in a specific sequence.",
+    "sql":"SELECT * FROM antismash.tta_codons WHERE seq_id = 'SEQ1234';",
+    "answer":"Sequence SEQ1234 contains TTA codons at various locations including Location A and Location B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":5,
+    "question":"What are the available antiSMASH domain subtypes and their descriptions?",
+    "sql":"SELECT * FROM antismash.as_domain_subtypes;",
+    "answer":"The available antiSMASH domain subtypes are: Condensation_LCL, Trans-AT-KS, Iterative-KS, Condensation_Starter, Condensation_Dual, Hybrid-KS, cMT, Modular-KS, oMT, Polyketide_cyc2, Polyketide_cyc, nMT, Condensation_DCL, Cglyc, AA, Enediyne-KS, lacST, beta-OH, non-elongating-DB, ST, br, alphaMe, alphaMe-eDB, Miscellaneous, beta-D-OMe, non-elongating-beta-OH, DB, alphaMe-DB, beta-Me, beta-D-OH, exomethylene, eDB, keto, beta-OH\/keto, red\/shDB, beta-L-OH, and beta-OH\/eDB. Descriptions are not provided for these subtypes.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":6,
+    "question":"What are the details of a specific gene identified by its locus tag?",
+    "sql":"SELECT * FROM antismash.genes WHERE locus_tag = 'LOC1234';",
+    "answer":"The gene with locus tag LOC1234 has details including location, region ID, and associated functional classes.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":7,
+    "question":"What are the details of all regulators and their confidences?",
+    "sql":"SELECT * FROM antismash.regulators;",
+    "answer":"The database contains regulators such as Regulator A and Regulator B with specific descriptions and confidence levels.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":8,
+    "question":"What are the different domain profiles available in the antiSMASH database?",
+    "sql":"SELECT * FROM antismash.as_domain_profiles;",
+    "answer":"The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":9,
+    "question":"What are the genes located in a region_id 1?",
+    "sql":"SELECT * FROM antismash.cdss WHERE region_id = 1;",
+    "answer":"Region 1 contains genes such as Gene A and Gene B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":10,
+    "question":"What are the products of a specific t2pks and their properties?",
+    "sql":"SELECT * FROM antismash.t2pks_products WHERE t2pks_id = 1;",
+    "answer":"T2PKS 1 produces products such as Product A and Product B with various functions and properties.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":11,
+    "question":"What binding sites are linked to a specific regulator and their details?",
+    "sql":"SELECT * FROM antismash.binding_sites WHERE regulator_id = 1;",
+    "answer":"Regulator 1 is linked to binding sites such as Binding Site A and Binding Site B with specific scores and locations.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":12,
+    "question":"What kind of functional classes are in the antiSMASH database?",
+    "sql":"SELECT * FROM antismash.functional_classes;",
+    "answer":"There are six functional classes, where the functional class Biosynthetic_smcog and Bgc_seed having parent-child relationships with 'biosynthetic' functional class.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":13,
+    "question":"What profiles hit a specific CDS and what are their details?",
+    "sql":"SELECT * FROM antismash.profile_hits WHERE cds_id = 1;",
+    "answer":"CDS 1 is hit by profiles including Profile A and Profile B with specific evalues and bit scores.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":14,
+    "question":"What tigrfam domains are related to a specific CDS?",
+    "sql":"SELECT * FROM antismash.tigrfam_domains WHERE cds_id = 1;",
+    "answer":"CDS 1 is related to tigrfam domains including Tigrfam Domain A and Tigrfam Domain B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":15,
+    "question":"Which CDSs are located in a specific region and what are their details?",
+    "sql":"SELECT * FROM antismash.cdss WHERE region_id = 1;",
+    "answer":"Region 1 contains CDSs such as CDS A and CDS B with specific locus tags and product information.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":16,
+    "question":"Which comparippson hits are associated with a specific MIBIG reference?",
+    "sql":"SELECT * FROM antismash.comparippson_hits WHERE comparippson_mibig_id = 1;",
+    "answer":"MIBIG Reference 1 is associated with comparippson hits such as Hit A and Hit B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":17,
+    "question":"Which domains are linked to a particular substrate?",
+    "sql":"SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;",
+    "answer":"Substrate 1 is linked to multiple domains, including Domain A and Domain B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":18,
+    "question":"What are antiSMASH candidate types and their descriptions?",
+    "sql":"SELECT candidate_type_id, description FROM antismash.candidate_types;",
+    "answer":"AntiSMASH candidate types can be a Chemical hybrid, Interleaved, Neighbouring, or Single.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":19,
+    "question":"What are the candidates identified in a specific region and their details?",
+    "sql":"SELECT * FROM antismash.candidates WHERE region_id = 1;",
+    "answer":"Region 1 has candidates such as Candidate A and Candidate B with specific locations and types.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":20,
+    "question":"Which SMCOGs are associated with a specific functional class?",
+    "sql":"SELECT * FROM antismash.smcogs WHERE functional_class_id = 1;",
+    "answer":"Functional Class 1 is associated with SMCOGs such as SMCOG A and SMCOG B.",
+    "difficulty":"Easy",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":21,
+    "question":"How many Streptomyces genomes are in the dataset?",
+    "sql":"SELECT   COUNT(*) FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id WHERE   t.genus = 'Streptomyces';",
+    "answer":"There are 880 Streptomyces genomes in the dataset.",
+    "difficulty":"Medium",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":22,
+    "question":"Summarize the genus distribution in the antiSMASH dataset.",
+    "sql":"SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+    "answer":null,
+    "difficulty":"Medium",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":23,
+    "question":"Summarize all taxa of the genomes and their details.",
+    "sql":"SELECT t.* FROM antismash.taxa t JOIN antismash.genomes g ON t.tax_id = g.tax_id;",
+    "answer":"The data contains 1032 entries of bacterial genomes, all classified under the superkingdom 'Bacteri' and the phylum 'Actinomycetota' with the majority being unclassified at the kingdom level. The data spans multiple orders within the class 'Actinomycetes' primarily 'Kitasatosporales' and 'Micromonosporales'. The family 'Streptomycetaceae' and genus 'Streptomyces' are most frequent, with many species and strains listed as unclassified. Other notable genera include 'Micromonospora', 'Nocardia', 'Kitasatospora', and 'Amycolatopsis'. The species 'albidoflavus', 'virginiae', 'microflavus', and 'jietaisiensis' frequently appear.",
+    "difficulty":"Medium",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":24,
+    "question":"Which genome has the longest DNA sequence?",
+    "sql":"SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;",
+    "answer":"Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.",
+    "difficulty":"Medium",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":25,
+    "question":"Which regions has iterative modules?",
+    "sql":"SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;",
+    "answer":"Module 1 is associated with candidates such as Candidate 1 and Candidate 2.",
+    "difficulty":"Medium",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":26,
+    "question":"Describe all the CDS located in region 8 of the genome NBC_01571.",
+    "sql":"SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;",
+    "answer":null,
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":27,
+    "question":"Find all lanthipeptide BGC type regions.",
+    "sql":"SELECT   r.*,   bt.* FROM   antismash.rel_regions_types rrt   JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id   JOIN antismash.regions r ON rrt.region_id = r.region_id WHERE   bt.description ILIKE '%lanthipeptide%';",
+    "answer":null,
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":28,
+    "question":"Find all NRPS regions with both glycosyltransferase halogenase SMCOGs ",
+    "sql":"SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';",
+    "answer":null,
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":29,
+    "question":"Get me all RIPPs precursor peptide for thiopeptide type II",
+    "sql":"SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';",
+    "answer":null,
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":30,
+    "question":"Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'.",
+    "sql":"SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';",
+    "answer":"The data consists of 75 entries from various genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'. Key details include:",
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":31,
+    "question":"Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate",
+    "sql":"SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';",
+    "answer":null,
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":32,
+    "question":"Get me all region with knownclusterblast hits above 80 percent similarity.",
+    "sql":"SELECT best_mibig_hit_description, COUNT(*) as occurrence_count FROM antismash.regions WHERE best_mibig_hit_similarity > 80 GROUP BY best_mibig_hit_description ORDER BY occurrence_count DESC;",
+    "answer":"Region 1 has cluster blast hits including Hit A and Hit B with specific descriptions and similarities.",
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Training"
+  },
+  {
+    "id":33,
+    "question":"List all PKS regions in genome NBC_01737.",
+    "sql":"SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';",
+    "answer":"The genome NBC_01737 contains 5 PKS regions with the following details:\n1. Region 1: Location [1505416:1546433], best hit loseolamycin A1\/loseolamycin A2 with 68% similarity.\n2. Region 5: Location [5772447:5884359], best hit neoabyssomicin\/abyssomicin with 28% similarity.\n3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.\n4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.\n5. Region 21: Location [12318862:12465542], best hit BE-43547A1\/A2\/B1\/B2\/B3\/C1\/C2 with 30% similarity.",
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Test"
+  },
+  {
+    "id":34,
+    "question":"Which PKS regions has trans_at modules?",
+    "sql":"SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+    "answer":null,
+    "difficulty":"Hard",
+    "category":null,
+    "label":"Test"
+  }
+]

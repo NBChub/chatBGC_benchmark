@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database includes various domain profiles, each identified by a unique ID and characterized by a name and description. Key domain profiles include:\n\n- **Beta_elim_lyase**: Beta-eliminating lyase\n- **Condensation**: Various types of condensation domains (e.g., DCL, LCL, Dual, Starter)\n- **Epimerization**: Epimerization domain\n- **Aminotransferases**: Classes I to V\n- **PKS Domains**: Including Ketosynthase (KS), Ketoreductase (KR), and others\n- **ACPs and Transporters**: Various acyl-carrier and peptidyl-carrier proteins\n- **Specialized Domains**: Such as GNAT, Halogenase, and Fungal nonreducing product template\n\nThere are a total of 58 domain profiles listed in the data."
+}

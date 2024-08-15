@@ -1,0 +1,11 @@
+{
+  "id": 34,
+  "question": "Which PKS regions has trans_at modules?",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT r.*, m.*, rt.*, bt.* \nFROM antismash.regions r \nJOIN antismash.modules m ON r.region_id = m.region_id \nJOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id \nJOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id \nWHERE bt.term ILIKE '%PKS%' \nAND m.trans_at = TRUE;",
+  "answer_summary_LLM": "The PKS regions with trans-AT modules include regions with the following IDs: 2726, 2784, 3218, 3233, 3338, 3576, 8434, and 8755."
+}

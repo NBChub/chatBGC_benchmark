@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT DISTINCT pfam_id FROM antismash.pfam_domains;",
+  "answer_summary_LLM": "The different domain profiles available in the antiSMASH database include the following Pfam IDs: PF00196, PF19876, PF04738, PF01980, PF03621, PF00903, PF05331, PF00248, PF03211, PF00266, PF00109, PF01047, PF10604, PF01494, PF08541, PF03144, PF03764, PF01680, PF02699, PF07549, PF00171, PF13404, PF01756, PF03422, PF17853, PF07977, PF00253, PF03412, PF03358, PF00348, PF01758, PF01040, PF13185, PF00264, PF07940, PF04402, PF00381, PF16884, PF03929, PF08545, PF00990, PF08450, PF13576, PF01730, PF01774, PF00753, PF20254, PF05239, PF12464, PF01925, PF07969, PF01658, PF19561, PF01061, PF02983, PF00291, PF02423, PF00498, PF00652, PF09922, PF13742, PF06071, PF01483, PF00042, PF18564, PF14581, PF03054, PF13523, PF08471, PF12831, PF07748, PF11946, PF16874, PF00733, PF01645, PF01507, PF09290, PF08666, PF01070, PF01113, PF19908, PF05610, PF10502, PF13396, PF00960, PF01565, PF08706, PF02515, PF14435, PF20240, PF00121, PF11941, PF01321, PF08245, PF01351, PF00317, PF01435, PF00582, PF14472, PF00487, PF17866."
+}

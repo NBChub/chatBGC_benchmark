@@ -1,0 +1,495 @@
+2024-08-14 19:30:21,961 - INFO - Using ChatBGC version: 0.2.1
+2024-08-14 19:30:21,963 - INFO - Starting the Vanna application
+2024-08-14 19:30:21,963 - INFO - Starting app with DuckDB path: /home/azureuser/datadrive/chatBGC_benchmark/data/antismash_db.duckdb, model: gpt-4o, LLM type: openai_chat
+2024-08-14 19:30:21,963 - INFO - Fetching available models from OpenAI API
+2024-08-14 19:30:22,305 - INFO - Using openai_chat model: gpt-4o
+2024-08-14 19:30:22,519 - INFO - Connecting to DuckDB at /home/azureuser/datadrive/chatBGC_benchmark/data/antismash_db.duckdb
+2024-08-14 19:30:23,333 - INFO - Loading questions from /home/azureuser/datadrive/chatBGC_benchmark/test/question_sql_pair.json
+2024-08-14 19:30:23,333 - INFO - Output directory set to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o
+2024-08-14 19:30:23,333 - INFO - Processing question 1: List all antiSMASH BGC categories and their descriptions.
+2024-08-14 19:30:23,576 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+2024-08-14 19:30:24,451 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:26,318 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:26,319 - INFO - Question 1 processed successfully with 7 rows in the answer dataframe
+2024-08-14 19:30:26,319 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_01__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:30:26,321 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_01__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:30:26,321 - INFO - Processing question 3: List all regions with a best MIBiG hit description containing 'neoabyssomicin'.
+2024-08-14 19:30:26,371 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+True
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the bgc_categories table in the antismash_db database:\n\n|    | table_catalog   | table_schema   | table_name     | column_name   | data_type   | COLUMN_COMMENT   |\n|---:|:----------------|:---------------|:---------------|:--------------|:------------|:-----------------|\n| 25 | antismash_db    | antismash      | bgc_categories | category      | VARCHAR     |                  |\n| 26 | antismash_db    | antismash      | bgc_categories | description   | VARCHAR     |                  |\n\nThe following columns are in the bgc_types table in the antismash_db database:\n\n|    | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|---:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 30 | antismash_db    | antismash      | bgc_types    | bgc_type_id   | INTEGER     |                  |\n| 31 | antismash_db    | antismash      | bgc_types    | term          | VARCHAR     |                  |\n| 32 | antismash_db    | antismash      | bgc_types    | description   | VARCHAR     |                  |\n| 33 | antismash_db    | antismash      | bgc_types    | category      | VARCHAR     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'List all antiSMASH BGC categories and their descriptions.'}, {'role': 'assistant', 'content': 'SELECT   * FROM   antismash.bgc_categories;'}, {'role': 'user', 'content': 'What are the available antiSMASH domain subtypes and their descriptions?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_subtypes;'}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}, {'role': 'assistant', 'content': "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;"}, {'role': 'user', 'content': 'Summarize the genus distribution in the antiSMASH dataset.'}, {'role': 'assistant', 'content': 'SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;'}, {'role': 'user', 'content': 'What kind of functional classes are in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.functional_classes;'}, {'role': 'user', 'content': 'What are the different domain profiles available in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_profiles;'}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'Which domains are linked to a particular substrate?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;'}, {'role': 'user', 'content': 'Find all lanthipeptide BGC type regions.'}, {'role': 'assistant', 'content': "SELECT   r.*,   bt.* FROM   antismash.rel_regions_types rrt   JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id   JOIN antismash.regions r ON rrt.region_id = r.region_id WHERE   bt.description ILIKE '%lanthipeptide%';"}, {'role': 'user', 'content': 'Which SMCOGs are associated with a specific functional class?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.smcogs WHERE functional_class_id = 1;'}, {'role': 'user', 'content': 'List all antiSMASH BGC categories and their descriptions.'}]
+Using model gpt-4o for 991.5 tokens (approx)
+LLM Response: SELECT category, description FROM antismash.bgc_categories;
+Extracted SQL: SELECT category, description FROM antismash.bgc_categories;
+SELECT category, description FROM antismash.bgc_categories;
+     category                                        description
+0         pks                                         Polyketide
+1        nrps                               Nonribosomal peptide
+2        ripp  Ribosomally synthesized and post-translational...
+3     terpene                                            Terpene
+4  saccharide                                         Saccharide
+5    alkaloid                                           Alkaloid
+6       other                                              Other
+Using model gpt-4o for 279.0 tokens (approx)
+2024-08-14 19:30:28,170 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:29,364 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:29,365 - INFO - Question 3 processed successfully with 30 rows in the answer dataframe
+2024-08-14 19:30:29,366 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_03__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:30:29,367 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_03__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:30:29,367 - INFO - Processing question 8: What are the different domain profiles available in the antiSMASH database?
+2024-08-14 19:30:29,416 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the genes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 103 | antismash_db    | antismash      | genes        | gene_id       | INTEGER     |                  |\n| 104 | antismash_db    | antismash      | genes        | locus_tag     | VARCHAR     |                  |\n| 105 | antismash_db    | antismash      | genes        | LOCATION      | VARCHAR     |                  |\n| 106 | antismash_db    | antismash      | genes        | region_id     | INTEGER     |                  |\n\nThe following columns are in the isolates table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 116 | antismash_db    | antismash      | isolates     | isolate_id    | INTEGER     |                  |\n| 117 | antismash_db    | antismash      | isolates     | sample_id     | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': "List all regions with a best MIBiG hit description containing 'neoabyssomicin'."}, {'role': 'assistant', 'content': "SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';"}, {'role': 'user', 'content': 'Get me all region with knownclusterblast hits above 80 percent similarity.'}, {'role': 'assistant', 'content': 'SELECT best_mibig_hit_description, COUNT(*) as occurrence_count FROM antismash.regions WHERE best_mibig_hit_similarity > 80 GROUP BY best_mibig_hit_description ORDER BY occurrence_count DESC;'}, {'role': 'user', 'content': 'Find all NRPS regions with both glycosyltransferase halogenase SMCOGs '}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';"}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}, {'role': 'assistant', 'content': "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Find all lanthipeptide BGC type regions.'}, {'role': 'assistant', 'content': "SELECT   r.*,   bt.* FROM   antismash.rel_regions_types rrt   JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id   JOIN antismash.regions r ON rrt.region_id = r.region_id WHERE   bt.description ILIKE '%lanthipeptide%';"}, {'role': 'user', 'content': 'Which comparippson hits are associated with a specific MIBIG reference?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.comparippson_hits WHERE comparippson_mibig_id = 1;'}, {'role': 'user', 'content': "List all regions with a best MIBiG hit description containing 'neoabyssomicin'."}]
+Using model gpt-4o for 1335.5 tokens (approx)
+LLM Response: SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';
+Extracted SQL: SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';
+SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';
+    region_id  ... best_mibig_hit_similarity
+0        1691  ...                         6
+1        2364  ...                         6
+2        4404  ...                         9
+3        4414  ...                         9
+4        6542  ...                         9
+5        7023  ...                        56
+6        7116  ...                        28
+7        7596  ...                        25
+8        7869  ...                        34
+9        8534  ...                         9
+10      10238  ...                        18
+11      14457  ...                         6
+12      14926  ...                        43
+13      15121  ...                         6
+14      15983  ...                        43
+15      17779  ...                        18
+16      18030  ...                        18
+17      20098  ...                        50
+18      20603  ...                        50
+19      21205  ...                        37
+20      22369  ...                        25
+21      22522  ...                        25
+22      24716  ...                        25
+23      24722  ...                        37
+24      25591  ...                        21
+25      25725  ...                        28
+26      26501  ...                        50
+27      26514  ...                        31
+28      28448  ...                        12
+29      29580  ...                         6
+
+[30 rows x 10 columns]
+Using model gpt-4o for 1694.5 tokens (approx)
+2024-08-14 19:30:30,730 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the pfam_domains table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name    | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:---------------|:------------|:-----------------|\n| 137 | antismash_db    | antismash      | pfam_domains | pfam_domain_id | INTEGER     |                  |\n| 138 | antismash_db    | antismash      | pfam_domains | DATABASE       | VARCHAR     |                  |\n| 139 | antismash_db    | antismash      | pfam_domains | detection      | VARCHAR     |                  |\n| 140 | antismash_db    | antismash      | pfam_domains | score          | DOUBLE      |                  |\n| 141 | antismash_db    | antismash      | pfam_domains | evalue         | DOUBLE      |                  |\n| 142 | antismash_db    | antismash      | pfam_domains | TRANSLATION    | VARCHAR     |                  |\n| 143 | antismash_db    | antismash      | pfam_domains | pfam_id        | VARCHAR     |                  |\n| 144 | antismash_db    | antismash      | pfam_domains | LOCATION       | VARCHAR     |                  |\n| 145 | antismash_db    | antismash      | pfam_domains | cds_id         | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'What are the different domain profiles available in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_profiles;'}, {'role': 'user', 'content': 'What are the available antiSMASH domain subtypes and their descriptions?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_subtypes;'}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Which domains are linked to a particular substrate?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;'}, {'role': 'user', 'content': 'What tigrfam domains are related to a specific CDS?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.tigrfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'What kind of functional classes are in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.functional_classes;'}, {'role': 'user', 'content': 'What binding sites are linked to a specific regulator and their details?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.binding_sites WHERE regulator_id = 1;'}, {'role': 'user', 'content': 'What profiles hit a specific CDS and what are their details?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.profile_hits WHERE cds_id = 1;'}, {'role': 'user', 'content': 'What are the details of all regulators and their confidences?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.regulators;'}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'What are the different domain profiles available in the antiSMASH database?'}]
+Using model gpt-4o for 896.0 tokens (approx)
+LLM Response: ```sql
+-- intermediate_sql
+SELECT DISTINCT DATABASE FROM antismash.pfam_domains;
+```
+Extracted SQL: SELECT DISTINCT DATABASE FROM antismash.pfam_domains;
+Running Intermediate SQL: SELECT DISTINCT DATABASE FROM antismash.pfam_domains;
+2024-08-14 19:30:35,231 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:46,326 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:46,328 - INFO - Question 8 processed successfully with 58 rows in the answer dataframe
+2024-08-14 19:30:46,328 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_08__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:30:46,329 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_08__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:30:46,329 - INFO - Processing question 22: Summarize the genus distribution in the antiSMASH dataset.
+2024-08-14 19:30:46,372 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+Final SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the pfam_domains table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name    | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:---------------|:------------|:-----------------|\n| 137 | antismash_db    | antismash      | pfam_domains | pfam_domain_id | INTEGER     |                  |\n| 138 | antismash_db    | antismash      | pfam_domains | DATABASE       | VARCHAR     |                  |\n| 139 | antismash_db    | antismash      | pfam_domains | detection      | VARCHAR     |                  |\n| 140 | antismash_db    | antismash      | pfam_domains | score          | DOUBLE      |                  |\n| 141 | antismash_db    | antismash      | pfam_domains | evalue         | DOUBLE      |                  |\n| 142 | antismash_db    | antismash      | pfam_domains | TRANSLATION    | VARCHAR     |                  |\n| 143 | antismash_db    | antismash      | pfam_domains | pfam_id        | VARCHAR     |                  |\n| 144 | antismash_db    | antismash      | pfam_domains | LOCATION       | VARCHAR     |                  |\n| 145 | antismash_db    | antismash      | pfam_domains | cds_id         | INTEGER     |                  |\n\nThe following is a pandas DataFrame with the results of the intermediate SQL query SELECT DISTINCT DATABASE FROM antismash.pfam_domains;: \n|    |   DATABASE |\n|---:|-----------:|\n|  0 |         35 |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'What are the different domain profiles available in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_profiles;'}, {'role': 'user', 'content': 'What are the available antiSMASH domain subtypes and their descriptions?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_subtypes;'}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Which domains are linked to a particular substrate?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;'}, {'role': 'user', 'content': 'What tigrfam domains are related to a specific CDS?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.tigrfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'What kind of functional classes are in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.functional_classes;'}, {'role': 'user', 'content': 'What binding sites are linked to a specific regulator and their details?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.binding_sites WHERE regulator_id = 1;'}, {'role': 'user', 'content': 'What profiles hit a specific CDS and what are their details?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.profile_hits WHERE cds_id = 1;'}, {'role': 'user', 'content': 'What are the details of all regulators and their confidences?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.regulators;'}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'What are the different domain profiles available in the antiSMASH database?'}]
+Using model gpt-4o for 946.0 tokens (approx)
+LLM Response: SELECT * FROM antismash.as_domain_profiles;
+Extracted SQL: SELECT * FROM antismash.as_domain_profiles;
+SELECT * FROM antismash.as_domain_profiles;
+    as_domain_profile_id  ...                TYPE
+0                      1  ...                None
+1                      2  ...        condensation
+2                      3  ...        condensation
+3                      4  ...        condensation
+4                      5  ...        condensation
+5                      6  ...        condensation
+6                      7  ...                None
+7                      8  ...        condensation
+8                      9  ...                None
+9                     10  ...                None
+10                    11  ...                None
+11                    12  ...  methyl transferase
+12                    13  ...  methyl transferase
+13                    14  ...  methyl transferase
+14                    15  ...  methyl transferase
+15                    16  ...         adenylation
+16                    17  ...         adenylation
+17                    18  ...                None
+18                    19  ...                None
+19                    20  ...                None
+20                    21  ...                None
+21                    22  ...    aminotransferase
+22                    23  ...    aminotransferase
+23                    24  ...    aminotransferase
+24                    25  ...    aminotransferase
+25                    26  ...                None
+26                    27  ...                None
+27                    28  ...                None
+28                    29  ...                None
+29                    30  ...                None
+30                    31  ...                None
+31                    32  ...                None
+32                    33  ...                None
+33                    34  ...                None
+34                    35  ...                None
+35                    36  ...                None
+36                    37  ...                None
+37                    38  ...                None
+38                    39  ...                None
+39                    40  ...                None
+40                    41  ...                None
+41                    42  ...         transporter
+42                    43  ...         transporter
+43                    44  ...         transporter
+44                    45  ...         transporter
+45                    46  ...                None
+46                    47  ...         transporter
+47                    48  ...                None
+48                    49  ...                None
+49                    50  ...                None
+50                    51  ...                None
+51                    52  ...                None
+52                    53  ...                None
+53                    54  ...                None
+54                    55  ...                None
+55                    56  ...                None
+56                    57  ...                None
+57                    58  ...                None
+
+[58 rows x 5 columns]
+Using model gpt-4o for 2770.5 tokens (approx)
+2024-08-14 19:30:48,308 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:50,953 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:50,954 - INFO - Question 22 processed successfully with 28 rows in the answer dataframe
+2024-08-14 19:30:50,954 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_22__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:30:50,955 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_22__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:30:50,955 - INFO - Processing question 24: Which genome has the longest DNA sequence?
+2024-08-14 19:30:51,004 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the isolates table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 116 | antismash_db    | antismash      | isolates     | isolate_id    | INTEGER     |                  |\n| 117 | antismash_db    | antismash      | isolates     | sample_id     | INTEGER     |                  |\n\nThe following columns are in the substrates table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 236 | antismash_db    | antismash      | substrates   | substrate_id  | INTEGER     |                  |\n| 237 | antismash_db    | antismash      | substrates   | name          | VARCHAR     |                  |\n| 238 | antismash_db    | antismash      | substrates   | description   | VARCHAR     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'Summarize the genus distribution in the antiSMASH dataset.'}, {'role': 'assistant', 'content': 'SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;'}, {'role': 'user', 'content': 'How many Streptomyces genomes are in the dataset?'}, {'role': 'assistant', 'content': "SELECT   COUNT(*) FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id WHERE   t.genus = 'Streptomyces';"}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'What are the different domain profiles available in the antiSMASH database?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_profiles;'}, {'role': 'user', 'content': 'Get me all region with knownclusterblast hits above 80 percent similarity.'}, {'role': 'assistant', 'content': 'SELECT best_mibig_hit_description, COUNT(*) as occurrence_count FROM antismash.regions WHERE best_mibig_hit_similarity > 80 GROUP BY best_mibig_hit_description ORDER BY occurrence_count DESC;'}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'What are the available antiSMASH domain subtypes and their descriptions?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.as_domain_subtypes;'}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': "Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'."}, {'role': 'assistant', 'content': "SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';"}, {'role': 'user', 'content': 'Summarize the genus distribution in the antiSMASH dataset.'}]
+Using model gpt-4o for 1165.75 tokens (approx)
+LLM Response: SELECT t.genus, COUNT(*) as genus_count 
+FROM antismash.genomes g 
+JOIN antismash.taxa t ON g.tax_id = t.tax_id 
+GROUP BY t.genus;
+Extracted SQL: SELECT t.genus, COUNT(*) as genus_count 
+FROM antismash.genomes g 
+JOIN antismash.taxa t ON g.tax_id = t.tax_id 
+GROUP BY t.genus;
+SELECT t.genus, COUNT(*) as genus_count 
+FROM antismash.genomes g 
+JOIN antismash.taxa t ON g.tax_id = t.tax_id 
+GROUP BY t.genus;
+                genus  genus_count
+0     Actinacidiphila            4
+1          Aldersonia            1
+2       Kitasatospora           27
+3         Micrococcus            1
+4   Dactylosporangium            1
+5      Micromonospora           39
+6        Microbispora            5
+7   Streptosporangium            7
+8             Kocuria            4
+9           Kribbella           11
+10         Nonomuraea            4
+11  Sphaerisporangium            1
+12      Amycolatopsis            8
+13        Rhodococcus            2
+14            Embleya            2
+15       Streptomyces          877
+16           Nocardia           21
+17       Actinomadura            1
+18            Lentzea            1
+19      Mycobacterium            1
+20       Unclassified            1
+21       Actinoplanes            1
+22        Kineococcus            1
+23         Williamsia            1
+24       Nocardioides            3
+25    Actinoallomurus            1
+26  Actinomycetospora            1
+27      Spirillospora            2
+Using model gpt-4o for 403.75 tokens (approx)
+2024-08-14 19:30:53,191 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:53,193 - ERROR - Failed to process question 24: Which genome has the longest DNA sequence?. Error: cannot unpack non-iterable NoneType object
+2024-08-14 19:30:53,193 - INFO - Processing question 25: Which regions has iterative modules?
+2024-08-14 19:30:53,259 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the genomes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 110 | antismash_db    | antismash      | genomes      | genome_id     | INTEGER     |                  |\n| 111 | antismash_db    | antismash      | genomes      | tax_id        | INTEGER     |                  |\n| 112 | antismash_db    | antismash      | genomes      | bio_project   | VARCHAR     |                  |\n| 113 | antismash_db    | antismash      | genomes      | bio_sample    | VARCHAR     |                  |\n| 114 | antismash_db    | antismash      | genomes      | isolate_id    | INTEGER     |                  |\n| 115 | antismash_db    | antismash      | genomes      | assembly_id   | VARCHAR     |                  |\n\nThe following columns are in the sequence_lengths table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name       | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-----------------|:--------------|:------------|:-----------------|\n| 225 | antismash_db    | antismash      | sequence_lengths | accession     | VARCHAR     |                  |\n| 226 | antismash_db    | antismash      | sequence_lengths | seq_length    | BIGINT      |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'Which genome has the longest DNA sequence?'}, {'role': 'assistant', 'content': 'SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;'}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': "Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'."}, {'role': 'assistant', 'content': "SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';"}, {'role': 'user', 'content': 'Summarize all taxa of the genomes and their details.'}, {'role': 'assistant', 'content': 'SELECT t.* FROM antismash.taxa t JOIN antismash.genomes g ON t.tax_id = g.tax_id;'}, {'role': 'user', 'content': 'Find all NRPS regions with both glycosyltransferase halogenase SMCOGs '}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';"}, {'role': 'user', 'content': 'How many Streptomyces genomes are in the dataset?'}, {'role': 'assistant', 'content': "SELECT   COUNT(*) FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id WHERE   t.genus = 'Streptomyces';"}, {'role': 'user', 'content': 'Summarize the genus distribution in the antiSMASH dataset.'}, {'role': 'assistant', 'content': 'SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;'}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Which genome has the longest DNA sequence?'}]
+Using model gpt-4o for 1400.75 tokens (approx)
+LLM Response: SELECT g.*, MAX(sl.seq_length) as longest_seq_length
+FROM antismash.genomes g
+JOIN antismash.sequence_lengths sl ON g.genome_id = sl.accession
+GROUP BY g.genome_id
+ORDER BY longest_seq_length DESC
+LIMIT 1;
+Extracted SQL: SELECT g.*, MAX(sl.seq_length) as longest_seq_length
+FROM antismash.genomes g
+JOIN antismash.sequence_lengths sl ON g.genome_id = sl.accession
+GROUP BY g.genome_id
+ORDER BY longest_seq_length DESC
+LIMIT 1;
+SELECT g.*, MAX(sl.seq_length) as longest_seq_length
+FROM antismash.genomes g
+JOIN antismash.sequence_lengths sl ON g.genome_id = sl.accession
+GROUP BY g.genome_id
+ORDER BY longest_seq_length DESC
+LIMIT 1;
+Couldn't run sql:  Binder Error: column "tax_id" must appear in the GROUP BY clause or must be part of an aggregate function.
+Either add it to the GROUP BY list, or use "ANY_VALUE(tax_id)" if the exact value of "tax_id" is not important.
+2024-08-14 19:30:54,754 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:55,771 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:30:55,774 - INFO - Question 25 processed successfully with 15 rows in the answer dataframe
+2024-08-14 19:30:55,774 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_25__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:30:55,775 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_25__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:30:55,776 - INFO - Processing question 26: Describe all the CDS located in region 8 of the genome NBC_01571.
+2024-08-14 19:30:55,828 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the modules table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 118 | antismash_db    | antismash      | modules      | module_id     | INTEGER     |                  |\n| 119 | antismash_db    | antismash      | modules      | LOCATION      | VARCHAR     |                  |\n| 120 | antismash_db    | antismash      | modules      | TYPE          | VARCHAR     |                  |\n| 121 | antismash_db    | antismash      | modules      | trans_at      | BOOLEAN     |                  |\n| 122 | antismash_db    | antismash      | modules      | complete      | BOOLEAN     |                  |\n| 123 | antismash_db    | antismash      | modules      | iterative     | BOOLEAN     |                  |\n| 124 | antismash_db    | antismash      | modules      | multi_gene    | BOOLEAN     |                  |\n| 125 | antismash_db    | antismash      | modules      | region_id     | INTEGER     |                  |\n\nThe following columns are in the rel_regions_types table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name        | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:------------------|:--------------|:------------|:-----------------|\n| 196 | antismash_db    | antismash      | rel_regions_types | region_id     | INTEGER     |                  |\n| 197 | antismash_db    | antismash      | rel_regions_types | bgc_type_id   | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'Which regions has iterative modules?'}, {'role': 'assistant', 'content': 'SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;'}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}, {'role': 'assistant', 'content': "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;"}, {'role': 'user', 'content': 'Find all lanthipeptide BGC type regions.'}, {'role': 'assistant', 'content': "SELECT   r.*,   bt.* FROM   antismash.rel_regions_types rrt   JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id   JOIN antismash.regions r ON rrt.region_id = r.region_id WHERE   bt.description ILIKE '%lanthipeptide%';"}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': "List all regions with a best MIBiG hit description containing 'neoabyssomicin'."}, {'role': 'assistant', 'content': "SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';"}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'What are the genes located in a region_id 1?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.cdss WHERE region_id = 1;'}, {'role': 'user', 'content': 'Which regions has iterative modules?'}]
+Using model gpt-4o for 1327.25 tokens (approx)
+LLM Response: SELECT * FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;
+Extracted SQL: SELECT * FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;
+SELECT * FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;
+    region_id    accession  region_number  ... iterative  multi_gene  region_id_1
+0        1853  NBC_00026_3             14  ...      True       False         1853
+1        5421     CP109000              1  ...      True       False         5421
+2        5902     CP109330              4  ...      True        True         5902
+3        6971     CP109583             27  ...      True       False         6971
+4        7150     CP107928              2  ...      True       False         7150
+5        7410     CP109290             11  ...      True       False         7410
+6        8844     CP108309              4  ...      True        True         8844
+7       11322     CP109596             19  ...      True       False        11322
+8       11641     CP108268             22  ...      True        True        11641
+9       17069     CP109327             19  ...      True        True        17069
+10      17327     CP108592             12  ...      True       False        17327
+11      19142     CP108235              2  ...      True       False        19142
+12      24781     CP109553             23  ...      True       False        24781
+13      25127     CP130718              3  ...      True       False        25127
+14      28682     CP108521             37  ...      True       False        28682
+
+[15 rows x 18 columns]
+Using model gpt-4o for 1457.0 tokens (approx)
+2024-08-14 19:30:58,594 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the genomes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 110 | antismash_db    | antismash      | genomes      | genome_id     | INTEGER     |                  |\n| 111 | antismash_db    | antismash      | genomes      | tax_id        | INTEGER     |                  |\n| 112 | antismash_db    | antismash      | genomes      | bio_project   | VARCHAR     |                  |\n| 113 | antismash_db    | antismash      | genomes      | bio_sample    | VARCHAR     |                  |\n| 114 | antismash_db    | antismash      | genomes      | isolate_id    | INTEGER     |                  |\n| 115 | antismash_db    | antismash      | genomes      | assembly_id   | VARCHAR     |                  |\n\nThe following columns are in the genes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 103 | antismash_db    | antismash      | genes        | gene_id       | INTEGER     |                  |\n| 104 | antismash_db    | antismash      | genes        | locus_tag     | VARCHAR     |                  |\n| 105 | antismash_db    | antismash      | genes        | LOCATION      | VARCHAR     |                  |\n| 106 | antismash_db    | antismash      | genes        | region_id     | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': "Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'."}, {'role': 'assistant', 'content': "SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';"}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'What are the genes located in a region_id 1?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.cdss WHERE region_id = 1;'}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': 'Find all NRPS regions with both glycosyltransferase halogenase SMCOGs '}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';"}, {'role': 'user', 'content': 'Which CDSs are located in a specific region and what are their details?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.cdss WHERE region_id = 1;'}, {'role': 'user', 'content': 'What tigrfam domains are related to a specific CDS?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.tigrfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Summarize the genus distribution in the antiSMASH dataset.'}, {'role': 'assistant', 'content': 'SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;'}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}]
+Using model gpt-4o for 1406.0 tokens (approx)
+LLM Response: SELECT cds.* 
+FROM antismash.cdss cds 
+JOIN antismash.regions r ON cds.region_id = r.region_id 
+JOIN antismash.dna_sequences ds ON r.accession = ds.accession 
+JOIN antismash.genomes g ON ds.genome_id = g.genome_id 
+WHERE g.assembly_id = 'NBC_01571' 
+AND r.region_number = 8;
+Extracted SQL: SELECT cds.* 
+FROM antismash.cdss cds 
+JOIN antismash.regions r ON cds.region_id = r.region_id 
+JOIN antismash.dna_sequences ds ON r.accession = ds.accession 
+JOIN antismash.genomes g ON ds.genome_id = g.genome_id 
+WHERE g.assembly_id = 'NBC_01571' 
+AND r.region_number = 8;
+SELECT cds.* 
+FROM antismash.cdss cds 
+JOIN antismash.regions r ON cds.region_id = r.region_id 
+JOIN antismash.dna_sequences ds ON r.accession = ds.accession 
+JOIN antismash.genomes g ON ds.genome_id = g.genome_id 
+WHERE g.assembly_id = 'NBC_01571' 
+AND r.region_number = 8;
+2024-08-14 19:31:13,162 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:31:13,163 - INFO - Question 26 processed successfully with 49 rows in the answer dataframe
+2024-08-14 19:31:13,163 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_26__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:31:13,165 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_26__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:31:13,165 - INFO - Processing question 28: Find all NRPS regions with both glycosyltransferase halogenase SMCOGs 
+2024-08-14 19:31:13,216 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+2024-08-14 19:31:21,668 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+    cds_id  functional_class_id  ...              LOCATION region_id
+0   847456                  NaN  ...  [1769069:1770239](-)     27803
+1   847457                  4.0  ...  [1771000:1771780](+)     27803
+2   847458                  NaN  ...  [1772008:1773178](-)     27803
+3   847459                  NaN  ...  [1773280:1773742](+)     27803
+4   847460                  4.0  ...  [1773885:1774599](-)     27803
+5   847461                  4.0  ...  [1774613:1775555](-)     27803
+6   847462                  NaN  ...  [1775551:1776808](-)     27803
+7   847463                  4.0  ...  [1777162:1778038](+)     27803
+8   847464                  4.0  ...  [1778267:1778477](-)     27803
+9   847465                  4.0  ...  [1778498:1778840](-)     27803
+10  847466                  1.0  ...  [1778872:1779415](-)     27803
+11  847467                  4.0  ...  [1779821:1780013](-)     27803
+12  847468                  4.0  ...  [1780323:1781946](+)     27803
+13  847469                  1.0  ...  [1782085:1782931](-)     27803
+14  847470                  4.0  ...  [1782959:1783088](-)     27803
+15  847471                  NaN  ...  [1783135:1784500](-)     27803
+16  847472                  4.0  ...  [1784559:1784955](-)     27803
+17  847473                  4.0  ...  [1784951:1785722](-)     27803
+18  847474                  NaN  ...  [1785774:1786992](-)     27803
+19  847475                  NaN  ...  [1787204:1787819](+)     27803
+20  847476                  NaN  ...  [1787942:1789541](+)     27803
+21  847477                  4.0  ...  [1789580:1789913](+)     27803
+22  847478                  4.0  ...  [1789909:1790467](+)     27803
+23  847479                  1.0  ...  [1790458:1791796](-)     27803
+24  847480                  NaN  ...  [1791805:1792762](-)     27803
+25  847481                  4.0  ...  [1792793:1793213](-)     27803
+26  847482                  NaN  ...  [1793227:1794430](-)     27803
+27  847483                  1.0  ...  [1794444:1797681](-)     27803
+28  847484                  1.0  ...  [1797704:1800782](-)     27803
+29  847485                  4.0  ...  [1800778:1801627](-)     27803
+30  847486                  1.0  ...  [1801834:1810462](-)     27803
+31  847487                  1.0  ...  [1810458:1817259](-)     27803
+32  847488                  1.0  ...  [1817279:1836242](-)     27803
+33  847489                  1.0  ...  [1836241:1840834](-)     27803
+34  847490                  1.0  ...  [1840830:1853922](-)     27803
+35  847491                  1.0  ...  [1853948:1859846](-)     27803
+36  847492                  NaN  ...  [1860239:1860908](+)     27803
+37  847493                  4.0  ...  [1861249:1861393](-)     27803
+38  847494                  4.0  ...  [1861527:1861722](+)     27803
+39  847495                  4.0  ...  [1861718:1863110](+)     27803
+40  847496                  4.0  ...  [1863791:1865554](+)     27803
+41  847497                  4.0  ...  [1865568:1865826](+)     27803
+42  847498                  4.0  ...  [1865900:1867523](-)     27803
+43  847499                  4.0  ...  [1868080:1868485](+)     27803
+44  847500                  4.0  ...  [1868687:1869051](+)     27803
+45  847501                  4.0  ...  [1869097:1870609](-)     27803
+46  847502                  4.0  ...  [1870641:1874283](-)     27803
+47  847503                  4.0  ...  [1874282:1876514](-)     27803
+48  847504                  4.0  ...  [1876520:1879799](-)     27803
+
+[49 rows x 9 columns]
+Using model gpt-4o for 83060.0 tokens (approx)
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the genes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 103 | antismash_db    | antismash      | genes        | gene_id       | INTEGER     |                  |\n| 104 | antismash_db    | antismash      | genes        | locus_tag     | VARCHAR     |                  |\n| 105 | antismash_db    | antismash      | genes        | LOCATION      | VARCHAR     |                  |\n| 106 | antismash_db    | antismash      | genes        | region_id     | INTEGER     |                  |\n\nThe following columns are in the protoclusters table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name    | column_name     | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:--------------|:----------------|:------------|:-----------------|\n| 158 | antismash_db    | antismash      | protoclusters | protocluster_id | INTEGER     |                  |\n| 159 | antismash_db    | antismash      | protoclusters | region_id       | INTEGER     |                  |\n| 160 | antismash_db    | antismash      | protoclusters | LOCATION        | VARCHAR     |                  |\n| 161 | antismash_db    | antismash      | protoclusters | bgc_type_id     | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'Find all NRPS regions with both glycosyltransferase halogenase SMCOGs '}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';"}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}, {'role': 'assistant', 'content': "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;"}, {'role': 'user', 'content': "Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'."}, {'role': 'assistant', 'content': "SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';"}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Find all lanthipeptide BGC type regions.'}, {'role': 'assistant', 'content': "SELECT   r.*,   bt.* FROM   antismash.rel_regions_types rrt   JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id   JOIN antismash.regions r ON rrt.region_id = r.region_id WHERE   bt.description ILIKE '%lanthipeptide%';"}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'How many Streptomyces genomes are in the dataset?'}, {'role': 'assistant', 'content': "SELECT   COUNT(*) FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id WHERE   t.genus = 'Streptomyces';"}, {'role': 'user', 'content': 'Find all NRPS regions with both glycosyltransferase halogenase SMCOGs '}]
+Using model gpt-4o for 1501.5 tokens (approx)
+LLM Response: SELECT
+    r.*
+FROM
+    antismash.regions r
+    JOIN antismash.cdss cds ON r.region_id = cds.region_id
+    JOIN antismash.smcog_hits sh1 ON cds.cds_id = sh1.cds_id
+    JOIN antismash.smcogs sm1 ON sh1.smcog_id = sm1.smcog_id
+    JOIN antismash.smcog_hits sh2 ON cds.cds_id = sh2.cds_id
+    JOIN antismash.smcogs sm2 ON sh2.smcog_id = sm2.smcog_id
+    JOIN antismash.rel_regions_types rrt ON r.region_id = rrt.region_id
+    JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id
+WHERE
+    bt.term ILIKE '%NRPS%'
+    AND sm1.description ILIKE '%glycosyltransferase%'
+    AND sm2.description ILIKE '%halogenase%';
+Extracted SQL: SELECT
+    r.*
+FROM
+    antismash.regions r
+    JOIN antismash.cdss cds ON r.region_id = cds.region_id
+    JOIN antismash.smcog_hits sh1 ON cds.cds_id = sh1.cds_id
+    JOIN antismash.smcogs sm1 ON sh1.smcog_id = sm1.smcog_id
+    JOIN antismash.smcog_hits sh2 ON cds.cds_id = sh2.cds_id
+    JOIN antismash.smcogs sm2 ON sh2.smcog_id = sm2.smcog_id
+    JOIN antismash.rel_regions_types rrt ON r.region_id = rrt.region_id
+    JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id
+WHERE
+    bt.term ILIKE '%NRPS%'
+    AND sm1.description ILIKE '%glycosyltransferase%'
+    AND sm2.description ILIKE '%halogenase%';
+2024-08-14 19:31:23,233 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:31:23,234 - INFO - Question 28 processed successfully with 0 rows in the answer dataframe
+2024-08-14 19:31:23,234 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_28__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:31:23,235 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_28__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:31:23,235 - INFO - Processing question 33: List all PKS regions in genome NBC_01737.
+2024-08-14 19:31:23,279 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+2024-08-14 19:31:25,292 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+SELECT
+    r.*
+FROM
+    antismash.regions r
+    JOIN antismash.cdss cds ON r.region_id = cds.region_id
+    JOIN antismash.smcog_hits sh1 ON cds.cds_id = sh1.cds_id
+    JOIN antismash.smcogs sm1 ON sh1.smcog_id = sm1.smcog_id
+    JOIN antismash.smcog_hits sh2 ON cds.cds_id = sh2.cds_id
+    JOIN antismash.smcogs sm2 ON sh2.smcog_id = sm2.smcog_id
+    JOIN antismash.rel_regions_types rrt ON r.region_id = rrt.region_id
+    JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id
+WHERE
+    bt.term ILIKE '%NRPS%'
+    AND sm1.description ILIKE '%glycosyltransferase%'
+    AND sm2.description ILIKE '%halogenase%';
+Empty DataFrame
+Columns: [region_id, accession, region_number, LOCATION, start_pos, end_pos, contig_edge, best_mibig_hit_acc, best_mibig_hit_description, best_mibig_hit_similarity]
+Index: []
+Using model gpt-4o for 177.75 tokens (approx)
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the genomes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 110 | antismash_db    | antismash      | genomes      | genome_id     | INTEGER     |                  |\n| 111 | antismash_db    | antismash      | genomes      | tax_id        | INTEGER     |                  |\n| 112 | antismash_db    | antismash      | genomes      | bio_project   | VARCHAR     |                  |\n| 113 | antismash_db    | antismash      | genomes      | bio_sample    | VARCHAR     |                  |\n| 114 | antismash_db    | antismash      | genomes      | isolate_id    | INTEGER     |                  |\n| 115 | antismash_db    | antismash      | genomes      | assembly_id   | VARCHAR     |                  |\n\nThe following columns are in the genes table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 103 | antismash_db    | antismash      | genes        | gene_id       | INTEGER     |                  |\n| 104 | antismash_db    | antismash      | genes        | locus_tag     | VARCHAR     |                  |\n| 105 | antismash_db    | antismash      | genes        | LOCATION      | VARCHAR     |                  |\n| 106 | antismash_db    | antismash      | genes        | region_id     | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}, {'role': 'assistant', 'content': "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;"}, {'role': 'user', 'content': "Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'."}, {'role': 'assistant', 'content': "SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';"}, {'role': 'user', 'content': 'Find all NRPS regions with both glycosyltransferase halogenase SMCOGs '}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';"}, {'role': 'user', 'content': 'How many Streptomyces genomes are in the dataset?'}, {'role': 'assistant', 'content': "SELECT   COUNT(*) FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id WHERE   t.genus = 'Streptomyces';"}, {'role': 'user', 'content': 'Summarize all taxa of the genomes and their details.'}, {'role': 'assistant', 'content': 'SELECT t.* FROM antismash.taxa t JOIN antismash.genomes g ON t.tax_id = g.tax_id;'}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}]
+Using model gpt-4o for 1507.25 tokens (approx)
+LLM Response: SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r  
+JOIN antismash.dna_sequences d ON r.accession = d.accession  
+JOIN antismash.genomes g ON d.genome_id = g.genome_id  
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  
+WHERE g.assembly_id = 'NBC_01737'  
+AND bt.term ILIKE '%PKS%';
+2024-08-14 19:31:29,339 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:31:29,340 - INFO - Question 33 processed successfully with 5 rows in the answer dataframe
+2024-08-14 19:31:29,340 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_33__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:31:29,341 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_33__openai_chat__gpt-4o__RAG_benchmark.json
+2024-08-14 19:31:29,342 - INFO - Processing question 34: Which PKS regions has trans_at modules?
+2024-08-14 19:31:29,386 - WARNING - Number of requested results 10 is greater than number of elements in index 1, updating n_results = 1
+2024-08-14 19:31:36,677 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Extracted SQL: SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r  
+JOIN antismash.dna_sequences d ON r.accession = d.accession  
+JOIN antismash.genomes g ON d.genome_id = g.genome_id  
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  
+WHERE g.assembly_id = 'NBC_01737'  
+AND bt.term ILIKE '%PKS%';
+SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r  
+JOIN antismash.dna_sequences d ON r.accession = d.accession  
+JOIN antismash.genomes g ON d.genome_id = g.genome_id  
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  
+WHERE g.assembly_id = 'NBC_01737'  
+AND bt.term ILIKE '%PKS%';
+   region_id accession  region_number  ... assembly_id  region_id_1  bgc_type_id_1
+0      25721  CP109153              1  ...   NBC_01737        25721              3
+1      25725  CP109153              5  ...   NBC_01737        25725              1
+2      25731  CP109153             11  ...   NBC_01737        25731              3
+3      25740  CP109153             20  ...   NBC_01737        25740              1
+4      25741  CP109153             21  ...   NBC_01737        25741              1
+
+[5 rows x 22 columns]
+Using model gpt-4o for 829.5 tokens (approx)
+SQL Prompt: [{'role': 'system', 'content': "You are a DuckDB SQL expert. Please help to generate a SQL query to answer the question. Your response should ONLY be based on the given context and follow the response guidelines and format instructions. \n===Tables \n\n===Additional Context \n\nThe following columns are in the modules table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name   | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:-------------|:--------------|:------------|:-----------------|\n| 118 | antismash_db    | antismash      | modules      | module_id     | INTEGER     |                  |\n| 119 | antismash_db    | antismash      | modules      | LOCATION      | VARCHAR     |                  |\n| 120 | antismash_db    | antismash      | modules      | TYPE          | VARCHAR     |                  |\n| 121 | antismash_db    | antismash      | modules      | trans_at      | BOOLEAN     |                  |\n| 122 | antismash_db    | antismash      | modules      | complete      | BOOLEAN     |                  |\n| 123 | antismash_db    | antismash      | modules      | iterative     | BOOLEAN     |                  |\n| 124 | antismash_db    | antismash      | modules      | multi_gene    | BOOLEAN     |                  |\n| 125 | antismash_db    | antismash      | modules      | region_id     | INTEGER     |                  |\n\nThe following columns are in the rel_regions_types table in the antismash_db database:\n\n|     | table_catalog   | table_schema   | table_name        | column_name   | data_type   | COLUMN_COMMENT   |\n|----:|:----------------|:---------------|:------------------|:--------------|:------------|:-----------------|\n| 196 | antismash_db    | antismash      | rel_regions_types | region_id     | INTEGER     |                  |\n| 197 | antismash_db    | antismash      | rel_regions_types | bgc_type_id   | INTEGER     |                  |\n\n===Response Guidelines \n1. If the provided context is sufficient, please generate a valid SQL query without any explanations for the question. \n2. If the provided context is almost sufficient but requires knowledge of a specific string in a particular column, please generate an intermediate SQL query to find the distinct strings in that column. Prepend the query with a comment saying intermediate_sql \n3. If the provided context is insufficient, please explain why it can't be generated. \n4. Please use the most relevant table(s). \n5. If the question has been asked and answered before, please repeat the answer exactly as it was given before. \n"}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}, {'role': 'assistant', 'content': "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;"}, {'role': 'user', 'content': 'Which regions has iterative modules?'}, {'role': 'assistant', 'content': 'SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;'}, {'role': 'user', 'content': 'Get me all PKS regions which utilizes methylmalonyl-CoA as a substrate'}, {'role': 'assistant', 'content': "SELECT   g.assembly_id,   r.accession,   r.region_number,   as_domains.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.as_domains as_domains ON cds.cds_id = as_domains.cds_id WHERE   as_domains.pks_signature ILIKE '%methylmalonyl-CoA%';"}, {'role': 'user', 'content': 'List all PKS regions in genome NBC_01737.'}, {'role': 'assistant', 'content': "SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';"}, {'role': 'user', 'content': 'Get me all RIPPs precursor peptide for thiopeptide type II'}, {'role': 'assistant', 'content': "SELECT   * FROM   antismash.ripps ripps   JOIN antismash.protoclusters p ON ripps.protocluster_id = p.protocluster_id   JOIN antismash.regions r ON r.region_id = p.region_id WHERE   ripps.class ILIKE '%thiopeptide%'   AND ripps.subclass ILIKE '%type III%';"}, {'role': 'user', 'content': "Get me all genomes and regions containing domains where the domain subtype is 'Trans-AT-KS'."}, {'role': 'assistant', 'content': "SELECT   g.*,   r.*,   ad.*,   radts.subtype FROM   antismash.regions r   JOIN antismash.cdss cdss ON cdss.region_id = r.region_id   JOIN antismash.as_domains ad ON cdss.cds_id = ad.cds_id   JOIN antismash.rel_as_domain_to_subtype radts ON ad.as_domain_id = radts.as_domain_id   JOIN antismash.dna_sequences ds ON r.accession = ds.accession   JOIN antismash.genomes g ON ds.genome_id = g.genome_id WHERE   radts.subtype = 'Trans-AT-KS';"}, {'role': 'user', 'content': 'Find all lanthipeptide BGC type regions.'}, {'role': 'assistant', 'content': "SELECT   r.*,   bt.* FROM   antismash.rel_regions_types rrt   JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id   JOIN antismash.regions r ON rrt.region_id = r.region_id WHERE   bt.description ILIKE '%lanthipeptide%';"}, {'role': 'user', 'content': 'List all pfam domains located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.pfam_domains WHERE cds_id = 1;'}, {'role': 'user', 'content': 'Describe all the CDS located in region 8 of the genome NBC_01571.'}, {'role': 'assistant', 'content': "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;"}, {'role': 'user', 'content': 'Which domains are linked to a particular substrate?'}, {'role': 'assistant', 'content': 'SELECT * FROM antismash.rel_as_domains_substrates WHERE substrate_id = 1;'}, {'role': 'user', 'content': 'Which PKS regions has trans_at modules?'}]
+Using model gpt-4o for 1425.25 tokens (approx)
+2024-08-14 19:31:39,904 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-14 19:31:39,905 - INFO - Question 34 processed successfully with 101 rows in the answer dataframe
+2024-08-14 19:31:39,905 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_34__openai_chat__gpt-4o__RAG_benchmark.csv
+2024-08-14 19:31:39,907 - INFO - Saving output to benchmark_02d2c72/iteration_1/llm_response_openai_chat__gpt-4o/Q_34__openai_chat__gpt-4o__RAG_benchmark.json
+LLM Response: SELECT r.*, m.*, rt.*, bt.* 
+FROM antismash.regions r 
+JOIN antismash.modules m ON r.region_id = m.region_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE bt.term ILIKE '%PKS%' 
+AND m.trans_at = TRUE;
+Extracted SQL: SELECT r.*, m.*, rt.*, bt.* 
+FROM antismash.regions r 
+JOIN antismash.modules m ON r.region_id = m.region_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE bt.term ILIKE '%PKS%' 
+AND m.trans_at = TRUE;
+SELECT r.*, m.*, rt.*, bt.* 
+FROM antismash.regions r 
+JOIN antismash.modules m ON r.region_id = m.region_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE bt.term ILIKE '%PKS%' 
+AND m.trans_at = TRUE;
+      region_id    accession  ...          description category
+0          2533     CP108277  ...   Type II polyketide      pks
+1          2726  NBC_01645_3  ...  Trans-AT polyketide      pks
+2          2726  NBC_01645_3  ...  Trans-AT polyketide      pks
+3          2726  NBC_01645_3  ...  Trans-AT polyketide      pks
+4          2726  NBC_01645_3  ...  Trans-AT polyketide      pks
+...         ...          ...  ...                  ...      ...
+2617      30370  NBC_01669_4  ...    Type I polyketide      pks
+2618      30370  NBC_01669_4  ...    Type I polyketide      pks
+2619      30370  NBC_01669_4  ...    Type I polyketide      pks
+2620      30370  NBC_01669_4  ...    Type I polyketide      pks
+2621      30370  NBC_01669_4  ...    Type I polyketide      pks
+
+[2622 rows x 24 columns]
+Using model gpt-4o for 17406.25 tokens (approx)

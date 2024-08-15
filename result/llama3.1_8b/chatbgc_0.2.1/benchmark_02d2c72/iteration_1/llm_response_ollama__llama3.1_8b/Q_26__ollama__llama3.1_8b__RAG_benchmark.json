@@ -1,0 +1,11 @@
+{
+  "id": 26,
+  "question": "Describe all the CDS located in region 8 of the genome NBC_01571.",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT T2.cds_id FROM antismash_db.antismash.regions AS T1 INNER JOIN antismash_db.antismash.rel_cds_candidates AS T2 ON T1.region_id = T2.cds_id WHERE (T1.region_number = 8) AND (T1.accession = 'NBC_01571')",
+  "answer_summary_LLM": "There are no CDS (Coding Sequences) located in region 8 of the genome NBC_01571."
+}

@@ -1,0 +1,11 @@
+{
+  "id": 26,
+  "question": "Describe all the CDS located in region 8 of the genome NBC_01571.",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT * FROM antismash.cdss WHERE region_id = 8 AND cds_id IN (SELECT cds_id FROM antismash.dna_sequences WHERE genome_id = (SELECT genome_id FROM antismash.genomes WHERE assembly_id = 'NBC_01571'));",
+  "answer_summary_LLM": "The data contains information on 11 coding sequences (CDS) located in region 8 of the genome NBC_01571. Each entry includes details such as the CDS ID, locus tag, product name, protein ID, translation sequence, and location within the genome. Notable products include a membrane protein, a polysaccharide deacetylase, and a cell division protein (ZapE). The majority of the CDS have a functional class ID of 4, indicating they are likely involved in essential biological processes."
+}

@@ -1,0 +1,16 @@
+,module_id,LOCATION,TYPE,trans_at,complete,iterative,multi_gene,region_id
+0,2989,[1681837:1689241](-),aSModule,False,True,True,False,1853
+1,8922,[53353:60736](-),aSModule,False,True,True,False,5421
+2,9893,[929835:934538](-),aSModule,False,True,True,True,5902
+3,11723,[7906121:7913570](+),aSModule,False,True,True,False,6971
+4,12026,[312468:319923](-),aSModule,False,True,True,False,7150
+5,12425,[1187313:1194765](-),aSModule,False,True,True,False,7410
+6,14977,[943764:948467](-),aSModule,False,True,True,True,8844
+7,19335,[6774167:6781514](+),aSModule,False,True,True,False,11322
+8,19861,[7670446:7675149](+),aSModule,False,True,True,True,11641
+9,28516,[7885919:7890610](+),aSModule,False,True,True,True,17069
+10,28875,[4519727:4522910](-),aSModule,False,True,True,False,17327
+11,31654,[258999:266388](-),aSModule,False,True,True,False,19142
+12,40438,[5034836:5041070](+),aSModule,False,True,True,False,24781
+13,40967,[249649:257077](-),aSModule,False,True,True,False,25127
+14,45602,[11198526:11205972](+),aSModule,False,True,True,False,28682

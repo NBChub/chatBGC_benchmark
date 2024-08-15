@@ -1,0 +1,11 @@
+{
+  "id": 22,
+  "question": "Summarize the genus distribution in the antiSMASH dataset.",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_LLM": "The antiSMASH dataset contains genus distribution as follows: Streptomyces (877), Micromonospora (39), Kitasatospora (27), Nocardia (21), Kribbella (11), Amycolatopsis (8), Streptosporangium (7), Microbispora (5), Actinacidiphila (4), Kocuria (4), Nonomuraea (4), Nocardioides (3), Rhodococcus (2), Embleya (2), Spirillospora (2), and 13 other genera with a single count each."
+}

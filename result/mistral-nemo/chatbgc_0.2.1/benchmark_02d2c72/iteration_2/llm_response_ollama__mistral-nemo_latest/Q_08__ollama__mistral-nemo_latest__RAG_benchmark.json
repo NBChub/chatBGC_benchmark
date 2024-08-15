@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT DISTINCT name FROM antismash.as_domain_profiles",
+  "answer_summary_LLM": "The antiSMASH database offers various domain profiles for biosynthetic gene clusters, including:\n\n- **Polyketide Synthase (PKS) domains**: PKS_DH, PKS_AT, PKS_Docking_Cterm, PKS_Docking_Nterm, PKS_ER, PKS_DH2, PKS_DHt, PKS_KR, PKS_KS\n- **Nonribosomal Peptide Synthetase (NRPS) domains**: NRPS-COM_Nterm, NRPS-COM_Cterm, PCP\n- **Carboxylesterase/Hydrolase (CEH) domains**: CEH, A-OX, Thioesterase\n- **Aminotransferase (AT) domains**: Aminotran_1_2, Aminotran_3, Aminotran_4, Aminotran_5\n- **Amidotransferase (AMT) domains**: SAT, ACPS\n- **Phosphopantetheinyl transferase (PPTase) domains**: MT, nMT, cMT\n- **Other domains**: Condensation_Dual, Condensation_LCL, Condensation_DCL, Condensation_Starter, Condensation, Epimerization, GNAT, PP-binding, AMP-binding, TIGR01720, TIGR02353, FkbH, Hal, LPG_synthase_C, PS"
+}

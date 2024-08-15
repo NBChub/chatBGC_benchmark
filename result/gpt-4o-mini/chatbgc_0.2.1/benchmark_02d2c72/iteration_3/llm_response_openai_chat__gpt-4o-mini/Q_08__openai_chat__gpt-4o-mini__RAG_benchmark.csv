@@ -1,0 +1,59 @@
+,as_domain_profile_id,name,description,DATABASE,TYPE
+0,1,Beta_elim_lyase,Beta-eliminating lyase,nrpspksdomains.hmm,
+1,2,Condensation,Condensation domain,nrpspksdomains.hmm,condensation
+2,3,Condensation_DCL,Condensation domain that links L-amino acid to peptide ending with D-amino acid,nrpspksdomains.hmm,condensation
+3,4,Condensation_LCL,Condensation domain that links L-amino acid to peptide ending with L-amino acid,nrpspksdomains.hmm,condensation
+4,5,Condensation_Dual,Dual condensation/epimerization domain,nrpspksdomains.hmm,condensation
+5,6,Condensation_Starter,Starter condensation domain,nrpspksdomains.hmm,condensation
+6,7,X,Glycopeptide-specific NRPS domain responsible for oxygenase recruitment,nrpspksdomains.hmm,
+7,8,Cglyc,Glycopeptide condensation domain,nrpspksdomains.hmm,condensation
+8,9,Heterocyclization,Heterocyclization domain,nrpspksdomains.hmm,
+9,10,Epimerization,Epimerization domain,nrpspksdomains.hmm,
+10,11,ACPS,4'-phosphopantetheinyl transferase,nrpspksdomains.hmm,
+11,12,MT,methyl transferase,nrpspksdomains.hmm,methyl transferase
+12,13,cMT,C-methyl transferase,nrpspksdomains.hmm,methyl transferase
+13,14,oMT,O-methyl transferase,nrpspksdomains.hmm,methyl transferase
+14,15,nMT,N-methyl transferase,nrpspksdomains.hmm,methyl transferase
+15,16,AMP-binding,Adenylation domain,nrpspksdomains.hmm,adenylation
+16,17,A-OX,Adenylation domain with integrated oxidase,nrpspksdomains.hmm,adenylation
+17,18,TauD,"Taurine catabolism dioxygenase TauD, TfdA family",nrpspksdomains.hmm,
+18,19,cAT,"Cyclising acyltransferase, similar function to a thioesterase",nrpspksdomains.hmm,
+19,20,Thioesterase,Thioesterase domain,nrpspksdomains.hmm,
+20,21,TD,Terminal reductase domain,nrpspksdomains.hmm,
+21,22,Aminotran_1_2,Aminotransferase class I + II,nrpspksdomains.hmm,aminotransferase
+22,23,Aminotran_3,Aminotransferase class III,nrpspksdomains.hmm,aminotransferase
+23,24,Aminotran_4,Aminotransferase class IV,nrpspksdomains.hmm,aminotransferase
+24,25,Aminotran_5,Aminotransferase class V,nrpspksdomains.hmm,aminotransferase
+25,26,PKS_KS,Ketosynthase domain,nrpspksdomains.hmm,
+26,27,PKS_KR,Ketoreductase domain,nrpspksdomains.hmm,
+27,28,PKS_ER,Enoylreductase domain,nrpspksdomains.hmm,
+28,29,PKS_DH,Dehydrogenase domain,nrpspksdomains.hmm,
+29,30,PKS_DH2,Dehydrogenase-2 domain,nrpspksdomains.hmm,
+30,31,PKS_DHt,Dehydrogenase domain more commonly found in Trans-AT clusters,nrpspksdomains.hmm,
+31,32,PKS_AT,Acyltransferase domain,nrpspksdomains.hmm,
+32,33,NRPS-COM_Nterm,NRPS COM domain N-terminal,nrpspksdomains.hmm,
+33,34,NRPS-COM_Cterm,NRPS COM domain C-terminal,nrpspksdomains.hmm,
+34,35,Polyketide_cyc,Polyketide cyclase,nrpspksdomains.hmm,
+35,36,Polyketide_cyc2,Polyketide cyclase/dehydratase,nrpspksdomains.hmm,
+36,37,PKS_Docking_Nterm,PKS N-terminal docking domain,nrpspksdomains.hmm,
+37,38,PKS_Docking_Cterm,PKS C-terminal docking domain,nrpspksdomains.hmm,
+38,39,CAL_domain,Co-enzyme A ligase domain,nrpspksdomains.hmm,
+39,40,SAT,Starter unit ACP transacylase domain,nrpspksdomains.hmm,
+40,41,Trans-AT_docking,Trans-acyltransferase docking domain,nrpspksdomains.hmm,
+41,42,ACP,Acyl-carrier protein domain,nrpspksdomains.hmm,transporter
+42,43,PCP,Peptidyl-carrier protein domain,nrpspksdomains.hmm,transporter
+43,44,PP-binding,"Phosphopantetheine attachment site, thiolation domain",nrpspksdomains.hmm,transporter
+44,45,PKS_PP,Phosphopantetheine acyl carrier protein group,nrpspksdomains.hmm,transporter
+45,46,NAD_binding_4,Male sterility protein,nrpspksdomains.hmm,
+46,47,ACP_beta,beta-branching acyl-carrier protein domain,nrpspksdomains.hmm,transporter
+47,48,B,branching domain,nrpspksdomains.hmm,
+48,49,F,Formylation domain,nrpspksdomains.hmm,
+49,50,FkbH,FkbH-like domain,nrpspksdomains.hmm,
+50,51,GNAT,GNAT domain,nrpspksdomains.hmm,
+51,52,Hal,Halogenase domain,nrpspksdomains.hmm,
+52,53,PS,Pyran synthase domain,nrpspksdomains.hmm,
+53,54,PT,Fungal nonreducing product template domain,nrpspksdomains.hmm,
+54,55,TIGR01720,NRPS_para261: non-ribosomal peptide synthase domain,nrpspksdomains.hmm,
+55,56,ECH,Enoyl-CoA hydratase/isomerase,nrpspksdomains.hmm,
+56,57,LPG_synthase_C,"Phosphatidylglycerol lysyltransferase, C-terminal",nrpspksdomains.hmm,
+57,58,TIGR02353,NRPS terminal domain of unknown function,nrpspksdomains.hmm,

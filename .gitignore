@@ -1,6 +1,6 @@
 data/
-result/
 chatbgc_env/
 .env
 **/*.bin
 **/*.sqlite3
+**/*.ipynb_checkpoints/

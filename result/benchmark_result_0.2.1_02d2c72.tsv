@@ -1,0 +1,446 @@
+	id	question	difficulty	category	label	answer_sql_expected	answer_summary_expected	answer_sql_LLM	answer_summary_LLM	model	llm_type	chatbgc_version	benchmark_version
+Q_01__openai_chat__gpt-4o__RAG_benchmark__iteration_1	1	List all antiSMASH BGC categories and their descriptions.	Easy		Test	SELECT   * FROM   antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	SELECT category, description FROM antismash.bgc_categories;	"The antiSMASH BGC categories are:
+- pks: Polyketide
+- nrps: Nonribosomal peptide
+- ripp: Ribosomally synthesized and post-translationally modified peptide
+- terpene: Terpene
+- saccharide: Saccharide
+- alkaloid: Alkaloid
+- other: Other"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_03__openai_chat__gpt-4o__RAG_benchmark__iteration_1	3	List all regions with a best MIBiG hit description containing 'neoabyssomicin'.	Easy		Test	SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_08__openai_chat__gpt-4o__RAG_benchmark__iteration_1	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT * FROM antismash.as_domain_profiles;	"The antiSMASH database contains various domain profiles, including:
+
+- Beta_elim_lyase
+- Condensation (with subtypes DCL, LCL, Dual, Starter)
+- X
+- Cglyc
+- Heterocyclization
+- Epimerization
+- ACPS
+- Methyl transferase (subtypes MT, cMT, oMT, nMT)
+- Adenylation (subtypes AMP-binding, A-OX)
+- TauD
+- Cyclising acyltransferase (cAT)
+- Thioesterase
+- Terminal reductase (TD)
+- Aminotransferase (classes I+II, III, IV, V)
+- Ketosynthase (PKS_KS)
+- Ketoreductase (PKS_KR)
+- Enoylreductase (PKS_ER)
+- Dehydrogenase (PKS_DH, PKS_DH2, PKS_DHt)
+- Acyltransferase (PKS_AT)
+- NRPS COM domain (N-term, C-term)
+- Polyketide cyclase (Polyketide_cyc, Polyketide_cyc2)
+- PKS Docking domain (N-term, C-term)
+- Co-enzyme A ligase (CAL_domain)
+- Starter unit ACP transacylase (SAT)
+- Trans-acyltransferase docking domain (Trans-AT_docking)
+- Transporter domains (ACP, PCP, PP-binding, PKS_PP, ACP_beta)
+- Branching (B)
+- Formylation (F)
+- FkbH-like (FkbH)
+- GNAT
+- Halogenase (Hal)
+- Pyran synthase (PS)
+- Fungal nonreducing product template (PT)
+- NRPS domains (TIGR01720, TIGR02353)
+- Enoyl-CoA hydratase/isomerase (ECH)
+- Phosphatidylglycerol lysyltransferase (LPG_synthase_C)"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_22__openai_chat__gpt-4o__RAG_benchmark__iteration_1	22	Summarize the genus distribution in the antiSMASH dataset.	Medium		Test	SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;		"SELECT t.genus, COUNT(*) as genus_count 
+FROM antismash.genomes g 
+JOIN antismash.taxa t ON g.tax_id = t.tax_id 
+GROUP BY t.genus;"	The antiSMASH dataset shows the following genus distribution: Streptomyces (877), Micromonospora (39), Kitasatospora (27), Nocardia (21), Kribbella (11), Amycolatopsis (8), Streptosporangium (7), Microbispora (5), Actinacidiphila (4), Kocuria (4), Nonomuraea (4), Rhodococcus (2), Embleya (2), Spirillospora (2), and several genera with only one occurrence each.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_25__openai_chat__gpt-4o__RAG_benchmark__iteration_1	25	Which regions has iterative modules?	Medium		Test	SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	SELECT * FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Regions with iterative modules: 5902, 8844, 11641, 17069.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_26__openai_chat__gpt-4o__RAG_benchmark__iteration_1	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		"SELECT cds.* 
+FROM antismash.cdss cds 
+JOIN antismash.regions r ON cds.region_id = r.region_id 
+JOIN antismash.dna_sequences ds ON r.accession = ds.accession 
+JOIN antismash.genomes g ON ds.genome_id = g.genome_id 
+WHERE g.assembly_id = 'NBC_01571' 
+AND r.region_number = 8;"	"The coding sequences (CDS) located in region 8 of the genome NBC_01571 include the following:
+
+1. **OHB41_08075 (tuf)**: Elongation factor Tu.
+2. **OHB41_08080**: VTT domain-containing protein.
+3. **OHB41_08085**: Thiolase family protein.
+4. **OHB41_08090**: Helix-turn-helix transcriptional regulator.
+5. **OHB41_08095**: Cupin.
+6. **OHB41_08100**: PmoA family protein.
+7. **OHB41_08105**: Gfo/Idh/MocA family oxidoreductase.
+8. **OHB41_08110**: Undecaprenyl-diphosphate phosphatase.
+9. **OHB41_08115**: Hypothetical protein.
+10. **OHB41_08120**: MazG-like family protein.
+11. **OHB41_08125**: Hypothetical protein.
+12. **OHB41_08130**: Transposase family protein.
+13. **OHB41_08135**: ISAzo13 family transposase.
+14. **OHB41_08140**: Phytanoyl-CoA dioxygenase family protein.
+15. **OHB41_08145**: Methionine adenosyltransferase.
+16. **OHB41_08150 (ccrA)**: Crotonyl-CoA carboxylase/reductase.
+17. **OHB41_08155**: DUF3037 domain-containing protein.
+18. **OHB41_08160**: Hypothetical protein.
+19. **OHB41_08165**: Cytochrome P450.
+20. **OHB41_08170**: TetR/AcrR family transcriptional regulator.
+21. **OHB41_08175**: MFS transporter.
+22. **OHB41_08180**: DUF6204 family protein.
+23. **OHB41_08185**: DUF2087 domain-containing protein.
+24. **OHB41_08190**: Acyltransferase domain-containing protein.
+25. **OHB41_08195**: Methyltransferase domain-containing protein.
+26"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_28__openai_chat__gpt-4o__RAG_benchmark__iteration_1	28	Find all NRPS regions with both glycosyltransferase halogenase SMCOGs 	Hard		Test	SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';		"SELECT
+    r.*
+FROM
+    antismash.regions r
+    JOIN antismash.cdss cds ON r.region_id = cds.region_id
+    JOIN antismash.smcog_hits sh1 ON cds.cds_id = sh1.cds_id
+    JOIN antismash.smcogs sm1 ON sh1.smcog_id = sm1.smcog_id
+    JOIN antismash.smcog_hits sh2 ON cds.cds_id = sh2.cds_id
+    JOIN antismash.smcogs sm2 ON sh2.smcog_id = sm2.smcog_id
+    JOIN antismash.rel_regions_types rrt ON r.region_id = rrt.region_id
+    JOIN antismash.bgc_types bt ON rrt.bgc_type_id = bt.bgc_type_id
+WHERE
+    bt.term ILIKE '%NRPS%'
+    AND sm1.description ILIKE '%glycosyltransferase%'
+    AND sm2.description ILIKE '%halogenase%';"	The DataFrame is empty and does not contain any NRPS regions with both glycosyltransferase and halogenase SMCOGs.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_33__openai_chat__gpt-4o__RAG_benchmark__iteration_1	33	List all PKS regions in genome NBC_01737.	Hard		Test	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	"SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r  
+JOIN antismash.dna_sequences d ON r.accession = d.accession  
+JOIN antismash.genomes g ON d.genome_id = g.genome_id  
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  
+WHERE g.assembly_id = 'NBC_01737'  
+AND bt.term ILIKE '%PKS%';"	"Genome NBC_01737 contains five PKS regions:
+1. Region 1: Type III polyketide (loseolamycin) from 1505416 to 1546433.
+2. Region 5: Type I polyketide (neoabyssomicin/abyssomicin) from 5772447 to 5884359.
+3. Region 11: Type III polyketide (diazepinomicin) from 8202310 to 8321183.
+4. Region 20: Type I polyketide (azinomycin B) from 11551477 to 11627322.
+5. Region 21: Type I polyketide (BE-43547 series) from 12318862 to 12465542."	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_34__openai_chat__gpt-4o__RAG_benchmark__iteration_1	34	Which PKS regions has trans_at modules?	Hard		Test	SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;		"SELECT r.*, m.*, rt.*, bt.* 
+FROM antismash.regions r 
+JOIN antismash.modules m ON r.region_id = m.region_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE bt.term ILIKE '%PKS%' 
+AND m.trans_at = TRUE;"	The PKS regions with trans-AT modules include regions with the following IDs: 2726, 2784, 3218, 3233, 3338, 3576, 8434, and 8755.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_01__openai_chat__gpt-4o__RAG_benchmark__iteration_2	1	List all antiSMASH BGC categories and their descriptions.	Easy		Test	SELECT   * FROM   antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	SELECT category, description FROM antismash.bgc_categories;	"The antiSMASH BGC categories and their descriptions are as follows: 
+- Polyketide (pks)
+- Nonribosomal peptide (nrps)
+- Ribosomally synthesized and post-translationally modified peptide (ripp)
+- Terpene (terpene)
+- Saccharide (saccharide)
+- Alkaloid (alkaloid)
+- Other (other)"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_03__openai_chat__gpt-4o__RAG_benchmark__iteration_2	3	List all regions with a best MIBiG hit description containing 'neoabyssomicin'.	Easy		Test	SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_08__openai_chat__gpt-4o__RAG_benchmark__iteration_2	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT pfam_id FROM antismash.pfam_domains;	The antiSMASH database contains 101 different domain profiles, each identified by a unique PFAM ID such as PF08241, PF13193, PF07994, PF01011, PF00072, and so on.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_22__openai_chat__gpt-4o__RAG_benchmark__iteration_2	22	Summarize the genus distribution in the antiSMASH dataset.	Medium		Test	SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;		SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;	The antiSMASH dataset contains genus distribution as follows: Streptomyces (877), Micromonospora (39), Kitasatospora (27), Nocardia (21), Kribbella (11), Amycolatopsis (8), Streptosporangium (7), Microbispora (5), Actinacidiphila (4), Kocuria (4), Nonomuraea (4), Nocardioides (3), Rhodococcus (2), Embleya (2), Spirillospora (2), and 13 other genera with a single count each.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_25__openai_chat__gpt-4o__RAG_benchmark__iteration_2	25	Which regions has iterative modules?	Medium		Test	SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	SELECT * FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Regions with iterative modules: 1853, 5421, 5902, 6971, 7150, 7410, 8844, 11322, 11641, 17069, 17327, 19142, 24781, 25127, 28682.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_26__openai_chat__gpt-4o__RAG_benchmark__iteration_2	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		"SELECT 
+    cds.* 
+FROM 
+    antismash.cdss cds
+    JOIN antismash.regions r ON cds.region_id = r.region_id
+    JOIN antismash.dna_sequences ds ON r.accession = ds.accession
+    JOIN antismash.genomes g ON ds.genome_id = g.genome_id
+WHERE 
+    g.assembly_id = 'NBC_01571'
+    AND r.region_number = 8;"	Region 8 of the genome NBC_01571 contains 47 CDSs with various proteins, including elongation factor Tu, VTT domain-containing protein, thiolase family protein, helix-turn-helix transcriptional regulator, cupin, PmoA family protein, Gfo/Idh/MocA family oxidoreductase, undecaprenyl-diphosphate phosphatase, hypothetical proteins, MazG-like family protein, transposase family proteins, phytanoyl-CoA dioxygenase family protein, methionine adenosyltransferase, crotonyl-CoA carboxylase/reductase, DUF3037 domain-containing protein, cytochrome P450, TetR/AcrR family transcriptional regulator, MFS transporter, DUF6204 family protein, DUF2087 domain-containing protein, acyltransferase domain-containing protein, methyltransferase domain-containing protein, aspartate 1-decarboxylase, ACP S-malonyltransferase (fabD), amino acid adenylation domain-containing proteins, SDR family NAD(P)-dependent oxidoreductases, L-histidine N(alpha)-methyltransferase, KR domain-containing protein, 4'-phosphopantetheinyl transferase superfamily protein, ISAzo13 family transposase, group II intron reverse transcriptase/maturase, and several other hypothetical proteins.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_33__openai_chat__gpt-4o__RAG_benchmark__iteration_2	33	List all PKS regions in genome NBC_01737.	Hard		Test	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	"SELECT r.*, bt.*, g.*, rt.* 
+FROM antismash.regions r  
+JOIN antismash.dna_sequences d ON r.accession = d.accession  
+JOIN antismash.genomes g ON d.genome_id = g.genome_id  
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  
+WHERE g.assembly_id = 'NBC_01737'  
+AND bt.term ILIKE '%PKS%';"	"The genome NBC_01737 has five PKS regions:
+
+1. Region 1: Type III polyketide (t3pks) from 1505416 to 1546433.
+2. Region 5: Type I polyketide (t1pks) from 5772447 to 5884359.
+3. Region 11: Type III polyketide (t3pks) from 8202310 to 8321183.
+4. Region 20: Type I polyketide (t1pks) from 11551477 to 11627322.
+5. Region 21: Type I polyketide (t1pks) from 12318862 to 12465542."	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_34__openai_chat__gpt-4o__RAG_benchmark__iteration_2	34	Which PKS regions has trans_at modules?	Hard		Test	SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;		"SELECT r.*, m.*, rt.* 
+FROM antismash.regions r 
+JOIN antismash.modules m ON r.region_id = m.region_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE bt.term ILIKE '%PKS%' AND m.trans_at = TRUE;"	"The following PKS regions have trans_AT modules:
+- Region ID 2533
+- Region ID 2726
+- Region ID 2727
+- Region ID 2784
+- Region ID 2785
+- Region ID 2812
+- Region ID 2958
+- Region ID 2991
+- Region ID 3104
+- Region ID 3218
+- Region ID 3233
+- Region ID 3338
+- Region ID 3404
+- Region ID 3488
+- Region ID 3490
+- Region ID 3533
+- Region ID 3576
+- Region ID 3684
+- Region ID 8383
+- Region ID 8402
+- Region ID 8403
+- Region ID 8434
+- Region ID 8481
+- Region ID 8596
+- Region ID 8755
+- Region ID 8756
+- Region ID 8840
+- Region ID 8906
+- Region ID 8911"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_01__openai_chat__gpt-4o__RAG_benchmark__iteration_3	1	List all antiSMASH BGC categories and their descriptions.	Easy		Test	SELECT   * FROM   antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	SELECT category, description FROM antismash.bgc_categories;	"The antiSMASH BGC categories are:
+- Polyketide (pks)
+- Nonribosomal peptide (nrps)
+- Ribosomally synthesized and post-translationally modified peptide (ripp)
+- Terpene (terpene)
+- Saccharide (saccharide)
+- Alkaloid (alkaloid)
+- Other (other)"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_03__openai_chat__gpt-4o__RAG_benchmark__iteration_3	3	List all regions with a best MIBiG hit description containing 'neoabyssomicin'.	Easy		Test	SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_08__openai_chat__gpt-4o__RAG_benchmark__iteration_3	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT pfam_id FROM antismash.pfam_domains;	The different domain profiles available in the antiSMASH database include the following Pfam IDs: PF00196, PF19876, PF04738, PF01980, PF03621, PF00903, PF05331, PF00248, PF03211, PF00266, PF00109, PF01047, PF10604, PF01494, PF08541, PF03144, PF03764, PF01680, PF02699, PF07549, PF00171, PF13404, PF01756, PF03422, PF17853, PF07977, PF00253, PF03412, PF03358, PF00348, PF01758, PF01040, PF13185, PF00264, PF07940, PF04402, PF00381, PF16884, PF03929, PF08545, PF00990, PF08450, PF13576, PF01730, PF01774, PF00753, PF20254, PF05239, PF12464, PF01925, PF07969, PF01658, PF19561, PF01061, PF02983, PF00291, PF02423, PF00498, PF00652, PF09922, PF13742, PF06071, PF01483, PF00042, PF18564, PF14581, PF03054, PF13523, PF08471, PF12831, PF07748, PF11946, PF16874, PF00733, PF01645, PF01507, PF09290, PF08666, PF01070, PF01113, PF19908, PF05610, PF10502, PF13396, PF00960, PF01565, PF08706, PF02515, PF14435, PF20240, PF00121, PF11941, PF01321, PF08245, PF01351, PF00317, PF01435, PF00582, PF14472, PF00487, PF17866.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_22__openai_chat__gpt-4o__RAG_benchmark__iteration_3	22	Summarize the genus distribution in the antiSMASH dataset.	Medium		Test	SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;		SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;	The antiSMASH dataset includes 28 genera, with the genus Streptomyces being the most prevalent at 877 occurrences. Other notable genera include Micromonospora (39), Kitasatospora (27), and Nocardia (21). Most genera have 1-8 occurrences, except for a few like Kribbella (11) and Amycolatopsis (8).	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_24__openai_chat__gpt-4o__RAG_benchmark__iteration_3	24	Which genome has the longest DNA sequence?	Medium		Test	SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;	Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.	"SELECT 
+    g.* 
+FROM 
+    antismash.genomes g
+JOIN 
+    antismash.sequence_lengths sl ON g.assembly_id = sl.accession
+ORDER BY 
+    sl.seq_length DESC 
+LIMIT 1;"	The DataFrame provided does not contain any information about the longest DNA sequence in genomes; it only lists various identifiers such as genome_id, tax_id, bio_project, bio_sample, isolate_id, and assembly_id, but no sequence lengths.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_25__openai_chat__gpt-4o__RAG_benchmark__iteration_3	25	Which regions has iterative modules?	Medium		Test	SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	SELECT * FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	"The regions with iterative modules are:
+- Region_id: 5902
+- Region_id: 8844
+- Region_id: 11641
+- Region_id: 17069"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_26__openai_chat__gpt-4o__RAG_benchmark__iteration_3	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		"SELECT 
+    cds.* 
+FROM 
+    antismash.regions r 
+    JOIN antismash.cdss cds ON r.region_id = cds.region_id 
+    JOIN antismash.dna_sequences d ON r.accession = d.accession 
+    JOIN antismash.genomes g ON d.genome_id = g.genome_id 
+WHERE 
+    g.assembly_id = 'NBC_01571' 
+    AND r.region_number = 8;"	Region 8 of the genome NBC_01571 contains 48 CDSs with various functional classes, products, and protein IDs. Notable products include elongation factor Tu, VTT domain-containing protein, thiolase family protein, helix-turn-helix transcriptional regulator, cupin, PmoA family protein, Gfo/Idh/MocA family oxidoreductase, undecaprenyl-diphosphate phosphatase, hypothetical proteins, MazG-like family protein, transposase family proteins, ISAzo13 family transposase, phytanoyl-CoA dioxygenase family protein, methionine adenosyltransferase, crotonyl-CoA carboxylase/reductase, DUF3037 domain-containing protein, cytochrome P450, TetR/AcrR family transcriptional regulator, MFS transporter, DUF6204 family protein, DUF2087 domain-containing protein, acyltransferase domain-containing protein, methyltransferase domain-containing protein, aspartate 1-decarboxylase, ACP S-malonyltransferase, amino acid adenylation domain-containing proteins, SDR family NAD(P)-dependent oxidoreductases, L-histidine N(alpha)-methyltransferase, KR domain-containing protein, 4'-phosphopantetheinyl transferase superfamily protein, group II intron reverse transcriptase/maturase, and several other hypothetical proteins.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_28__openai_chat__gpt-4o__RAG_benchmark__iteration_3	28	Find all NRPS regions with both glycosyltransferase halogenase SMCOGs 	Hard		Test	SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';		"SELECT 
+    g.assembly_id, 
+    r.accession, 
+    r.region_number, 
+    smcogs.*, 
+    smcog_hits.*, 
+    cds.*
+FROM 
+    antismash.regions r
+    JOIN antismash.dna_sequences d ON r.accession = d.accession
+    JOIN antismash.genomes g ON d.genome_id = g.genome_id
+    JOIN antismash.cdss cds ON r.region_id = cds.region_id
+    JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id
+    JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id
+WHERE 
+    smcogs.description ILIKE '%glycosyl%' 
+    AND smcogs.description ILIKE '%halogenase%';"	The data contains information on NRPS regions that have both glycosyltransferase and halogenase SMCOGs. It includes details such as assembly IDs, region numbers, SMCOG IDs and names, descriptions, functional class IDs, CDS IDs, scores, e-values, locus tags, products, protein IDs, translations, and locations of the regions.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_33__openai_chat__gpt-4o__RAG_benchmark__iteration_3	33	List all PKS regions in genome NBC_01737.	Hard		Test	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	"SELECT 
+    r.*, 
+    bt.*, 
+    g.*, 
+    rt.*  
+FROM 
+    antismash.regions r  
+    JOIN antismash.dna_sequences d ON r.accession = d.accession  
+    JOIN antismash.genomes g ON d.genome_id = g.genome_id  
+    JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  
+    JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  
+WHERE 
+    g.assembly_id = 'NBC_01737'  
+    AND bt.term ILIKE '%PKS%';"	"The genome NBC_01737 contains 5 PKS regions:
+
+1. Region 1: [1505416:1546433], Type III polyketide, similarity 68% to loseolamycin A1/A2
+2. Region 5: [5772447:5884359], Type I polyketide, similarity 28% to neoabyssomicin/abyssomicin
+3. Region 11: [8202310:8321183], Type III polyketide, similarity 75% to diazepinomicin
+4. Region 20: [11551477:11627322], Type I polyketide, similarity 68% to azinomycin B
+5. Region 21: [12318862:12465542], Type I polyketide, similarity 30% to BE-43547A1/A2/B1/B2/B3/C1/C2"	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_34__openai_chat__gpt-4o__RAG_benchmark__iteration_3	34	Which PKS regions has trans_at modules?	Hard		Test	SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;		"SELECT r.*, m.* 
+FROM antismash.regions r 
+JOIN antismash.modules m ON r.region_id = m.region_id 
+JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id 
+JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id 
+WHERE bt.term ILIKE '%PKS%' 
+AND m.trans_at = TRUE;"	The PKS regions that have trans_at modules are: 2533, 2726, 2727, 2784, 2785, 2812, 2958, 2991, 3104, 3218, 3233, 3338, 3404, 3488, 3490, 3533, 3576, 3684, 8383, 8402, 8403, 8434, 8481, 8596, 8755, 8756, 8840, 8906, and 8911.	gpt-4o	openai_chat	0.2.1	02d2c72
+Q_01__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	1	List all antiSMASH BGC categories and their descriptions.	Easy		Test	SELECT   * FROM   antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	SELECT   * FROM   antismash.bgc_categories;	"The antiSMASH BGC categories and their descriptions are as follows:
+
+- **pks**: Polyketide
+- **nrps**: Nonribosomal peptide
+- **ripp**: Ribosomally synthesized and post-translationally modified peptide
+- **terpene**: Terpene
+- **saccharide**: Saccharide
+- **alkaloid**: Alkaloid
+- **other**: Other"	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_03__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	3	List all regions with a best MIBiG hit description containing 'neoabyssomicin'.	Easy		Test	SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	The data contains 30 regions with a best MIBiG hit description that includes 'neoabyssomicin'. Each entry includes details such as region_id, accession, region_number, location, start and end positions, contig_edge, best_mibig_hit accession, description, and similarity score. All regions share the same best MIBiG hit accession (BGC0001694) and description (neoabyssomicin/abyssomicin).	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_08__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT * FROM antismash.as_domain_profiles;	"The antiSMASH database includes various domain profiles, each identified by a unique ID and characterized by a name and description. Key domain profiles include:
+
+- **Beta_elim_lyase**: Beta-eliminating lyase
+- **Condensation**: Various types of condensation domains (e.g., DCL, LCL, Dual, Starter)
+- **Epimerization**: Epimerization domain
+- **Aminotransferases**: Classes I to V
+- **PKS Domains**: Including Ketosynthase (KS), Ketoreductase (KR), and others
+- **ACPs and Transporters**: Various acyl-carrier and peptidyl-carrier proteins
+- **Specialized Domains**: Such as GNAT, Halogenase, and Fungal nonreducing product template
+
+There are a total of 58 domain profiles listed in the data."	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_22__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	22	Summarize the genus distribution in the antiSMASH dataset.	Medium		Test	SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;		SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;	The antiSMASH dataset shows a diverse distribution of genera, with Streptomyces being the most prevalent at 877 instances, followed by Micromonospora (39) and Kitasatospora (27). Other notable genera include Nocardia (21), Kribbella (11), and Amycolatopsis (8). Several genera have lower counts, ranging from 1 to 7, while a few are unclassified.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_25__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	25	Which regions has iterative modules?	Medium		Test	SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	SELECT * FROM antismash.modules WHERE iterative = TRUE;	"The data shows that the following regions have iterative modules:
+
+- Region ID 1853
+- Region ID 5421
+- Region ID 5902
+- Region ID 6971
+- Region ID 7150
+- Region ID 7410
+- Region ID 8844
+- Region ID 11322
+- Region ID 11641
+- Region ID 17069
+- Region ID 17327
+- Region ID 19142
+- Region ID 24781
+- Region ID 25127
+- Region ID 28682
+
+All listed regions have modules marked as iterative (True)."	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_26__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		SELECT * FROM antismash.cdss WHERE region_id = 8 AND cds_id IN (SELECT cds_id FROM antismash.dna_sequences WHERE genome_id = (SELECT genome_id FROM antismash.genomes WHERE assembly_id = 'NBC_01571'));	The data includes 11 coding DNA sequences (CDS) located in region 8 of the genome NBC_01571. Each entry provides details such as CDS ID, functional class ID, locus tag, product name, protein ID, translation sequence, and location within the genome. Notable products include proteins involved in membrane functions, polysaccharide deacetylation, and cell division. The CDS entries vary in the presence of functional class IDs, with some entries marked as hypothetical proteins and others associated with specific protein families. The locations of these CDS range from positions [1553569:1563779] within the genome.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_28__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	28	Find all NRPS regions with both glycosyltransferase halogenase SMCOGs 	Hard		Test	SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';		SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';	The data contains information on NRPS (Non-Ribosomal Peptide Synthetase) regions that include both glycosyltransferase and halogenase SMCOGs. Each entry includes details such as assembly ID, accession number, region number, SMCog ID, description, functional class, locus tag, and associated protein sequences, along with their scores and e-values. There are multiple entries for different NRPS regions, indicating the presence of these functional genes across various assemblies.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_33__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	33	List all PKS regions in genome NBC_01737.	Hard		Test	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	The data lists five PKS (polyketide synthase) regions in the genome NBC_01737. Each region has a unique region_id, accession number, region number, location coordinates, and descriptions of the polyketides produced. The regions are categorized as either Type I or Type III polyketides.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_34__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_1	34	Which PKS regions has trans_at modules?	Hard		Test	SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;		SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.trans_at = TRUE AND r.region_id IN (SELECT region_id FROM antismash.rel_regions_types rt JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE bt.term ILIKE '%PKS%');	The data contains information on various PKS regions that have trans_at modules. Specifically, it lists the region IDs, accessions, and other attributes related to these regions, confirming the presence of trans_at modules in multiple entries. Notably, regions 108, 178, 224, 246, 543, 608, 609, 657, 810, 886, 1018, 1077, 1302, 1303, 1360, 1535, 1694, 1708, 1766, 1903, 1904, and 1971 are identified as having trans_at modules.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_01__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	1	List all antiSMASH BGC categories and their descriptions.	Easy		Test	SELECT   * FROM   antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	SELECT   * FROM   antismash.bgc_categories;	"The data lists the categories of biosynthetic gene clusters (BGCs) identified by antiSMASH along with their descriptions. The categories include: 
+
+1. pks - Polyketide
+2. nrps - Nonribosomal peptide
+3. ripp - Ribosomally synthesized and post-translationally modified peptide
+4. terpene - Terpene
+5. saccharide - Saccharide
+6. alkaloid - Alkaloid
+7. other - Other"	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_03__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	3	List all regions with a best MIBiG hit description containing 'neoabyssomicin'.	Easy		Test	SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	The data contains a list of regions with their corresponding details where the best MIBiG hit description includes 'neoabyssomicin'. There are 30 entries, all associated with the same best MIBiG hit accession (BGC0001694) and description (neoabyssomicin/abyssomicin). Each entry includes a unique region ID, accession, region number, location range, start and end positions, contig edge status, and best hit similarity score.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_08__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT * FROM antismash.as_domain_profiles;	"The antiSMASH database includes a variety of domain profiles, categorized by type. Key domain profiles include:
+
+1. **Condensation Domains**: Multiple types such as Condensation, Dual, and Starter.
+2. **Transferase Domains**: Including methyl transferases (MT, cMT, oMT, nMT) and adenylation domains (AMP-binding, A-OX).
+3. **Aminotransferase Domains**: Classes I to V.
+4. **Polyketide Synthase Domains**: Including ketosynthase (PKS_KS), ketoreductase (PKS_KR), and acyltransferase (PKS_AT).
+5. **Transporter Domains**: Such as acyl-carrier protein (ACP) and peptidyl-carrier protein (PCP).
+6. **Other Specific Domains**: Including Thioesterase, Heterocyclization, and various hydrolases.
+
+Overall, the dataset encompasses a wide range of functional domains related to biosynthesis in microbial systems."	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_22__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	22	Summarize the genus distribution in the antiSMASH dataset.	Medium		Test	SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;		SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;	The antiSMASH dataset shows a diverse genus distribution, with the most prevalent genus being Streptomyces (877 counts), followed by Micromonospora (39) and Kitasatospora (27). Other notable genera include Nocardia (21), Kribbella (11), and Amycolatopsis (8). Several genera have low counts, including Sphaerisporangium, Kineococcus, and others, which each have 1 or 2 counts. Unclassified entries account for 1 count.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_25__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	25	Which regions has iterative modules?	Medium		Test	SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	SELECT * FROM antismash.modules WHERE iterative = TRUE;	"The data indicates that the following regions have iterative modules:
+
+- Region ID 1853
+- Region ID 5421
+- Region ID 5902
+- Region ID 6971
+- Region ID 7150
+- Region ID 7410
+- Region ID 8844
+- Region ID 11322
+- Region ID 11641
+- Region ID 17069
+- Region ID 17327
+- Region ID 19142
+- Region ID 24781
+- Region ID 25127
+- Region ID 28682"	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_26__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		SELECT * FROM antismash.cdss WHERE region_id = 8 AND cds_id IN (SELECT cds_id FROM antismash.dna_sequences WHERE genome_id = (SELECT genome_id FROM antismash.genomes WHERE assembly_id = 'NBC_01571'));	The data contains information on 11 coding sequences (CDS) located in region 8 of the genome NBC_01571. Each entry includes details such as CDS ID, functional class, locus tag, product, protein ID, translation sequence, and location coordinates. The products range from various proteins like membrane proteins, deacetylases, and hypothetical proteins, with some having specific functions such as protoporphyrinogen oxidase and cell division protein ZapE. The majority of these CDS have an assigned functional class, while a few are marked as hypothetical or without a functional class. The loci are positioned on both the positive and negative strands of the DNA.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_28__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	28	Find all NRPS regions with both glycosyltransferase halogenase SMCOGs 	Hard		Test	SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';		SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyltransferase%'   AND smcogs.description ILIKE '%halogenase%';	The data contains information about NRPS (Non-Ribosomal Peptide Synthetase) regions that include both glycosyltransferase and halogenase SMCOGs. Each entry includes details such as assembly ID, accession number, region number, SMCOG IDs, functional class IDs, CDS IDs, protein IDs, and descriptions related to the identified regions.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_33__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	33	List all PKS regions in genome NBC_01737.	Hard		Test	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	The data lists five PKS (polyketide synthase) regions in the genome NBC_01737. Each entry includes details such as region ID, accession number, region number, location, start and end positions, type of polyketide (Type I or Type III), and best MIBIG hit description. The regions vary in length and type, with some associated with specific compounds like loseolamycin and azinomycin B.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_34__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_2	34	Which PKS regions has trans_at modules?	Hard		Test	SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;		SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.trans_at = TRUE AND r.region_id IN (SELECT region_id FROM antismash.rel_regions_types rt JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE bt.term ILIKE '%PKS%');	The data contains information about various PKS regions that include trans_at modules. Specifically, there are multiple entries with the 'trans_at' column marked as 'True'. The regions identified include region IDs such as 108, 178, 224, 246, 543, 608, 609, 657, 810, 886, 1018, 1077, 1302, 1303, 1360, 1535, 1694, 1708, 1766, 1903, 1904, and 1971, among others. Each entry provides details such as accession numbers, region numbers, location, and module characteristics.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_01__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	1	List all antiSMASH BGC categories and their descriptions.	Easy		Test	SELECT   * FROM   antismash.bgc_categories;	There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)	SELECT   * FROM   antismash.bgc_categories;	The data lists the categories of biosynthetic gene clusters (BGCs) analyzed by antiSMASH, along with their descriptions. The categories include Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid), and Other (other).	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_03__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	3	List all regions with a best MIBiG hit description containing 'neoabyssomicin'.	Easy		Test	SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.	SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';	"The data contains 30 regions with a best MIBiG hit description that includes ""neoabyssomicin."" Each entry includes details such as region ID, accession, region number, location, start and end positions, and similarity scores, all indicating a hit related to neoabyssomicin/abyssomicin."	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_08__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT * FROM antismash.as_domain_profiles;	The antiSMASH database includes various domain profiles, each identified by a unique ID and name. Key domain profiles include condensation domains, methyl transferases, adenylation domains, acyltransferase domains, transporter domains, and several others related to polyketide and non-ribosomal peptide synthesis. The profiles vary in function, such as lyases, transferases, and cyclases, among others, with descriptions provided for each profile.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_22__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	22	Summarize the genus distribution in the antiSMASH dataset.	Medium		Test	SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;		SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;	The antiSMASH dataset shows a diverse distribution of genera, with the most frequent genus being Streptomyces (877 counts), followed by Micromonospora (39 counts) and Kitasatospora (27 counts). Other notable genera include Nocardia (21 counts) and Kribbella (11 counts). Many genera have low counts, with several represented by only 1 or 2 counts. A total of 28 different genera are represented in the dataset.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_25__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	25	Which regions has iterative modules?	Medium		Test	SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;	Module 1 is associated with candidates such as Candidate 1 and Candidate 2.	SELECT * FROM antismash.modules WHERE iterative = TRUE;	"The data indicates that the following regions have iterative modules:
+
+- Region ID 1853
+- Region ID 5421
+- Region ID 5902
+- Region ID 6971
+- Region ID 7150
+- Region ID 7410
+- Region ID 8844
+- Region ID 11322
+- Region ID 11641
+- Region ID 17069
+- Region ID 17327
+- Region ID 19142
+- Region ID 24781
+- Region ID 25127
+- Region ID 28682
+
+All listed regions have at least one module marked as iterative."	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_26__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		SELECT * FROM antismash.cdss WHERE region_id = 8 AND cds_id IN (SELECT cds_id FROM antismash.dna_sequences WHERE genome_id = (SELECT genome_id FROM antismash.genomes WHERE assembly_id = 'NBC_01571'));	The data contains information on 11 coding sequences (CDS) located in region 8 of the genome NBC_01571. Each entry includes details such as the CDS ID, locus tag, product name, protein ID, translation sequence, and location within the genome. Notable products include a membrane protein, a polysaccharide deacetylase, and a cell division protein (ZapE). The majority of the CDS have a functional class ID of 4, indicating they are likely involved in essential biological processes.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_28__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	28	Find all NRPS regions with both glycosyltransferase halogenase SMCOGs 	Hard		Test	SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';		SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';	The data contains information on various NRPS regions that include both glycosyltransferase (SMCOG1062) and halogenase (SMCOG1119 or SMCOG1262) proteins. Each entry provides details such as assembly ID, accession, region number, functional class, description, product, and translation. The dataset includes 100 regions with various scores and e-values, indicating the significance of the protein annotations.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_33__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	33	List all PKS regions in genome NBC_01737.	Hard		Test	SELECT r.*, bt.*, g.*, rt.*  FROM antismash.regions r  JOIN antismash.dna_sequences d  ON r.accession = d.accession  JOIN antismash.genomes g ON d.genome_id = g.genome_id  JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id  JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id  WHERE g.assembly_id = 'NBC_01737'  AND bt.term ILIKE '%PKS%';	"The genome NBC_01737 contains 5 PKS regions with the following details:
+1. Region 1: Location [1505416:1546433], best hit loseolamycin A1/loseolamycin A2 with 68% similarity.
+2. Region 5: Location [5772447:5884359], best hit neoabyssomicin/abyssomicin with 28% similarity.
+3. Region 11: Location [8202310:8321183], best hit diazepinomicin with 75% similarity.
+4. Region 20: Location [11551477:11627322], best hit azinomycin B with 68% similarity.
+5. Region 21: Location [12318862:12465542], best hit BE-43547A1/A2/B1/B2/B3/C1/C2 with 30% similarity."	SELECT r.*, bt.*, g.*, rt.* FROM antismash.regions r JOIN antismash.dna_sequences d ON r.accession = d.accession JOIN antismash.genomes g ON d.genome_id = g.genome_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id WHERE g.assembly_id = 'NBC_01737' AND bt.term ILIKE '%PKS%';	The genome NBC_01737 contains five PKS regions. The regions are identified by region_id 25721, 25725, 25731, 25740, and 25741, with various start and end positions. They include both Type I and Type III polyketides, with associated best MIBIG hit descriptions and similarities.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_34__openai_chat__gpt-4o-mini__RAG_benchmark__iteration_3	34	Which PKS regions has trans_at modules?	Hard		Test	SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;		SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.trans_at = TRUE AND m.TYPE ILIKE '%PKS%';	The data contains information about PKS regions that have trans_at modules. It includes fields such as region_id, accession, region_number, start_pos, end_pos, and various attributes related to the modules, including the best MIBIG hit and its similarity. Each entry corresponds to a specific PKS region associated with trans_at modules.	gpt-4o-mini	openai_chat	0.2.1	02d2c72
+Q_08__ollama__gemma2_27b__RAG_benchmark__iteration_1	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT name FROM antismash_db.antismash.as_domain_profiles	"The antiSMASH database contains domain profiles such as A-OX, Thioesterase, TD, PKS_KS, PP-binding, ACP_beta, and many others related to biosynthetic pathways of natural products. 
+
+
+"	gemma2_27b	ollama	0.2.1	02d2c72
+Q_26__ollama__gemma2_27b__RAG_benchmark__iteration_1	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		"SELECT a.cds_id
+FROM antismash.rel_cds_candidates a
+JOIN antismash.regions r ON a.cds_id = r.region_id
+WHERE r.region_number = 8 AND r.accession = 'NBC_01571'"	"No CDS were found in region 8 of genome NBC_01571. 
+
+
+"	gemma2_27b	ollama	0.2.1	02d2c72
+Q_08__ollama__gemma2_27b__RAG_benchmark__iteration_2	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT name FROM antismash_db.antismash.as_domain_profiles	"The antiSMASH database contains domain profiles categorized as: A-OX, Thioesterase, TD, PKS_KS, PP-binding, ACP_beta, TIGR02353, Condensation, Condensation_LCL, Epimerization, cAT, Polyketide_cyc, Trans-AT_docking, PKS_DH, PKS_AT, PKS_Docking_Cterm, CAL_domain, NAD_binding_4, cMT, Aminotran_5, PKS_Docking_Nterm, SAT, PT, Beta_elim_lyase, Condensation_DCL, Condensation_Starter, oMT, AMP-binding, TauD, NRPS-COM_Cterm, Polyketide_cyc2, PS, X, Heterocyclization, Aminotran_3, NRPS-COM_Nterm, PCP, PKS_PP, FkbH, Hal, LPG_synthase_C, MT, nMT, Aminotran_1_2, PKS_ER, PKS_DH2, PKS_DHt, F, TIGR01720, Condensation_Dual, Cglyc, ACPS, Aminotran_4, PKS_KR, ACP, B, GNAT, and ECH. 
+
+
+"	gemma2_27b	ollama	0.2.1	02d2c72
+Q_26__ollama__gemma2_27b__RAG_benchmark__iteration_2	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		SELECT c.candidate_id FROM antismash.rel_cds_candidates c JOIN antismash.regions r ON c.cds_id = r.region_id WHERE r.region_number = 8 AND r.accession = 'NBC_01571'	"No CDS are located in region 8 of the genome NBC_01571. 
+"	gemma2_27b	ollama	0.2.1	02d2c72
+Q_08__ollama__gemma2_27b__RAG_benchmark__iteration_3	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT name FROM antismash_db.antismash.as_domain_profiles	"The antiSMASH database contains domain profiles for various classes of secondary metabolite biosynthetic enzymes, including polyketide synthases (PKS), non-ribosomal peptide synthetases (NRPS), and hybrid PKS-NRPS systems.  Specific domains identified include those involved in acyl carrier protein (ACP) function, condensation reactions, ketoreductase activity, aminotransferase reactions, and thioesterase domains. 
+"	gemma2_27b	ollama	0.2.1	02d2c72
+Q_26__ollama__gemma2_9b__RAG_benchmark__iteration_1	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		"SELECT rel_cds_candidates.candidate_id
+FROM antismash_db.antismash.rel_cds_candidates
+JOIN antismash_db.antismash.protoclusters ON rel_cds_candidates.cds_id = protoclusters.region_id
+WHERE protoclusters.region_id = 8
+AND protoclusters.LOCATION = 'NBC_01571'"	"The DataFrame lists all CDS candidates in region 8 of the genome NBC_01571.  
+"	gemma2_9b	ollama	0.2.1	02d2c72
+Q_08__ollama__gemma2_9b__RAG_benchmark__iteration_2	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT distinct name FROM antismash_db.antismash.as_domain_profiles	"The antiSMASH database contains 57 different domain profiles.  
+"	gemma2_9b	ollama	0.2.1	02d2c72
+Q_08__ollama__llama3.1_8b__RAG_benchmark__iteration_1	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT name FROM antismash_db.antismash.as_domain_profiles	The different domain profiles available in the antiSMASH database are: PKS_DH, PKS_AT, PKS_Docking_Cterm, CAL_domain, NAD_binding_4, cMT, Aminotran_5, PKS_Docking_Nterm, SAT, PT, Beta_elim_lyase, Condensation_DCL, Condensation_Starter, oMT, AMP-binding, TauD, NRPS-COM_Cterm, Polyketide_cyc2, PS, X, Heterocyclization, Aminotran_3, NRPS-COM_Nterm, PCP, PKS_PP, FkbH, Hal, LPG_synthase_C, MT, nMT, Aminotran_1_2, PKS_ER, PKS_DH2, PKS_DHt, F, TIGR01720, Condensation_Dual, Cglyc, ACPS, Aminotran_4, PKS_KR, ACP, B, GNAT, ECH, A-OX, Thioesterase, TD, PKS_KS, PP-binding, ACP_beta, TIGR02353, Condensation, Condensation_LCL, Epimerization, cAT, Polyketide_cyc, and Trans-AT_docking.	llama3.1_8b	ollama	0.2.1	02d2c72
+Q_26__ollama__llama3.1_8b__RAG_benchmark__iteration_1	26	Describe all the CDS located in region 8 of the genome NBC_01571.	Hard		Test	SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;		SELECT T2.cds_id FROM antismash_db.antismash.regions AS T1 INNER JOIN antismash_db.antismash.rel_cds_candidates AS T2 ON T1.region_id = T2.cds_id WHERE (T1.region_number = 8) AND (T1.accession = 'NBC_01571')	There are no CDS (Coding Sequences) located in region 8 of the genome NBC_01571.	llama3.1_8b	ollama	0.2.1	02d2c72
+Q_08__ollama__llama3.1_8b__RAG_benchmark__iteration_3	8	What are the different domain profiles available in the antiSMASH database?	Easy		Test	SELECT * FROM antismash.as_domain_profiles;	The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.	SELECT DISTINCT name FROM antismash_db.antismash.as_domain_profiles	The antiSMASH database contains 58 different domain profiles, including A-OX, Thioesterase, PKS_KS, and others, with various names indicating their functions and characteristics.	llama3.1_8b	ollama	0.2.1	02d2c72

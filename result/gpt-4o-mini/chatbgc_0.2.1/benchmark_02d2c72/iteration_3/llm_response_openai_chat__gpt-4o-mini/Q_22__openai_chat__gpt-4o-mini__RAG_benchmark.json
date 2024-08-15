@@ -1,0 +1,11 @@
+{
+  "id": 22,
+  "question": "Summarize the genus distribution in the antiSMASH dataset.",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_LLM": "The antiSMASH dataset shows a diverse distribution of genera, with the most frequent genus being Streptomyces (877 counts), followed by Micromonospora (39 counts) and Kitasatospora (27 counts). Other notable genera include Nocardia (21 counts) and Kribbella (11 counts). Many genera have low counts, with several represented by only 1 or 2 counts. A total of 28 different genera are represented in the dataset."
+}

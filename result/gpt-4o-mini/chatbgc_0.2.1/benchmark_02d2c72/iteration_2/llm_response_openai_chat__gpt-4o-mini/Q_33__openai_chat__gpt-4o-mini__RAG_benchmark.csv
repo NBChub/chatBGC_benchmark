@@ -1,0 +1,6 @@
+,region_id,accession,region_number,LOCATION,start_pos,end_pos,contig_edge,best_mibig_hit_acc,best_mibig_hit_description,best_mibig_hit_similarity,bgc_type_id,term,description,category,genome_id,tax_id,bio_project,bio_sample,isolate_id,assembly_id,region_id_1,bgc_type_id_1
+0,25721,CP109153,1,[1505416:1546433],1505416,1546433,False,BGC0002362,loseolamycin A1/loseolamycin A2,68,3,t3pks,Type III polyketide,pks,892,38836,,,,NBC_01737,25721,3
+1,25725,CP109153,5,[5772447:5884359],5772447,5884359,False,BGC0001694,neoabyssomicin/abyssomicin,28,1,t1pks,Type I polyketide,pks,892,38836,,,,NBC_01737,25725,1
+2,25731,CP109153,11,[8202310:8321183],8202310,8321183,False,BGC0000679,diazepinomicin,75,3,t3pks,Type III polyketide,pks,892,38836,,,,NBC_01737,25731,3
+3,25740,CP109153,20,[11551477:11627322],11551477,11627322,False,BGC0000960,azinomycin B,68,1,t1pks,Type I polyketide,pks,892,38836,,,,NBC_01737,25740,1
+4,25741,CP109153,21,[12318862:12465542],12318862,12465542,False,BGC0001330,BE-43547A1/BE-43547A2/BE-43547B1/BE-43547B2/BE-43547B3/BE-43547C1/BE-43547C2,30,1,t1pks,Type I polyketide,pks,892,38836,,,,NBC_01737,25741,1

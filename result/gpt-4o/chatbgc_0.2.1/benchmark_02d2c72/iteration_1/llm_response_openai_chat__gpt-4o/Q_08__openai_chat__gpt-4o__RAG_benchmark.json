@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database contains various domain profiles, including:\n\n- Beta_elim_lyase\n- Condensation (with subtypes DCL, LCL, Dual, Starter)\n- X\n- Cglyc\n- Heterocyclization\n- Epimerization\n- ACPS\n- Methyl transferase (subtypes MT, cMT, oMT, nMT)\n- Adenylation (subtypes AMP-binding, A-OX)\n- TauD\n- Cyclising acyltransferase (cAT)\n- Thioesterase\n- Terminal reductase (TD)\n- Aminotransferase (classes I+II, III, IV, V)\n- Ketosynthase (PKS_KS)\n- Ketoreductase (PKS_KR)\n- Enoylreductase (PKS_ER)\n- Dehydrogenase (PKS_DH, PKS_DH2, PKS_DHt)\n- Acyltransferase (PKS_AT)\n- NRPS COM domain (N-term, C-term)\n- Polyketide cyclase (Polyketide_cyc, Polyketide_cyc2)\n- PKS Docking domain (N-term, C-term)\n- Co-enzyme A ligase (CAL_domain)\n- Starter unit ACP transacylase (SAT)\n- Trans-acyltransferase docking domain (Trans-AT_docking)\n- Transporter domains (ACP, PCP, PP-binding, PKS_PP, ACP_beta)\n- Branching (B)\n- Formylation (F)\n- FkbH-like (FkbH)\n- GNAT\n- Halogenase (Hal)\n- Pyran synthase (PS)\n- Fungal nonreducing product template (PT)\n- NRPS domains (TIGR01720, TIGR02353)\n- Enoyl-CoA hydratase/isomerase (ECH)\n- Phosphatidylglycerol lysyltransferase (LPG_synthase_C)"
+}

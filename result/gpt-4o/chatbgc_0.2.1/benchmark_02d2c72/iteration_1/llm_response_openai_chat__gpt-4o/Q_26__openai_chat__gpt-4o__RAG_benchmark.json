@@ -1,0 +1,11 @@
+{
+  "id": 26,
+  "question": "Describe all the CDS located in region 8 of the genome NBC_01571.",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   cds.*,   r.*,   g.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id WHERE   g.assembly_id = 'NBC_01571'   AND r.region_number = 8;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT cds.* \nFROM antismash.cdss cds \nJOIN antismash.regions r ON cds.region_id = r.region_id \nJOIN antismash.dna_sequences ds ON r.accession = ds.accession \nJOIN antismash.genomes g ON ds.genome_id = g.genome_id \nWHERE g.assembly_id = 'NBC_01571' \nAND r.region_number = 8;",
+  "answer_summary_LLM": "The coding sequences (CDS) located in region 8 of the genome NBC_01571 include the following:\n\n1. **OHB41_08075 (tuf)**: Elongation factor Tu.\n2. **OHB41_08080**: VTT domain-containing protein.\n3. **OHB41_08085**: Thiolase family protein.\n4. **OHB41_08090**: Helix-turn-helix transcriptional regulator.\n5. **OHB41_08095**: Cupin.\n6. **OHB41_08100**: PmoA family protein.\n7. **OHB41_08105**: Gfo/Idh/MocA family oxidoreductase.\n8. **OHB41_08110**: Undecaprenyl-diphosphate phosphatase.\n9. **OHB41_08115**: Hypothetical protein.\n10. **OHB41_08120**: MazG-like family protein.\n11. **OHB41_08125**: Hypothetical protein.\n12. **OHB41_08130**: Transposase family protein.\n13. **OHB41_08135**: ISAzo13 family transposase.\n14. **OHB41_08140**: Phytanoyl-CoA dioxygenase family protein.\n15. **OHB41_08145**: Methionine adenosyltransferase.\n16. **OHB41_08150 (ccrA)**: Crotonyl-CoA carboxylase/reductase.\n17. **OHB41_08155**: DUF3037 domain-containing protein.\n18. **OHB41_08160**: Hypothetical protein.\n19. **OHB41_08165**: Cytochrome P450.\n20. **OHB41_08170**: TetR/AcrR family transcriptional regulator.\n21. **OHB41_08175**: MFS transporter.\n22. **OHB41_08180**: DUF6204 family protein.\n23. **OHB41_08185**: DUF2087 domain-containing protein.\n24. **OHB41_08190**: Acyltransferase domain-containing protein.\n25. **OHB41_08195**: Methyltransferase domain-containing protein.\n26"
+}
