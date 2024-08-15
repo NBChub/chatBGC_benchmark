@@ -105,7 +105,7 @@ def main():
     parser.add_argument(
         "--refine_prompt",
         type=str,
-        default="",
+        default=None,
         help="Additional prompt to help refine the question.",
     )
     args = parser.parse_args()
@@ -140,10 +140,9 @@ def main():
         else:
             try:
                 logging.info(f"Processing question {q['id']}: {q['question']}")
-                logging.debug(f"Adding refine prompt to question: {args.refine_prompt}")
-                refined_question = q["question"] + args.refine_prompt
+                logging.debug(f"Adding prompt to question: {args.refine_prompt}")
                 answer_sql, answer_df, answer_figure = vn.ask(
-                    refined_question,
+                    q["question"] + str(args.refine_prompt),
                     auto_train=False,
                     visualize=False,
                     allow_llm_to_see_data=True,
