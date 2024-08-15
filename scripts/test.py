@@ -102,7 +102,12 @@ def main():
         default=".",
         help="The directory to save the output files. Defaults to the current directory.",
     )
-
+    parser.add_argument(
+        "--refine_prompt",
+        type=str,
+        default="",
+        help="Additional prompt to help refine the question.",
+    )
     args = parser.parse_args()
 
     logging.info("Starting the Vanna application")
@@ -135,8 +140,10 @@ def main():
         else:
             try:
                 logging.info(f"Processing question {q['id']}: {q['question']}")
+                logging.debug(f"Adding refine prompt to question: {args.refine_prompt}")
+                refined_question = q["question"] + args.refine_prompt
                 answer_sql, answer_df, answer_figure = vn.ask(
-                    q["question"],
+                    refined_question,
                     auto_train=False,
                     visualize=False,
                     allow_llm_to_see_data=True,
@@ -162,6 +169,7 @@ def main():
                 logging.error(
                     f"Failed to process question {q['id']}: {q['question']}. Error: {e}"
                 )
+        logging.info("---DONE---")
 
 
 if __name__ == "__main__":

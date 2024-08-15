@@ -8,7 +8,7 @@ QUESTION=$3
 LLM_TYPE=$4
 MODEL=$5
 TRAINING_FOLDER="--training_folder $REPO_DIR/train/antismash"
-
+REFINE_PROMPT=" For generating the SQL query, make sure to use the antismash. as the prefix before the table name."
 
 # get chatbgc version
 CHATBGC_VERSION=$(chatbgc version)
@@ -58,7 +58,8 @@ for i in {1..3}; do
     (cd $DIR && python $REPO_DIR/scripts/test.py $REPO_DIR/$DATABASE $REPO_DIR/$QUESTION \
         --llm_type $LLM_TYPE \
         --model $MODEL \
-        --output_dir "benchmark_$current_branch/iteration_$i" &>> "benchmark_$current_branch/iteration_$i/benchmark.log")
+        --output_dir "benchmark_$current_branch/iteration_$i" \
+        --refine_prompt $REFINE_PROMPT &>> "benchmark_$current_branch/iteration_$i/benchmark.log")
 done
 
 echo "Benchmark completed."
