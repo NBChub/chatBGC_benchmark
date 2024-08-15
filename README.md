@@ -20,7 +20,7 @@ cd chatBGC_benchmark
 
 # Copy BGCFlow run result for G1032 dataset (using one the shared machine at the NPGM DTU Biosustain)
 mkdir data
-cp ~/net/o-drive/CFB-S-NewBioactiveCompounds/11_G1000/bgcflow/G1034_20240208/data/processed/G1032_20240208/dbt/antiSMASH_7.1.0/dbt_bgcflow.duckdb data/G1032_20240208__dbt_bgcflow.duckdb -n
+cp ~/net/o-drive/CFB-S-NewBioactiveCompounds/11_G1000/bgcflow/G1034_20240208/data/processed/G1032_20240208/antismash_database/antiSMASH_database_7.1.0/antismash_db.duckdb data/antismash_db.duckdb -n
 
 # Create python environment and install ChatBGC
 python3 -m venv chatbgc_env
@@ -33,7 +33,6 @@ touch .env
 echo "export OPENAI_API_KEY=$OPENAI_API_KEY" > .env
 source .env
 ```
-
 ## Running ChatBGC Benchmark
 
 1. `GPT-4o`
@@ -49,6 +48,15 @@ bash gpt-4o-mini.sh
 3. `llama3:70b`
 ```bash
 bash llama3_70b.sh
+```
+
+## Running Ollama models
+See: https://github.com/ollama/ollama/blob/main/docs/docker.md
+
+```bash
+tmux new-session -s ollama
+docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+docker exec -it ollama ollama run llama3.1:8b
 ```
 
 ## Summarizing Benchmark results
