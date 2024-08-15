@@ -1,0 +1,11 @@
+{
+  "id": 22,
+  "question": "Summarize the genus distribution in the antiSMASH dataset.",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_LLM": "The genus distribution in the antiSMASH dataset shows that Streptomyces is the most prevalent genus with 877 counts, followed by Micromonospora with 39 counts, and Nocardia with 21 counts. Other genera have significantly lower counts, ranging from 1 to 11."
+}

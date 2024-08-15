@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "question": "List all antiSMASH BGC categories and their descriptions.",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   * FROM   antismash.bgc_categories;",
+  "answer_summary_expected": "There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)",
+  "answer_sql_LLM": "SELECT functional_class_id AS bgc_category, name AS description FROM antismash.cdss",
+  "answer_summary_LLM": "The DataFrame shows antiSMASH BGC categories and their descriptions, but it contains many NaN values. The identified categories are: 4 (ligA, cpt), 1, and hemA (from gene cluster ssuE)."
+}

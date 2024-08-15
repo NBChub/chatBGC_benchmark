@@ -1,0 +1,11 @@
+{
+  "id": 22,
+  "question": "Summarize the genus distribution in the antiSMASH dataset.",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT tax.genus, COUNT(*) as genus_count\nFROM antismash.taxa as tax\nJOIN antismash.genomes as gen ON tax.tax_id = gen.tax_id\nGROUP BY tax.genus;",
+  "answer_summary_LLM": "The genus distribution in the antiSMASH dataset includes a total of 28 different genera, with Streptomyces being the most prevalent genus with 877 occurrences."
+}

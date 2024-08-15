@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database contains the following domain profiles:\n\n1. Beta_elim_lyase\n2. Condensation\n3. Condensation_DCL\n4. Condensation_LCL\n5. Condensation_Dual\n6. Condensation_Starter\n7. X\n8. Cglyc\n9. Heterocyclization\n10. Epimerization\n11. ACPS\n12. MT\n13. cMT\n14. oMT\n15. nMT\n16. AMP-binding\n17. A-OX\n18. TauD\n19. cAT\n20. Thioesterase\n21. TD\n22. Aminotran_1_2\n23. Aminotran_3\n24. Aminotran_4\n25. Aminotran_5\n26. PKS_KS\n27. PKS_KR\n28. PKS_ER\n29. PKS_DH\n30. PKS_DH2\n31. PKS_DHt\n32. PKS_AT\n33. NRPS-COM_Nterm\n34. NRPS-COM_Cterm\n35. Polyketide_cyc\n36. Polyketide_cyc2\n37. PKS_Docking_Nterm\n38. PKS_Docking_Cterm\n39. CAL_domain\n40. SAT\n41. Trans-AT_docking\n42. ACP\n43. PCP\n44. PP-binding\n45. PKS_PP\n46. NAD_binding_4\n47. ACP_beta\n48. B\n49. F\n50. FkbH\n51. GNAT\n52. Hal\n53. PS\n54. PT\n55. TIGR01720\n56. ECH\n57. LPG_synthase_C\n58. TIGR02353"
+}

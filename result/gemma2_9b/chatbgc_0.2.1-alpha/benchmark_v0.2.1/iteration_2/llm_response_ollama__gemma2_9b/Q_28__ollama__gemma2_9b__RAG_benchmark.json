@@ -1,0 +1,11 @@
+{
+  "id": 28,
+  "question": "Find all NRPS regions with both glycosyltransferase halogenase SMCOGs ",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   g.assembly_id,   r.accession,   r.region_number,   smcogs.*,   smcog_hits.*,   cds.* FROM   antismash.regions r   JOIN antismash.dna_sequences d ON r.accession = d.accession   JOIN antismash.genomes g ON d.genome_id = g.genome_id   JOIN antismash.cdss cds ON r.region_id = cds.region_id   JOIN antismash.smcog_hits smcog_hits ON cds.cds_id = smcog_hits.cds_id   JOIN antismash.smcogs smcogs ON smcog_hits.smcog_id = smcogs.smcog_id WHERE   smcogs.description ILIKE '%glycosyl%'   OR smcogs.description ILIKE '%halogenase%';",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT antismash.regions.region_id \r\nFROM antismash.regions\r\nJOIN antismash.substrates ON antismash.regions.accession = antismash.substrates.name\r\nWHERE  antismash.substrates.description LIKE '%glycosyltransferase%' AND  antismash.substrates.description LIKE '%halogenase%'\r\n",
+  "answer_summary_LLM": "The table lists NRPS regions that contain both glycosyltransferase and halogenase SMCOGs.  \n"
+}

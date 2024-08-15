@@ -1,0 +1,11 @@
+{
+  "id": 34,
+  "question": "Which PKS regions has trans_at modules?",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT r.*, m.*, bgc.*\nFROM antismash.regions r\nJOIN antismash.modules m ON r.region_id = m.region_id\nJOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id\nJOIN antismash.bgc_types bgc ON rt.bgc_type_id = bgc.bgc_type_id\nWHERE bgc.term ILIKE '%PKS%'\nAND m.trans_at = TRUE;",
+  "answer_summary_LLM": "The PKS regions with trans-AT modules are:\n- Region 10 of accession NBC_01645_3 (region_id 2726)\n- Region 31 of accession CP107858 (region_id 2784)\n- Region 1 of accession NBC_00237_4 (region_id 3218)\n- Region 4 of accession NBC_00237_3 (region_id 3233)\n- Region 23 of accession CP107963 (region_id 3338)\n- Region 35 of accession CP108571 (region_id 3576)\n- Region 31 of accession CP109262 (region_id 8755)\n- Region 1 of accession CP108685 (region_id 8434)"
+}

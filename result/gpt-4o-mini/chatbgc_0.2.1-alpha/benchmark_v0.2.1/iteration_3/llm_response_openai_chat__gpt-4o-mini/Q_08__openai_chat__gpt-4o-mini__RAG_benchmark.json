@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database includes various domain profiles, each identified by a unique ID. Key domain profiles include:\n\n- **Beta_elim_lyase**: Beta-eliminating lyase\n- **Condensation**: Multiple types of condensation domains\n- **Epimerization**: Epimerization domain\n- **Transferases**: Various methyl and acyltransferase domains\n- **Aminotransferases**: Classes I to V\n- **Polyketide and NRPS domains**: Including cyclases and docking domains\n- **Transporters**: Acyl-carrier and peptidyl-carrier proteins\n\nOverall, the dataset consists of 58 domain profiles, each with specific functions related to biosynthesis."
+}

@@ -1,0 +1,11 @@
+{
+  "id": 34,
+  "question": "Which PKS regions has trans_at modules?",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT DISTINCT t2pks_id\nFROM antismash.t2pks\nJOIN antismash.pfam_domains ON antismash.t2pks.protocluster_id = antismash.pfam_domains.cds_id\nWHERE antismash.pfam_domains.pfam_id = 'PF03486'",
+  "answer_summary_LLM": "The DataFrame lists PKS regions identified by their `t2pks_id`.  \n"
+}

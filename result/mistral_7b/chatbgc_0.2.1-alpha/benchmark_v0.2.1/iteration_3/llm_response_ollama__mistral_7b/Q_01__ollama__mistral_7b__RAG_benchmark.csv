@@ -1,0 +1,102 @@
+,category,description
+0,SMCOG1000,ABC transporter ATP-binding protein
+1,SMCOG1001,short-chain dehydrogenase/reductase SDR
+2,SMCOG1002,AMP-dependent synthetase and ligase
+3,SMCOG1003,sensor histidine kinase
+4,SMCOG1004,thioesterase
+5,SMCOG1005,"Drug resistance transporter, EmrB/QacA"
+6,SMCOG1006,acyl-CoA dehydrogenase
+7,SMCOG1007,cytochrome P450
+8,SMCOG1008,response regulator
+9,SMCOG1009,mbtH-like protein
+10,SMCOG1010,NAD-dependent epimerase/dehydratase
+11,SMCOG1011,transport system permease protein
+12,SMCOG1012,4'-phosphopantetheinyl transferase
+13,SMCOG1013,aminotransferase class-III
+14,SMCOG1014,LysR family transcriptional regulator
+15,SMCOG1015,AraC family transcriptional regulator
+16,SMCOG1016,LuxR family DNA-binding response regulator
+17,SMCOG1017,aldehyde dehydrogenase
+18,SMCOG1018,isochorismate synthase
+19,SMCOG1019,aminotransferase
+20,SMCOG1020,major facilitator transporter
+21,SMCOG1021,malonyl CoA-acyl carrier protein transacylase
+22,SMCOG1022,Beta-ketoacyl synthase
+23,SMCOG1023,enoyl-CoA hydratase
+24,SMCOG1024,chalcone and stilbene synthase domain protein
+25,SMCOG1025,diguanylate cyclase
+26,SMCOG1026,transposase
+27,SMCOG1027,isochorismatase
+28,SMCOG1029,RND family efflux transporter MFP subunit
+29,SMCOG1030,serine/threonine protein kinase
+30,SMCOG1031,LysR family transcriptional regulator
+31,SMCOG1032,"RNA polymerase, sigma-24 subunit, ECF subfamily"
+32,SMCOG1033,"iron compound ABC transporter, periplasmic"
+33,SMCOG1034,cytochrome P450
+34,SMCOG1035,MMPL domain-containing transport protein
+35,SMCOG1036,alpha/beta hydrolase fold protein
+36,SMCOG1037,heavy metal translocating P-type ATPase
+37,SMCOG1038,phenylalanine-specific permease
+38,SMCOG1039,aldo/keto reductase family oxidoreductase
+39,SMCOG1040,alcohol dehydrogenase
+40,SMCOG1041,"transcriptional regulator, SARP family"
+41,SMCOG1042,O-methyltransferase
+42,SMCOG1043,hydroxymethylglutaryl-CoA synthase
+43,SMCOG1044,"ABC transporter, permease protein"
+44,SMCOG1045,glycosyl transferase group 1
+45,SMCOG1046,Dioxygenase TauD/TfdA
+46,SMCOG1047,phosphopantetheine-binding domain-containing protein
+47,SMCOG1048,sensor histidine kinase
+48,SMCOG1049,AcrB/AcrD/AcrF family protein
+49,SMCOG1050,monooxygenase FAD-binding
+50,SMCOG1051,TonB-dependent siderophore receptor
+51,SMCOG1052,Terpene synthase/cyclase metal-binding domain protein
+52,SMCOG1053,beta-lactamase
+53,SMCOG1054,hypothetical protein
+54,SMCOG1055,pyruvate oxidase/decarboxylase
+55,SMCOG1056,DegT/DnrJ/EryC1/StrS aminotransferase
+56,SMCOG1057,TetR family transcriptional regulator
+57,SMCOG1058,ArsR family transcriptional regulator
+58,SMCOG1059,"acetyl-CoA carboxylase, carboxyl transferase,"
+59,SMCOG1060,4'-phosphopantetheinyl transferase
+60,SMCOG1061,methyl-accepting chemotaxis protein
+61,SMCOG1062,"glycosyltransferase, MGT family"
+62,SMCOG1063,argininosuccinate lyase/adenylosuccinate lyase
+63,SMCOG1064,glucose-1-phosphate adenylyl/thymidylyltransferase
+64,SMCOG1065,ABC-2 type transporter
+65,SMCOG1066,alpha/beta hydrolase domain-containing protein
+66,SMCOG1067,putative ABC transporter permease protein
+67,SMCOG1068,extracellular solute-binding protein family 5
+68,SMCOG1069,putative ABC transporter permease protein
+69,SMCOG1070,lanthionine synthetase C family protein
+70,SMCOG1071,GntR family transcriptional regulator
+71,SMCOG1072,dehydrogenase
+72,SMCOG1073,PE-PGRS family protein
+73,SMCOG1074,major facilitator family transporter
+74,SMCOG1075,"alkaline serine protease, subtilase family"
+75,SMCOG1076,"RND efflux system, outer membrane lipoprotein,"
+76,SMCOG1077,phage integrase family protein
+77,SMCOG1078,LacI family transcription regulator
+78,SMCOG1079,oxidoreductase
+79,SMCOG1080,lysine/ornithine N-monooxygenase
+80,SMCOG1081,cysteine synthase
+81,SMCOG1082,TonB-dependent siderophore receptor family
+82,SMCOG1083,oxidoreductase
+83,SMCOG1084,3-oxoacyl-(acyl carrier protein) synthase III
+84,SMCOG1085,binding-protein-dependent transport systems
+85,SMCOG1086,MATE efflux family protein
+86,SMCOG1087,hypothetical protein
+87,SMCOG1088,acyltransferase 3
+88,SMCOG1089,methyltransferase
+89,SMCOG1090,acetyl-CoA carboxylase biotin carboxylase
+90,SMCOG1091,glutamine-binding lipoprotein glnH
+91,SMCOG1092,hypothetical protein
+92,SMCOG1093,Beta-ketoacyl synthase
+93,SMCOG1094,ferredoxin
+94,SMCOG1095,3-hydroxybutyryl-CoA dehydrogenase
+95,SMCOG1096,"polar amino acid ABC transporter, inner membrane"
+96,SMCOG1097,transposase
+97,SMCOG1098,enterobactin/ferric enterobactin esterase
+98,SMCOG1099,hypothetical protein
+99,SMCOG1100,3-hydroxyisobutyrate dehydrogenase
+100,SMCOG1101,phosphoglycerate mutase

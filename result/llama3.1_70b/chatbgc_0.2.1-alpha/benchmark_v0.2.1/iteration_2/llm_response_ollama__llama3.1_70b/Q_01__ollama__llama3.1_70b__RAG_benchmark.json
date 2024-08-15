@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "question": "List all antiSMASH BGC categories and their descriptions.",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   * FROM   antismash.bgc_categories;",
+  "answer_summary_expected": "There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)",
+  "answer_sql_LLM": "SELECT DISTINCT category, description FROM antismash.bgc_types ORDER BY category",
+  "answer_summary_LLM": "The antiSMASH BGC categories and their descriptions are as follows:\n\n1. nrps: non-ribosomal peptide synthase, mycosporine-like amino acid containing molecules, non-alpha poly-amino acids, tRNA-dependent cyclodipeptide synthases, thioamide-containing non-ribosomal peptides, Non-ribosomal peptide metallophores, NRP with isocyanide, fungal tRNA-dependent arginine-containing cyclodipeptide synthases.\n\n2. other: Nucleoside, Phenazine, N-acyl amino acids, beta-lactam, NRPS-independent IucA/IucC-like siderophores, Aminoglycoside/aminocyclitol, Ectoine, Phosphonate, beta-lactone containing protease inhibitor, Pyrrolidines, N-acetylglutaminylglutamine amide, Furan, tropodithietic acid like cluster, Aminopolycarboxylic acid metallophores, Indole, 2-deoxy-streptamine aminoglycoside, Phosphoglycolipid.\n\n3. pks: PolyUnsaturated Fatty Acid, Trans-AT polyketide, Type I polyketide, PPY-like specific ketosynthases (PPYSKS), Aryl polyene, Serratia-type nontraditional PKS prodigiosin biosynthesis pathway, Ladderane, Type II polyketide, heterocyst glycolipid synthase like PKS.\n\n4. ripp: Class I lanthipeptide, archaeal-RiPP, RiPPs containing plpX type spliceases, fungal RiPP-like clusters, Linear arid peptides, Highly modified large leader peptide RiPPs, Thio-linked RiPPs, Microviridins, Cys-rich peptides (aka SCIFF), Class III lanthipeptide, Lanthipeptide class containing N-terminal fatty acids.\n\n5. saccharide: Oligosaccharide\n\n6. terpene: Terpene"
+}

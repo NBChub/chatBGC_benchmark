@@ -1,0 +1,86 @@
+,category,description
+0,nrps,mycosporine-like amino acid containing molecules
+1,nrps,non-alpha poly-amino acids
+2,nrps,Catches NRPS-like fragments that are not detected by the NRPS rule
+3,nrps,non-ribosomal peptide synthase
+4,nrps,tRNA-dependent cyclodipeptide synthases
+5,nrps,thioamide-containing non-ribosomal peptides
+6,nrps,Non-ribosomal peptide metallophores
+7,nrps,NRP with isocyanide
+8,nrps,fungal tRNA-dependent arginine-containing cyclodipeptide synthases
+9,other,Nucleoside
+10,other,Phenazine
+11,other,N-acyl amino acids
+12,other,beta-lactam
+13,other,NRPS-independent IucA/IucC-like siderophores
+14,other,Aminoglycoside/aminocyclitol
+15,other,Ectoine
+16,other,Phosphonate
+17,other,beta-lactone containing protease inhibitor
+18,other,Pyrrolidines
+19,other,N-acetylglutaminylglutamine amide
+20,other,Furan
+21,other,tropodithietic acid like cluster
+22,other,Aminopolycarboxylic acid metallophores
+23,other,Indole
+24,other,2-deoxy-streptamine aminoglycoside
+25,other,Phosphoglycolipid
+26,other,Fallback category covering some secondary metabolite-related profiles
+27,other,Opine-like zincophores
+28,other,Isocyanides
+29,other,Melanin
+30,other,polybrominated diphenyl ethers ( PBDEs )
+31,other,Resorcinol
+32,other,Aminocoumarin
+33,other,Butyrolactone
+34,other,Homoserine lactone
+35,other,hydrogen cyanide
+36,other,Phosphonate-like
+37,pks,PolyUnsaturated Fatty Acid
+38,pks,Trans-AT polyketide
+39,pks,Catches PKS-like fragments that are not detected by another PKS rule
+40,pks,Type I polyketide
+41,pks,PPY-like specific ketosynthases ( PPYSKS )
+42,pks,Aryl polyene
+43,pks,Serratia-type nontraditional PKS prodigiosin biosynthesis pathway
+44,pks,Ladderane
+45,pks,Type II polyketide
+46,pks,heterocyst glycolipid synthase like PKS
+47,pks,Highly reducing PKS type II
+48,pks,"Marks partial transAT-PKS clusters , specifically those with an AT-docking domain , but no AT domain ."
+49,pks,Type III polyketide
+50,ripp,Class I lanthipeptide
+51,ripp,archaeal-RiPP
+52,ripp,RiPPs containing plpX type spliceases
+53,ripp,fungal RiPP-like clusters
+54,ripp,Linear arid peptides
+55,ripp,Highly modified large leader peptide RiPPs
+56,ripp,Thio-linked RiPPs
+57,ripp,Microviridins
+58,ripp,Cys-rich peptides ( aka . SCIFF: six Cys in fourty-five )
+59,ripp,Class III lanthipeptide
+60,ripp,Lanthipeptide class containing N-terminal fatty acids
+61,ripp,fungal RiPP with POP or UstH peptidase types and a modification
+62,ripp,Cyanobactins
+63,ripp,triceptides
+64,ripp,Fallback rule containing known RiPP-related profiles
+65,ripp,Class II lanthipeptide
+66,ripp,Thioamitide RiPPs
+67,ripp,Glycocin
+68,ripp,Linear azol ( in ) e-containing peptides
+69,ripp,Lasso peptide
+70,ripp,D-amino-acid containing RiPPs
+71,ripp,agrD-like cyclic lactone autoinducer peptides
+72,ripp,RRE-element containing cluster
+73,ripp,Glycosylated lanthipeptide/linaridin hybrids
+74,ripp,Bottromycin-like RiPPs
+75,ripp,Redox-cofactors
+76,ripp,darobactin-like compounds
+77,ripp,streptide-like thioether-bond RiPPs
+78,ripp,Class IV lanthipeptide
+79,ripp,Sactipeptide
+80,ripp,RiPP fused with a non-ribosomal peptide
+81,ripp,Crocagin-like cluster
+82,ripp,Copper-chelating/transporting peptides
+83,saccharide,Oligosaccharide
+84,terpene,Terpene

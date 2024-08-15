@@ -1,0 +1,11 @@
+{
+  "id": 34,
+  "question": "Which PKS regions has trans_at modules?",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT r.*, m.*, bgc.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id JOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id JOIN antismash.bgc_types bgc ON rt.bgc_type_id = bgc.bgc_type_id WHERE bgc.term ILIKE '%PKS%' AND m.trans_at = true;",
+  "answer_summary_LLM": "The data contains entries for various PKS regions that include trans_at modules. Notable regions with trans_at modules include:\n\n1. Region ID 2726 - Multiple entries for transat-pks with the best mibig hit description of cycloheximide.\n2. Region ID 2784 - Multiple entries for transat-pks also associated with cycloheximide.\n3. Region ID 3218 - Multiple entries for transat-pks linked to kosinostatin.\n4. Region ID 3338 - Multiple entries for transat-pks related to oxalomycin B.\n5. Region ID 3576 - Multiple entries for transat-pks associated with cycloheximide.\n6. Region ID 8755 - Multiple entries for transat-pks linked to cycloheximide.\n\nOverall, various regions exhibit a common association with transat-pks, primarily linked to the production of cycloheximide and other compounds."
+}

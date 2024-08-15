@@ -1,0 +1,102 @@
+,category,description
+0,3.0,ABC transporter ATP-binding protein
+1,5.0,short-chain dehydrogenase/reductase SDR
+2,5.0,AMP-dependent synthetase and ligase
+3,2.0,sensor histidine kinase
+4,5.0,thioesterase
+5,3.0,"Drug resistance transporter, EmrB/QacA"
+6,5.0,acyl-CoA dehydrogenase
+7,5.0,cytochrome P450
+8,2.0,response regulator
+9,5.0,mbtH-like protein
+10,5.0,NAD-dependent epimerase/dehydratase
+11,3.0,transport system permease protein
+12,5.0,4'-phosphopantetheinyl transferase
+13,5.0,aminotransferase class-III
+14,2.0,LysR family transcriptional regulator
+15,2.0,AraC family transcriptional regulator
+16,2.0,LuxR family DNA-binding response regulator
+17,5.0,aldehyde dehydrogenase
+18,5.0,isochorismate synthase
+19,5.0,aminotransferase
+20,3.0,major facilitator transporter
+21,5.0,malonyl CoA-acyl carrier protein transacylase
+22,5.0,Beta-ketoacyl synthase
+23,5.0,enoyl-CoA hydratase
+24,5.0,chalcone and stilbene synthase domain protein
+25,5.0,diguanylate cyclase
+26,4.0,transposase
+27,5.0,isochorismatase
+28,3.0,RND family efflux transporter MFP subunit
+29,2.0,serine/threonine protein kinase
+30,2.0,LysR family transcriptional regulator
+31,2.0,"RNA polymerase, sigma-24 subunit, ECF subfamily"
+32,3.0,"iron compound ABC transporter, periplasmic"
+33,5.0,cytochrome P450
+34,5.0,MMPL domain-containing transport protein
+35,5.0,alpha/beta hydrolase fold protein
+36,4.0,heavy metal translocating P-type ATPase
+37,5.0,phenylalanine-specific permease
+38,5.0,aldo/keto reductase family oxidoreductase
+39,5.0,alcohol dehydrogenase
+40,2.0,"transcriptional regulator, SARP family"
+41,5.0,O-methyltransferase
+42,5.0,hydroxymethylglutaryl-CoA synthase
+43,3.0,"ABC transporter, permease protein"
+44,5.0,glycosyl transferase group 1
+45,5.0,Dioxygenase TauD/TfdA
+46,5.0,phosphopantetheine-binding domain-containing protein
+47,2.0,sensor histidine kinase
+48,3.0,AcrB/AcrD/AcrF family protein
+49,5.0,monooxygenase FAD-binding
+50,3.0,TonB-dependent siderophore receptor
+51,5.0,Terpene synthase/cyclase metal-binding domain protein
+52,5.0,beta-lactamase
+53,4.0,hypothetical protein
+54,5.0,pyruvate oxidase/decarboxylase
+55,5.0,DegT/DnrJ/EryC1/StrS aminotransferase
+56,2.0,TetR family transcriptional regulator
+57,2.0,ArsR family transcriptional regulator
+58,5.0,"acetyl-CoA carboxylase, carboxyl transferase,"
+59,5.0,4'-phosphopantetheinyl transferase
+60,4.0,methyl-accepting chemotaxis protein
+61,5.0,"glycosyltransferase, MGT family"
+62,5.0,argininosuccinate lyase/adenylosuccinate lyase
+63,5.0,glucose-1-phosphate adenylyl/thymidylyltransferase
+64,3.0,ABC-2 type transporter
+65,5.0,alpha/beta hydrolase domain-containing protein
+66,3.0,putative ABC transporter permease protein
+67,3.0,extracellular solute-binding protein family 5
+68,3.0,putative ABC transporter permease protein
+69,5.0,lanthionine synthetase C family protein
+70,2.0,GntR family transcriptional regulator
+71,5.0,dehydrogenase
+72,4.0,PE-PGRS family protein
+73,3.0,major facilitator family transporter
+74,5.0,"alkaline serine protease, subtilase family"
+75,3.0,"RND efflux system, outer membrane lipoprotein,"
+76,4.0,phage integrase family protein
+77,2.0,LacI family transcription regulator
+78,5.0,oxidoreductase
+79,5.0,lysine/ornithine N-monooxygenase
+80,5.0,cysteine synthase
+81,3.0,TonB-dependent siderophore receptor family
+82,5.0,oxidoreductase
+83,5.0,3-oxoacyl-(acyl carrier protein) synthase III
+84,3.0,binding-protein-dependent transport systems
+85,3.0,MATE efflux family protein
+86,4.0,hypothetical protein
+87,5.0,acyltransferase 3
+88,5.0,methyltransferase
+89,5.0,acetyl-CoA carboxylase biotin carboxylase
+90,5.0,glutamine-binding lipoprotein glnH
+91,4.0,hypothetical protein
+92,5.0,Beta-ketoacyl synthase
+93,4.0,ferredoxin
+94,5.0,3-hydroxybutyryl-CoA dehydrogenase
+95,3.0,"polar amino acid ABC transporter, inner membrane"
+96,4.0,transposase
+97,5.0,enterobactin/ferric enterobactin esterase
+98,4.0,hypothetical protein
+99,5.0,3-hydroxyisobutyrate dehydrogenase
+100,5.0,phosphoglycerate mutase

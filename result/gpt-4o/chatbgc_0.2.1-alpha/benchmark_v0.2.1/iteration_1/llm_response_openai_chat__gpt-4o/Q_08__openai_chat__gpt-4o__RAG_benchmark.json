@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database contains 58 different domain profiles, including Beta_elim_lyase, Condensation, Condensation_DCL, Condensation_LCL, Condensation_Dual, Condensation_Starter, X, Cglyc, Heterocyclization, Epimerization, ACPS, MT, cMT, oMT, nMT, AMP-binding, A-OX, TauD, cAT, Thioesterase, TD, Aminotran_1_2, Aminotran_3, Aminotran_4, Aminotran_5, PKS_KS, PKS_KR, PKS_ER, PKS_DH, PKS_DH2, PKS_DHt, PKS_AT, NRPS-COM_Nterm, NRPS-COM_Cterm, Polyketide_cyc, Polyketide_cyc2, PKS_Docking_Nterm, PKS_Docking_Cterm, CAL_domain, SAT, Trans-AT_docking, ACP, PCP, PP-binding, PKS_PP, NAD_binding_4, ACP_beta, B, F, FkbH, GNAT, Hal, PS, PT, TIGR01720, ECH, LPG_synthase_C, and TIGR02353."
+}

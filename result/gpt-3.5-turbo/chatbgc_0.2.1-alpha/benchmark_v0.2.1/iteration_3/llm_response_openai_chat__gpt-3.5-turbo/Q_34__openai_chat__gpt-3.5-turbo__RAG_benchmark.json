@@ -1,0 +1,11 @@
+{
+  "id": 34,
+  "question": "Which PKS regions has trans_at modules?",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT r.*, m.*  \nFROM antismash.regions AS r  \nJOIN antismash.modules AS m ON r.region_id = m.region_id  \nWHERE m.trans_at = TRUE;",
+  "answer_summary_LLM": "The PKS regions that have trans_at modules are as follows:\n- Region ID: 1, 103, 108, 178, 198, 201, 224, 246, 523, 543, 581, 608, 609, 657, 792, 810, 886, 1018, 1056, 1077, 1282, 1302, 1303, 1360, 1535, 1554, 1694, 1708, 1766, 1883, 1903, 1904, 1971, 225"
+}

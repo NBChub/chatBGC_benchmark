@@ -1,0 +1,11 @@
+{
+  "id": 3,
+  "question": "List all regions with a best MIBiG hit description containing 'neoabyssomicin'.",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.regions  WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';",
+  "answer_summary_expected": "There are 30 regions with a best MIBiG hit description containing 'neoabyssomicin'.",
+  "answer_sql_LLM": "SELECT * FROM antismash.regions WHERE best_mibig_hit_description ILIKE '%neoabyssomicin%';",
+  "answer_summary_LLM": "The data contains a list of regions with a best MIBiG hit description that includes 'neoabyssomicin'. There are 30 entries, each with attributes such as region_id, accession, region_number, location, start and end positions, contig edge, best MIBiG hit accession, description, and similarity score. All entries share the same best MIBiG hit description: \"neoabyssomicin/abyssomicin\"."
+}

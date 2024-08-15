@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "question": "List all antiSMASH BGC categories and their descriptions.",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   * FROM   antismash.bgc_categories;",
+  "answer_summary_expected": "There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)",
+  "answer_sql_LLM": "SELECT DISTINCT category, description FROM antismash.bgc_types ORDER BY category",
+  "answer_summary_LLM": "The antiSMASH BGC categories and their descriptions include: nrps (9), other (35), pks (15), ripp (30), saccharide (1), and terpene (1)."
+}

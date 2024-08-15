@@ -1,0 +1,86 @@
+,bgc_type_id,description
+0,1,Type I polyketide
+1,2,Type II polyketide
+2,3,Type III polyketide
+3,4,Trans-AT polyketide
+4,5,heterocyst glycolipid synthase like PKS
+5,6,Serratia-type nontraditional PKS prodigiosin biosynthesis pathway
+6,7,PPY-like specific ketosynthases ( PPYSKS )
+7,8,Aryl polyene
+8,9,Ladderane
+9,10,Highly reducing PKS type II
+10,11,PolyUnsaturated Fatty Acid
+11,12,Resorcinol
+12,13,non-ribosomal peptide synthase
+13,14,tRNA-dependent cyclodipeptide synthases
+14,15,fungal tRNA-dependent arginine-containing cyclodipeptide synthases
+15,16,thioamide-containing non-ribosomal peptides
+16,17,non-alpha poly-amino acids
+17,18,mycosporine-like amino acid containing molecules
+18,19,Terpene
+19,20,Class I lanthipeptide
+20,21,Class II lanthipeptide
+21,22,Class III lanthipeptide
+22,23,Class IV lanthipeptide
+23,24,Glycosylated lanthipeptide/linaridin hybrids
+24,25,Lanthipeptide class containing N-terminal fatty acids
+25,26,Thio-linked RiPPs
+26,27,Thioamitide RiPPs
+27,28,Linear arid peptides
+28,29,Cyanobactins
+29,30,Glycocin
+30,31,Linear azol ( in ) e-containing peptides
+31,32,Lasso peptide
+32,33,Sactipeptide
+33,34,Bottromycin-like RiPPs
+34,35,Microviridins
+35,36,Highly modified large leader peptide RiPPs
+36,37,Cys-rich peptides ( aka . SCIFF: six Cys in fourty-five )
+37,38,Redox-cofactors
+38,39,darobactin-like compounds
+39,40,triceptides
+40,41,archaeal-RiPP
+41,42,D-amino-acid containing RiPPs
+42,43,agrD-like cyclic lactone autoinducer peptides
+43,44,RiPPs containing plpX type spliceases
+44,45,streptide-like thioether-bond RiPPs
+45,46,fungal RiPP with POP or UstH peptidase types and a modification
+46,47,beta-lactam
+47,48,2-deoxy-streptamine aminoglycoside
+48,49,Aminoglycoside/aminocyclitol
+49,50,Aminocoumarin
+50,51,NRPS-independent IucA/IucC-like siderophores
+51,52,Ectoine
+52,53,N-acetylglutaminylglutamine amide
+53,54,Butyrolactone
+54,55,Indole
+55,56,Nucleoside
+56,57,Phosphoglycolipid
+57,58,Melanin
+58,59,Oligosaccharide
+59,60,Furan
+60,61,Homoserine lactone
+61,62,Phenazine
+62,63,Phosphonate
+63,64,RiPP fused with a non-ribosomal peptide
+64,65,Fallback category covering some secondary metabolite-related profiles
+65,66,N-acyl amino acids
+66,67,polybrominated diphenyl ethers ( PBDEs )
+67,68,beta-lactone containing protease inhibitor
+68,69,tropodithietic acid like cluster
+69,70,Pyrrolidines
+70,71,Crocagin-like cluster
+71,72,Non-ribosomal peptide metallophores
+72,73,Copper-chelating/transporting peptides
+73,74,Opine-like zincophores
+74,75,Aminopolycarboxylic acid metallophores
+75,76,Isocyanides
+76,77,NRP with isocyanide
+77,78,hydrogen cyanide
+78,79,Catches NRPS-like fragments that are not detected by the NRPS rule
+79,80,Catches PKS-like fragments that are not detected by another PKS rule
+80,81,"Marks partial transAT-PKS clusters , specifically those with an AT-docking domain , but no AT domain ."
+81,82,Fallback rule containing known RiPP-related profiles
+82,83,RRE-element containing cluster
+83,84,fungal RiPP-like clusters
+84,85,Phosphonate-like

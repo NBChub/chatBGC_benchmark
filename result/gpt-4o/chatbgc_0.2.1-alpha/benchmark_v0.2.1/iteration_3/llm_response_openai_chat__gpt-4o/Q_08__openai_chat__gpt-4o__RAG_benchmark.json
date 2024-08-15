@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database contains various domain profiles, including:\n\n1. Beta_elim_lyase\n2. Condensation (multiple types: Condensation, Condensation_DCL, Condensation_LCL, Condensation_Dual, Condensation_Starter)\n3. X\n4. Cglyc\n5. Heterocyclization\n6. Epimerization\n7. ACPS\n8. Methyl transferases (MT, cMT, oMT, nMT)\n9. Adenylation (AMP-binding, A-OX)\n10. TauD\n11. cAT\n12. Thioesterase\n13. TD\n14. Aminotransferases (Aminotran_1_2, Aminotran_3, Aminotran_4, Aminotran_5)\n15. PKS domains (PKS_KS, PKS_KR, PKS_ER, PKS_DH, PKS_DH2, PKS_DHt, PKS_AT)\n16. NRPS-COM (Nterm, Cterm)\n17. Polyketide cyclases (Polyketide_cyc, Polyketide_cyc2)\n18. PKS docking (PKS_Docking_Nterm, PKS_Docking_Cterm)\n19. CAL_domain\n20. SAT\n21. Trans-AT_docking\n22. Transporters (ACP, PCP, PP-binding, PKS_PP, ACP_beta)\n23. B\n24. F\n25. FkbH\n26. GNAT\n27. Hal\n28. PS\n29. PT\n30. TIGR01720\n31. ECH\n32. LPG_synthase_C\n33. TIGR02353"
+}

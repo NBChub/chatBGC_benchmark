@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT DISTINCT name\nFROM antismash.as_domain_profiles",
+  "answer_summary_LLM": " The provided DataFrame lists 58 domain profiles available in the antiSMASH database, categorized as follows:\n- A-OX\n- Thioesterase\n- TD\n- PKS_KS (Polyketide Synthase KS)\n- PP-binding\n- ACP_beta\n- TIGR02353\n- Condensation (includes various subcategories)\n- Epimerization\n- cAT, Polyketide_cyc, Trans-AT_docking, PKS_DH, PKS_AT, PKS_Docking_Cterm, CAL_domain, NAD_binding_4, cMT, Aminotran_5, PKS_Docking_Nterm, SAT, PT, Beta_elim_lyase\n- Condensation_LCL (Linear Condensation)\n- Condensation_DCL (Dual Condensation)\n- Condensation_Starter\n- oMT, AMP-binding, TauD, NRPS-COM_Cterm, Polyketide_cyc2, PS, X, Heterocyclization, Aminotran_3, NRPS-COM_Nterm, PCP, PKS_PP, FkbH, Hal, LPG_synthase_C\n- MT, nMT (Non-ribosomal Peptide Synthetase Condensation domain)\n- Aminotran_1_2, PKS_ER (Polyketide Synthase ER), PKS_DH2, PKS_DHt, F, TIGR01720\n- Cglyc, ACPS, Aminotran_4, PKS_KR, ACP, B, GNAT, ECH."
+}

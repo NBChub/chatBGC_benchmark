@@ -1,0 +1,102 @@
+,name,description
+0,x,unknown amino acid
+1,ile,isoleucine
+2,orn,ornithine
+3,val,valine
+4,d-x,modified unknown amino acid
+5,glu,glutamic acid
+6,d-glu,modified glutamic acid
+7,d-val,modified valine
+8,leu,leucine
+9,tyr,tyrosine
+10,aad,2-aminoadipic acid
+11,pk,unknown ketide
+12,mal,malonyl-CoA
+13,pro,proline
+14,ala,alanine
+15,d-tyr,modified tyrosine
+16,trp,tryptophan
+17,redmal,modified malonyl-CoA
+18,d-ala,modified alanine
+19,phe,phenylalanine
+20,d-leu,modified leucine
+21,thr,threonine
+22,d-pro,modified proline
+23,arg,arginine
+24,gly,glycine
+25,d-arg,modified arginine
+26,hpr,pipecolic acid
+27,ohmal,modified malonyl-CoA
+28,cys,cysteine
+29,d-trp,modified tryptophan
+30,gln,glutamine
+31,ac-oh-orn,N5-acetyl-N5-hydroxyornithine
+32,bala,beta-alanine
+33,ival,isovaline
+34,ser,serine
+35,asp,aspartic acid
+36,asn,asparagine
+37,lys,lysine
+38,abu,2-aminobutyric acid
+39,d-thr,modified threonine
+40,d-cys,modified cysteine
+41,d-ser,modified serine
+42,d-ile,modified isoleucine
+43,d-fo-oh-orn,modified N5-formyl-N5-hydroxyornithine
+44,oh-orn,N5-hydroxyornithine
+45,dab,"2,4-diaminobutyric acid"
+46,ccmal,modified malonyl-CoA
+47,d-phe,modified phenylalanine
+48,d-gly,modified glycine
+49,d-asn,modified asparagine
+50,d-orn,modified ornithine
+51,redemal,modified ethylmalonyl-CoA
+52,d-asp,modified aspartic acid
+53,d-oh-orn,modified N5-hydroxyornithine
+54,d-boh-tyr,modified beta-hydroxytyrosine
+55,d-lys,modified lysine
+56,mxmal,methoxymalonyl-CoA
+57,dioh-bz,"2,3-dihydroxybenzoic acid"
+58,his,histidine
+59,d-dab,"modified 2,4-diaminobutyric acid"
+60,fo-oh-orn,N5-formyl-N5-hydroxyornithine
+61,boh-tyr,beta-hydroxytyrosine
+62,d-gln,modified glutamine
+63,ccmxmal,modified methoxymalonyl-CoA
+64,hpg,4-hydroxyphenylglycine
+65,d-hpg,modified 4-hydroxyphenylglycine
+66,athr,allo-threonine
+67,met,methionine
+68,d-mal,modified malonyl-CoA
+69,d-his,modified histidine
+70,d-ohmal,modified malonyl-CoA
+71,d-ccmal,modified malonyl-CoA
+72,d-hpr,modified pipecolic acid
+73,ccemal,modified ethylmalonyl-CoA
+74,d-hiv,2R-hydroxyisovaleric acid
+75,dhpg,"3,5-dihydroxyphenylglycine"
+76,d-abu,modified 2-aminobutyric acid
+77,aile,allo-isoleucine
+78,cap,capreomycidine
+79,me-ccmal,modified methylmalonyl-CoA
+80,me-mal,modified methylmalonyl-CoA
+81,me-ohmal,modified methylmalonyl-CoA
+82,me-redmal,modified methylmalonyl-CoA
+83,emal,ethylmalonyl-CoA
+84,ohmxmal,modified methoxymalonyl-CoA
+85,redmxmal,modified methoxymalonyl-CoA
+86,d-dhpg,"modified 3,5-dihydroxyphenylglycine"
+87,ohemal,modified ethylmalonyl-CoA
+88,d-athr,modified allo-threonine
+89,blys,beta-lysine
+90,d-bala,modified beta-alanine
+91,d-ac-oh-orn,modified N5-acetyl-N5-hydroxyornithine
+92,valol,valinol
+93,bmt,4R-E-butenyl-4R-methylthreonine
+94,d-pk,modified unknown ketide
+95,me-pk,modified unknown ketide
+96,me-cys,modified cysteine
+97,nme-fo-oh-orn,modified N5-formyl-N5-hydroxyornithine
+98,nme-oh-orn,modified N5-hydroxyornithine
+99,d-nme-tyr,modified tyrosine
+100,nme-tyr,modified tyrosine

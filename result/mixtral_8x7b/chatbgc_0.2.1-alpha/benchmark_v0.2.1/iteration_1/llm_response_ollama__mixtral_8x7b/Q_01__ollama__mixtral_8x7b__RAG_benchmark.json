@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "question": "List all antiSMASH BGC categories and their descriptions.",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   * FROM   antismash.bgc_categories;",
+  "answer_summary_expected": "There are seven BGC categories, including Polyketide (pks), Nonribosomal peptide (nrps), Ribosomally synthesized and post-translationally modified peptide (ripp), Terpene (terpene), Saccharide (saccharide), Alkaloid (alkaloid) and Other (other)",
+  "answer_sql_LLM": "SELECT identifier AS category, description AS description \nFROM antismash.gene_ontologies \nWHERE go_id = 10",
+  "answer_summary_LLM": " The DataFrame contains one row, so it provides a single category (\"GO:0000062\") and its description (\"fatty-acyl-CoA binding\") related to antiSMASH BGC (Biosynthetic Gene Cluster) categories."
+}

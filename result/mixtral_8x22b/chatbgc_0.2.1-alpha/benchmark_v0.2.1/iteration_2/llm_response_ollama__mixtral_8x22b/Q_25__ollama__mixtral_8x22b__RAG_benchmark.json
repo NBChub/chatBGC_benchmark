@@ -1,0 +1,11 @@
+{
+  "id": 25,
+  "question": "Which regions has iterative modules?",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;",
+  "answer_summary_expected": "Module 1 is associated with candidates such as Candidate 1 and Candidate 2.",
+  "answer_sql_LLM": "SELECT region_id FROM antismash.modules WHERE type = 'iterative'",
+  "answer_summary_LLM": " Based on the provided data, there are no regions that have iterative modules."
+}

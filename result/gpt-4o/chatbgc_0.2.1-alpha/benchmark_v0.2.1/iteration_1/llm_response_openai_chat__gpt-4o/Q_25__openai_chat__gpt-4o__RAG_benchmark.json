@@ -1,0 +1,11 @@
+{
+  "id": 25,
+  "question": "Which regions has iterative modules?",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.* FROM antismash.regions r JOIN antismash.modules m ON r.region_id = m.region_id WHERE m.iterative = TRUE;",
+  "answer_summary_expected": "Module 1 is associated with candidates such as Candidate 1 and Candidate 2.",
+  "answer_sql_LLM": "SELECT r.*, m.* \nFROM antismash.regions r \nJOIN antismash.modules m \nON r.region_id = m.region_id \nWHERE m.iterative = TRUE;",
+  "answer_summary_LLM": "Regions with iterative modules:\n- Region 1853\n- Region 5421\n- Region 5902\n- Region 6971\n- Region 7150\n- Region 7410\n- Region 8844\n- Region 11322\n- Region 11641\n- Region 17069\n- Region 17327\n- Region 19142\n- Region 24781\n- Region 25127\n- Region 28682"
+}

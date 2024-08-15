@@ -1,0 +1,11 @@
+{
+  "id": 22,
+  "question": "Summarize the genus distribution in the antiSMASH dataset.",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT DISTINCT subclass FROM antismash.ripps",
+  "answer_summary_LLM": "The antiSMASH dataset contains biosynthetic gene clusters classified into 6 subclasses: Type III, Type I, Type II, Class I, Class II, and Class III.  \n"
+}

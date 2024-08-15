@@ -44,13 +44,27 @@ if __name__ == "__main__":
     parser.add_argument(
         "--models",
         nargs="+",
-        default=["gpt-4o", "gpt-4o-mini", "mistral-large", "llama3.1:70b", "gemma2:27b", "mistral-nemo", "gemma2:9b", "llama3.1:8b"],
+        default=[
+            "gpt-3.5-turbo",
+            "gpt-4o",
+            "gpt-4o-mini",
+            "llama3.1:70b",
+            "llama3.1:8b",
+            "mistral-nemo",
+            "mistral_7b",
+            "gemma2:9b",
+            "gemma2:27b",
+            "mixtral:8x7b",
+            "mixtral:8x22b",
+        ],
         help="List of models to process",
     )
-    parser.add_argument("--llm_type", default=["openai_chat", "ollama"], help="Type of LLM")
+    parser.add_argument(
+        "--llm_type", default=["openai_chat", "ollama"], help="Type of LLM"
+    )
     parser.add_argument("--chatbgc_version", default="0.2.0", help="Version of chatbgc")
     parser.add_argument(
-        "--benchmark_version", default="bde51dc", help="Version of benchmark"
+        "--benchmark_version", default="v0.2.1", help="Version of benchmark"
     )
 
     args = parser.parse_args()

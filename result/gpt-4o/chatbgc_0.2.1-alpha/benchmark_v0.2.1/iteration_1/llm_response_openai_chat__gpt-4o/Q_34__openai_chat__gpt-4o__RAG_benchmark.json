@@ -1,0 +1,11 @@
+{
+  "id": 34,
+  "question": "Which PKS regions has trans_at modules?",
+  "difficulty": "Hard",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT r.*, m.*, bgc.*  FROM antismash.regions r  JOIN antismash.modules m ON r.region_id=m.region_id JOIN antismash.rel_regions_types rt ON r.region_id=rt.region_id  JOIN antismash.bgc_types bgc ON rt.bgc_type_id=bgc.bgc_type_id  WHERE bgc.term ILIKE '%PKS%'  AND m.trans_at = true;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT r.*, m.*\nFROM antismash.regions r\nJOIN antismash.modules m ON r.region_id = m.region_id\nJOIN antismash.rel_regions_types rt ON r.region_id = rt.region_id\nJOIN antismash.bgc_types bt ON rt.bgc_type_id = bt.bgc_type_id\nWHERE bt.term ILIKE '%PKS%'\nAND m.trans_at = TRUE;",
+  "answer_summary_LLM": "The following PKS regions have trans_at modules:\n\n- Region 2533\n- Region 2726\n- Region 2727\n- Region 2784\n- Region 2785\n- Region 2812\n- Region 2958\n- Region 2991\n- Region 3104\n- Region 3218\n- Region 3233\n- Region 3338\n- Region 3404\n- Region 3488\n- Region 3490\n- Region 3533\n- Region 3576\n- Region 3684\n- Region 8383\n- Region 8402\n- Region 8403\n- Region 8434\n- Region 8481\n- Region 8596\n- Region 8755\n- Region 8756\n- Region 8840\n- Region 8906\n- Region 8911"
+}

@@ -1,0 +1,11 @@
+{
+  "id": 22,
+  "question": "Summarize the genus distribution in the antiSMASH dataset.",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_expected": null,
+  "answer_sql_LLM": "SELECT   t.genus,   COUNT(*) as genus_count FROM   antismash.genomes g   JOIN antismash.taxa t ON g.tax_id = t.tax_id GROUP BY t.genus;",
+  "answer_summary_LLM": "The antiSMASH dataset shows that the genus distribution is dominated by Streptomyces, with 877 occurrences. Other notable genera include Micromonospora (39), Nocardia (21), and Kitasatospora (27). A total of 27 distinct genera are represented, with several having low counts, such as Sphaerisporangium (1) and Dactylosporangium (1)."
+}

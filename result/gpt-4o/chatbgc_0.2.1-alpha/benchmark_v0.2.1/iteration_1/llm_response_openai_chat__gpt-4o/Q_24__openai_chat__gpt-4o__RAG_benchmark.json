@@ -1,0 +1,11 @@
+{
+  "id": 24,
+  "question": "Which genome has the longest DNA sequence?",
+  "difficulty": "Medium",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT g.*, LENGTH(d.dna) as dna_length FROM antismash.genomes g JOIN antismash.dna_sequences d ON g.genome_id = d.genome_id ORDER BY LENGTH(d.dna) DESC LIMIT 1;",
+  "answer_summary_expected": "Genome NBC_01737 has the longest DNA sequence with a length of 13942900 base pairs.",
+  "answer_sql_LLM": "SELECT \n    g.*, \n    LENGTH(d.dna) as dna_length \nFROM \n    antismash.genomes g \nJOIN \n    antismash.dna_sequences d \nON \n    g.genome_id = d.genome_id \nORDER BY \n    LENGTH(d.dna) DESC \nLIMIT 1;",
+  "answer_summary_LLM": "The genome with the longest DNA sequence has a genome_id of 892, a tax_id of 38836, and a DNA length of 13,942,900 base pairs."
+}

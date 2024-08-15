@@ -1,0 +1,11 @@
+{
+  "id": 8,
+  "question": "What are the different domain profiles available in the antiSMASH database?",
+  "difficulty": "Easy",
+  "category": null,
+  "label": "Test",
+  "answer_sql_expected": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_expected": "The database contains 58 different domain profiles including Beta-eliminating lyase, various Condensation domains, Glycopeptide-specific NRPS domain, Heterocyclization domain, Epimerization domain, multiple Methyl transferase domains, Adenylation domains, Aminotransferase classes, Ketosynthase domain, Ketoreductase domain, Enoylreductase domain, Dehydrogenase domains, Acyltransferase domain, NRPS COM domains, Polyketide cyclase domains, PKS docking domains, Co-enzyme A ligase domain, Acyl-carrier protein domains, Male sterility protein, branching domain, Formylation domain, FkbH-like domain, GNAT domain, Halogenase domain, Pyran synthase domain, Fungal nonreducing product template domain, NRPS domains, and Phosphatidylglycerol lysyltransferase domain.",
+  "answer_sql_LLM": "SELECT * FROM antismash.as_domain_profiles;",
+  "answer_summary_LLM": "The antiSMASH database contains various domain profiles related to non-ribosomal peptide synthetases (NRPS) and polyketide synthases (PKS). Key domain profiles include:\n\n- **Condensation Domains** (e.g., Condensation, Condensation_DCL, Condensation_LCL)\n- **Methyl Transferase Domains** (e.g., MT, cMT, oMT, nMT)\n- **Adenylation Domains** (e.g., AMP-binding, A-OX)\n- **Transferase Domains** (e.g., ACP, PCP)\n- **Cyclization and Reduction Domains** (e.g., Heterocyclization, Thioesterase)\n- **Aminotransferase Domains** (classes I to V)\n- **Diverse Functional Domains** (e.g., Glycopeptide, PKS docking, Male sterility protein)\n\nEach profile includes a unique identifier, name, and description, indicating its specific function in biosynthetic pathways."
+}
