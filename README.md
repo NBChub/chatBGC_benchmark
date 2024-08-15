@@ -2,6 +2,8 @@
 
 This is the repository for Benchmarking ChatBGC with different foundational models using th G1034 dataset from DTU Biosustain.
 
+![Benchmark Result](figures/benchmark_success_0.2.1_02d2c72.svg)
+
 # Running the Benchmark
 ## Get access to OpenAI API
 To get the OpenAI API key, you can ask @matinnuhamunada for a key or use your own [API](https://platform.openai.com/api-keys).
