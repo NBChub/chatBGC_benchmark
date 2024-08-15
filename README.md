@@ -28,7 +28,7 @@ cp ~/net/o-drive/CFB-S-NewBioactiveCompounds/11_G1000/bgcflow/G1034_20240208/dat
 python3 -m venv chatbgc_env
 source chatbgc_env/bin/activate
 python3 -m pip install --upgrade pip
-pip install git+https://github.com/NBChub/chatBGC.git@main #change the version accordingly
+pip install "git+https://github.com/NBChub/chatBGC.git@dev-0.2.1" #change the version accordingly
 
 # Setup variable environment / secrets
 touch .env
