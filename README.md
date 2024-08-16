@@ -2,7 +2,7 @@
 
 This is the repository for Benchmarking ChatBGC with different foundational models using th G1034 dataset from DTU Biosustain.
 
-![Benchmark Result](figures/benchmark_success_0.2.1-alpha_v0.2.1.svg)
+![Benchmark Result](figures/benchmark_overall_0.2.1-alpha_v0.2.1.svg)
 
 # Running the Benchmark
 ## Get access to OpenAI API
