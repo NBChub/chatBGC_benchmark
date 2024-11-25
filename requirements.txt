@@ -216,7 +216,7 @@ SQLAlchemy==2.0.32
 sqlglot==25.13.0
 sqlparse==0.5.1
 stack-data==0.6.3
-starlette==0.37.2
+starlette==0.40.0
 streamlit==1.37.1
 streamlit-code-editor==0.1.21
 sympy==1.13.2
